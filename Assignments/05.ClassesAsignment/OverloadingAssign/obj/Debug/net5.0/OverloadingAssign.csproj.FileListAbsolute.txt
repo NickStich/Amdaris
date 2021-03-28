@@ -1,0 +1,16 @@
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\bin\Debug\net5.0\OverloadingAssign.exe
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\bin\Debug\net5.0\OverloadingAssign.deps.json
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\bin\Debug\net5.0\OverloadingAssign.runtimeconfig.json
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\bin\Debug\net5.0\OverloadingAssign.runtimeconfig.dev.json
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\bin\Debug\net5.0\OverloadingAssign.dll
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\bin\Debug\net5.0\ref\OverloadingAssign.dll
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\bin\Debug\net5.0\OverloadingAssign.pdb
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\obj\Debug\net5.0\OverloadingAssign.csprojAssemblyReference.cache
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\obj\Debug\net5.0\OverloadingAssign.GeneratedMSBuildEditorConfig.editorconfig
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\obj\Debug\net5.0\OverloadingAssign.AssemblyInfoInputs.cache
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\obj\Debug\net5.0\OverloadingAssign.AssemblyInfo.cs
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\obj\Debug\net5.0\OverloadingAssign.csproj.CoreCompileInputs.cache
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\obj\Debug\net5.0\OverloadingAssign.dll
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\obj\Debug\net5.0\ref\OverloadingAssign.dll
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\obj\Debug\net5.0\OverloadingAssign.pdb
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\OverloadingAssign\obj\Debug\net5.0\OverloadingAssign.genruntimeconfig.cache

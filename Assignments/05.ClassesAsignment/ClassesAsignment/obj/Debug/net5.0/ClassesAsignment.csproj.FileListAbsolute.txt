@@ -1,0 +1,16 @@
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\bin\Debug\net5.0\ClassesAsignment.exe
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\bin\Debug\net5.0\ClassesAsignment.deps.json
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\bin\Debug\net5.0\ClassesAsignment.runtimeconfig.json
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\bin\Debug\net5.0\ClassesAsignment.runtimeconfig.dev.json
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\bin\Debug\net5.0\ClassesAsignment.dll
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\bin\Debug\net5.0\ref\ClassesAsignment.dll
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\bin\Debug\net5.0\ClassesAsignment.pdb
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\obj\Debug\net5.0\ClassesAsignment.csprojAssemblyReference.cache
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\obj\Debug\net5.0\ClassesAsignment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\obj\Debug\net5.0\ClassesAsignment.AssemblyInfoInputs.cache
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\obj\Debug\net5.0\ClassesAsignment.AssemblyInfo.cs
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\obj\Debug\net5.0\ClassesAsignment.csproj.CoreCompileInputs.cache
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\obj\Debug\net5.0\ClassesAsignment.dll
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\obj\Debug\net5.0\ref\ClassesAsignment.dll
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\obj\Debug\net5.0\ClassesAsignment.pdb
+C:\Internship\05.ClasessCS\AsignClasses\ClassesAsignment\ClassesAsignment\obj\Debug\net5.0\ClassesAsignment.genruntimeconfig.cache

@@ -1,0 +1,16 @@
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\bin\Debug\net5.0\StringsManipulation.exe
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\bin\Debug\net5.0\StringsManipulation.deps.json
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\bin\Debug\net5.0\StringsManipulation.runtimeconfig.json
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\bin\Debug\net5.0\StringsManipulation.runtimeconfig.dev.json
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\bin\Debug\net5.0\StringsManipulation.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\bin\Debug\net5.0\ref\StringsManipulation.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\bin\Debug\net5.0\StringsManipulation.pdb
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\obj\Debug\net5.0\StringsManipulation.csprojAssemblyReference.cache
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\obj\Debug\net5.0\StringsManipulation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\obj\Debug\net5.0\StringsManipulation.AssemblyInfoInputs.cache
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\obj\Debug\net5.0\StringsManipulation.AssemblyInfo.cs
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\obj\Debug\net5.0\StringsManipulation.csproj.CoreCompileInputs.cache
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\obj\Debug\net5.0\StringsManipulation.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\obj\Debug\net5.0\ref\StringsManipulation.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\obj\Debug\net5.0\StringsManipulation.pdb
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\StringsManipulation\obj\Debug\net5.0\StringsManipulation.genruntimeconfig.cache

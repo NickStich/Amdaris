@@ -1,0 +1,16 @@
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\bin\Debug\net5.0\AssignmentArraysStrings.exe
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\bin\Debug\net5.0\AssignmentArraysStrings.deps.json
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\bin\Debug\net5.0\AssignmentArraysStrings.runtimeconfig.json
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\bin\Debug\net5.0\AssignmentArraysStrings.runtimeconfig.dev.json
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\bin\Debug\net5.0\AssignmentArraysStrings.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\bin\Debug\net5.0\ref\AssignmentArraysStrings.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\bin\Debug\net5.0\AssignmentArraysStrings.pdb
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\obj\Debug\net5.0\AssignmentArraysStrings.csprojAssemblyReference.cache
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\obj\Debug\net5.0\AssignmentArraysStrings.GeneratedMSBuildEditorConfig.editorconfig
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\obj\Debug\net5.0\AssignmentArraysStrings.AssemblyInfoInputs.cache
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\obj\Debug\net5.0\AssignmentArraysStrings.AssemblyInfo.cs
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\obj\Debug\net5.0\AssignmentArraysStrings.csproj.CoreCompileInputs.cache
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\obj\Debug\net5.0\AssignmentArraysStrings.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\obj\Debug\net5.0\ref\AssignmentArraysStrings.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\obj\Debug\net5.0\AssignmentArraysStrings.pdb
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\AssignmentArraysStrings\obj\Debug\net5.0\AssignmentArraysStrings.genruntimeconfig.cache

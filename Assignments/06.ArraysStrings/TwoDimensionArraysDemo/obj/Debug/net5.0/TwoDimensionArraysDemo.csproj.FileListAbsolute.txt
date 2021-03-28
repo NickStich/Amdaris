@@ -1,0 +1,15 @@
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\bin\Debug\net5.0\TwoDimensionArraysDemo.exe
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\bin\Debug\net5.0\TwoDimensionArraysDemo.deps.json
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\bin\Debug\net5.0\TwoDimensionArraysDemo.runtimeconfig.json
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\bin\Debug\net5.0\TwoDimensionArraysDemo.runtimeconfig.dev.json
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\bin\Debug\net5.0\TwoDimensionArraysDemo.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\bin\Debug\net5.0\ref\TwoDimensionArraysDemo.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\bin\Debug\net5.0\TwoDimensionArraysDemo.pdb
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\obj\Debug\net5.0\TwoDimensionArraysDemo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\obj\Debug\net5.0\TwoDimensionArraysDemo.AssemblyInfoInputs.cache
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\obj\Debug\net5.0\TwoDimensionArraysDemo.AssemblyInfo.cs
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\obj\Debug\net5.0\TwoDimensionArraysDemo.csproj.CoreCompileInputs.cache
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\obj\Debug\net5.0\TwoDimensionArraysDemo.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\obj\Debug\net5.0\ref\TwoDimensionArraysDemo.dll
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\obj\Debug\net5.0\TwoDimensionArraysDemo.pdb
+C:\Internship\06.Arrays&Strings\06.AssignmentArrays&Strings\AssignmentArraysStrings\TwoDimensionArraysDemo\obj\Debug\net5.0\TwoDimensionArraysDemo.genruntimeconfig.cache
