@@ -9,7 +9,7 @@ namespace LINQAssign
     {
         static void Main(string[] args)
         {
-            var myLibrary = new Library();
+            
 
             var martin = new Author { Id = 1, Name = "Martin", BirthDate = new DateTime(1948, 12, 04) };
             var tolkien = new Author { Id = 2, Name = "Tolkien", BirthDate = new DateTime(1928, 10, 12) };
@@ -20,7 +20,7 @@ namespace LINQAssign
             var book1 = new Book {
                 Id = 1,
                 Title = "The song of ice and fire",
-                author = martin,
+                Author = martin,
                 PublishDate = new DateTime(1995, 08, 13),
                 Categories = { Category.Fantasy, Category.Mystery, Category.SF, Category.Drama}
             };
@@ -28,7 +28,7 @@ namespace LINQAssign
             {
                 Id = 2,
                 Title = "The Hobbit",
-                author = tolkien,
+                Author = tolkien,
                 PublishDate = new DateTime(1972, 09, 12),
                 Categories = { Category.Fantasy }
             };
@@ -36,7 +36,7 @@ namespace LINQAssign
             {
                 Id = 3,
                 Title = "Fahrenheit 451",
-                author = bradbury,
+                Author = bradbury,
                 PublishDate = new DateTime(1953, 01, 01),
                 Categories = { Category.SF }
             };
@@ -44,7 +44,7 @@ namespace LINQAssign
             {
                 Id = 4,
                 Title = "The Halloween Tree",
-                author = bradbury,
+                Author = bradbury,
                 PublishDate = new DateTime(1972, 01, 01),
                 Categories = { Category.SF }
             };
@@ -52,7 +52,7 @@ namespace LINQAssign
             {
                 Id = 5,
                 Title = "Let's All Kill Constance ",
-                author = bradbury,
+                Author = bradbury,
                 PublishDate = new DateTime(2006, 01, 01),
                 Categories = { Category.SF }
             };
@@ -60,7 +60,7 @@ namespace LINQAssign
             {
                 Id = 6,
                 Title = "Farewell Summer",
-                author = bradbury,
+                Author = bradbury,
                 PublishDate = new DateTime(2002, 01, 01),
                 Categories = { Category.SF }
             };
@@ -68,7 +68,7 @@ namespace LINQAssign
             {
                 Id = 7,
                 Title = "The mobile",
-                author = king,
+                Author = king,
                 PublishDate = new DateTime(2009, 01, 01),
                 Categories = { Category.Mystery, Category.SF, Category.Drama }
             };
@@ -76,7 +76,7 @@ namespace LINQAssign
             {
                 Id = 8,
                 Title = "Revival",
-                author = king,
+                Author = king,
                 PublishDate = new DateTime(2014, 01, 01),
                 Categories = { Category.Mystery, Category.Thriller, Category.SF }
             };
@@ -84,7 +84,7 @@ namespace LINQAssign
             {
                 Id = 9,
                 Title = "Later",
-                author = king,
+                Author = king,
                 PublishDate = new DateTime(2021, 01, 01),
                 Categories = { Category.Mystery, Category.Thriller, Category.SF }
             };
@@ -92,10 +92,12 @@ namespace LINQAssign
             {
                 Id = 10,
                 Title = "Anna Karenina",
-                author = tolstoy,
+                Author = tolstoy,
                 PublishDate = new DateTime(1877, 01, 01),
                 Categories = { Category.Drama }
             };
+
+            var myLibrary = new Library();
 
             myLibrary.AddBook(book1);
             myLibrary.AddBook(book2);
@@ -108,31 +110,39 @@ namespace LINQAssign
             myLibrary.AddBook(book9);
             myLibrary.AddBook(book10);
 
-            myLibrary.CheckingBooksStock();
+            myLibrary.RemoveBookById(2);
+
+            Console.WriteLine("Getting all books");
+            List<Book> books = myLibrary.GetAllBooks();
+            foreach(Book b in books)
+            {
+                Console.WriteLine(b);
+            }
+
 
             Console.WriteLine("After '80");
-            List<Book> filtredBooksEighty = myLibrary.BooksPublishedAfterEighty(myLibrary.GetAllBooks());
+            List<Book> filtredBooksEighty = myLibrary.BooksPublishedAfterGivenYear(1980);
             foreach(Book book in filtredBooksEighty)
             {
                 Console.WriteLine(book.ToString());
             }
 
             Console.WriteLine("From drama");
-            List<Book> filtredBooksDrama = myLibrary.BooksWithDrama(myLibrary.GetAllBooks());
+            List<Book> filtredBooksDrama = myLibrary.BooksWithCategory(Category.Drama);
             foreach (Book book in filtredBooksDrama)
             {
                 Console.WriteLine(book.ToString());
             }
 
             Console.WriteLine("Many than 3");
-            List<Author> filtredAutors = myLibrary.GetAuthorsManyPublish(myLibrary.GetAllBooks(), myLibrary.GetAllAuthors(myLibrary.GetAllBooks()));
-            foreach (Author author in filtredAutors)
+            List<string> filtredAutors = myLibrary.GetAuthorsManyPublish(3);
+            foreach (string author in filtredAutors)
             {
-                Console.WriteLine(author.ToString());
+                Console.WriteLine(author);
             }
 
-            Console.WriteLine("Many than 2 and born before 1990");
-            List<Author> filtredOldAutors = myLibrary.GetAuthorsByYearAndBooks(myLibrary.GetAllBooks(), myLibrary.GetAllAuthors(myLibrary.GetAllBooks()));
+            Console.WriteLine("Many than 2 and born before 1990 as SF");
+            List<Author> filtredOldAutors = myLibrary.GetAuthorsByYearAndBooks(1990, Category.SF, 2);
             foreach (Author author in filtredOldAutors)
             {
                 Console.WriteLine(author.ToString());
@@ -151,6 +161,6 @@ namespace LINQAssign
             }
         }
 
-        
+
     }
 }

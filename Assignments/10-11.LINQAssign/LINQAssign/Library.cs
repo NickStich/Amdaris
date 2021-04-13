@@ -9,13 +9,13 @@ namespace LINQAssign
     class Library
     {
         private List<Book> _booksInLibrary;
-
+        private List<Author> _authors;
         public Library()
         {
             _booksInLibrary = new List<Book>();
+            _authors = _booksInLibrary.Select(b => b.Author).Distinct().ToList();
         }
 
-        
         public void AddBook(Book book) // 1. Adding a book to the collection.
         {
             _booksInLibrary.Add(book);
@@ -23,13 +23,7 @@ namespace LINQAssign
 
         public void RemoveBookById(int Id) //2. Removing a book from the collection by ID.
         {
-            foreach (Book book in _booksInLibrary)
-            {
-                if(book.Id == Id)
-                {
-                    _booksInLibrary.Remove(book);
-                }
-            }
+            _booksInLibrary.RemoveAll(b => b.Id == Id);
         }
 
         public List<Book> GetAllBooks() //3. Get the list of all books.
@@ -37,83 +31,41 @@ namespace LINQAssign
             return _booksInLibrary;
         }
 
-        public void CheckingBooksStock() // A method that return existing books in stock.
+        public List<Book> BooksPublishedAfterGivenYear(int year) //4. Getting the list of all books published after 1980
         {
-            foreach (Book book in GetAllBooks())
-            {
-                Console.WriteLine(book.ToString());
-            }
-        }
-
-        public List<Book> BooksPublishedAfterEighty(List<Book> bookList) //4. Getting the list of all books published after 1980
-        {
-            var filtredList = bookList.Where(book => book.PublishDate.Year >= 1980);
+            var filtredList = _booksInLibrary.Where(book => book.PublishDate.Year >= year);
             return filtredList.ToList();
         }
 
-        public List<Book> BooksWithDrama(List<Book> bookList) //5. Getting the list of all books with one of the categories: "drama"
+        public List<Book> BooksWithCategory(Category category) //5. Getting the list of all books with one of the categories: "drama"
         {
-            var filtredList = bookList.Where(book => book.Categories.Contains(Category.Drama));
+            var filtredList = _booksInLibrary.Where(book => book.Categories.Contains(category));
             return filtredList.ToList();
         }
 
-        public List<Author> GetAllAuthors(List<Book> bookList) // 6. Getting the names of all authors . 
+        public List<Author> GetAllAuthors() // 6. Getting the names of all authors . 
         {
-            var authorList = new List<Author>();
-            foreach (Book book in bookList)
-            {
-                authorList.Add(book.author);
-            }
-            var distinctAuthorList = authorList.Distinct().ToList();
-            return distinctAuthorList;
+            return _authors;
         }
 
-        public List<Author> GetAuthorsManyPublish(List<Book> bookList, List<Author> authorList) // 6. Getting the names of all authors that have published at least 3 books.
+        public List<string> GetAuthorsManyPublish(int manyThan) // 6. Getting the names of all authors that have published at least 3 books.
         {
-            var filtredList = new List<Author>();
-
-            foreach (Author author in authorList)
-            {
-                int count = 0;
-                foreach (Book book in bookList)
-                {
-                    if (author == book.author)
-                    {
-                        count++;
-                    }
-                }
-                if (count >= 3)
-                {
-                    filtredList.Add(author);
-                }
-            }
-            return filtredList;
+            var result = _booksInLibrary.GroupBy(b => b.Author.Id).Where(x => x.Count() >= manyThan).Select(x => x.First().Author.Name).ToList();
+            return result;
         }
 
-        public List<Author> GetAuthorsByYearAndBooks(List<Book> bookList, List<Author> authorList) //Getting the names of all authors that are born before 1990 and have written at least 2 books of category "science-fiction"
+        public List<Author> GetAuthorsByYearAndBooks(int year, Category category, int howManyBooks) // 7.Getting the names of all authors that are born before 1990 and have written at least 2 books of category "science-fiction"
         {
-            var filtredList = new List<Author>();
-            foreach (Author author in authorList)
-            {
-                int count = 0;
-                foreach (Book book in bookList)
-                {
-                    if (author.BirthDate.Year<=1990 && author == book.author)
-                    {
-                        count++;
-                    }
-                }
-                if (count >= 2)
-                {
-                    filtredList.Add(author);
-                }
-            }
-            return filtredList;
+            var result = _booksInLibrary.GroupBy(a => a.Author.Id)
+                .Where(x => x.First().Author.BirthDate.Year <= year && x.Where(b => b.Categories.Contains(category))
+                .Count() >= howManyBooks).Select(y=>y.First().Author)
+                .ToList();
+            return result;
         }
 
-        public IEnumerable<IGrouping<int, Book>> GroupingBooksByDecade(List<Book> bookList) //A method that returns an IGrouping of Books grouped by the decade they were published in.
+        public IEnumerable<IGrouping<int, Book>> GroupingBooksByDecade(List<Book> bookList) // 8.A method that returns an IGrouping of Books grouped by the decade they were published in.
         {
-            var groupedList = bookList.GroupBy(b => (b.PublishDate.Year % 100)/10);
+            var groupedList = bookList.GroupBy(b => (b.PublishDate.Year /10));
             return groupedList;
         }
 

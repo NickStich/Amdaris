@@ -12,7 +12,7 @@ namespace LINQAssign
         public int Id { get; set; }
         public string Title { get; set; }
         public DateTime PublishDate { get; set; }
-        public Author author { get; set; }       
+        public Author Author { get; set; }       
         public List<Category> Categories { get; set; } = new List<Category>();
 
 
@@ -25,9 +25,9 @@ namespace LINQAssign
             }
             if (categories.Length == 0)
             {
-                return $"{ Id} - { Title} - {PublishDate} - {author.Name}";
+                return $"{ Id} - { Title} - {PublishDate} - {Author.Name}";
             }
-           return $"{ Id} - { Title} - {PublishDate} - {author.Name} - "+categories.Substring(2) ;
+           return $"{ Id} - { Title} - {PublishDate} - {Author.Name} - "+categories.Substring(2) ;
         }
     }
 
