@@ -1,0 +1,15 @@
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\obj\Debug\net5.0\AssignOne.GeneratedMSBuildEditorConfig.editorconfig
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\obj\Debug\net5.0\AssignOne.AssemblyInfoInputs.cache
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\obj\Debug\net5.0\AssignOne.AssemblyInfo.cs
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\obj\Debug\net5.0\AssignOne.csproj.CoreCompileInputs.cache
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\bin\Debug\net5.0\AssignOne.exe
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\bin\Debug\net5.0\AssignOne.deps.json
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\bin\Debug\net5.0\AssignOne.runtimeconfig.json
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\bin\Debug\net5.0\AssignOne.runtimeconfig.dev.json
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\bin\Debug\net5.0\AssignOne.dll
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\bin\Debug\net5.0\ref\AssignOne.dll
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\bin\Debug\net5.0\AssignOne.pdb
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\obj\Debug\net5.0\AssignOne.dll
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\obj\Debug\net5.0\ref\AssignOne.dll
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\obj\Debug\net5.0\AssignOne.pdb
+C:\Internship\19.BehaviorPatterns\BehaviorAssignments\BehaviorAssign\AssignOne\obj\Debug\net5.0\AssignOne.genruntimeconfig.cache
