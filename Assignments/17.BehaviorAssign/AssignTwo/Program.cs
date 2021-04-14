@@ -14,7 +14,7 @@ namespace AssignTwo
                 new Circle(2),
                 new Square(12),
                 new Circle(33),
-                new Square(-4),
+                new Square(0),
                 new Rectangle(14,8)
             };
 
