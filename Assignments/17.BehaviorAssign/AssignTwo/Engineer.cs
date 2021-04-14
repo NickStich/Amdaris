@@ -18,9 +18,7 @@ namespace AssignTwo.Observer
         public void Notify((Shape, float) item)
         {
             var shape = item.Item1;
-            
             var area = item.Item2;
-
 
             switch (shape)
             {
@@ -39,7 +37,6 @@ namespace AssignTwo.Observer
                     {
                         Console.WriteLine("Seems right");
                     }
-
                     break;
             }
         }

@@ -15,11 +15,5 @@ namespace AssignTwo
 
         public int Length { get; }
 
-        public override float GetShapeArea()
-        {
-            float area = Convert.ToSingle(Length*Length);
-
-            return area;
-        }
     }
 }

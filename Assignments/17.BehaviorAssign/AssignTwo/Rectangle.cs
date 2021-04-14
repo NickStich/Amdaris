@@ -17,11 +17,5 @@ namespace AssignTwo
         public int Length { get;  }
         public int Width { get;  }
 
-        public override float GetShapeArea()
-        {
-            var area = Length * Width;
-            
-            return area;
-        }
     }
 }

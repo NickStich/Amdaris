@@ -11,12 +11,5 @@ namespace AssignTwo
 
         public int Radius { get; }
 
-        public override float GetShapeArea()
-        {
-            float area = Convert.ToSingle(Radius * Radius * Math.PI);
-
-            return area;
-
-        }
     }
 }

@@ -17,23 +17,14 @@ namespace AssignTwo
                 new Square(-4),
                 new Rectangle(14,8)
             };
-            //IVisitable s = new Circle(8);
-            //s.GetType()
-
 
             var visitorPublisher = new AreaCalculatorVisitor();
-
             var eng = new Engineer("Ion");
-
             visitorPublisher.AddSubscriber(eng);
-
 
             try
             {
-                foreach(Shape shape in shapes)
-                {
-                    shape.Accept(visitorPublisher);
-                }
+                shapes.ForEach(shape => shape.Accept(visitorPublisher));
             }
             catch (InvalidOperationException e)
             {

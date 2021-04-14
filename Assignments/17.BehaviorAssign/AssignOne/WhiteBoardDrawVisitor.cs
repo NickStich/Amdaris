@@ -10,14 +10,14 @@ namespace AssignOne
     {
         public void Visit(Shape shape)
         {
-            if (shape is Circle circle)
+            switch (shape)
             {
-                Console.WriteLine($"Drawing circle with radius {circle.Radius} on whiteBoard");
-            }
-
-            if (shape is Square square)
-            {
-                Console.WriteLine($"Drawing circle with radius {square.Length} on whiteBoard");
+                case Circle c:
+                    Console.WriteLine($"Drawing circle with radius {c.Radius} on whiteBoard");
+                    break;
+                case Square s:
+                    Console.WriteLine($"Drawing circle with radius {s.Length} on whiteBoard");
+                    break;
             }
         }
     }
