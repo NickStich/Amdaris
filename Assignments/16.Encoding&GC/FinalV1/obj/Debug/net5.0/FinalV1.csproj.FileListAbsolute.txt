@@ -1,0 +1,16 @@
+C:\Internship\PROJ\FinalV1\FinalV1\bin\Debug\net5.0\FinalV1.exe
+C:\Internship\PROJ\FinalV1\FinalV1\bin\Debug\net5.0\FinalV1.deps.json
+C:\Internship\PROJ\FinalV1\FinalV1\bin\Debug\net5.0\FinalV1.runtimeconfig.json
+C:\Internship\PROJ\FinalV1\FinalV1\bin\Debug\net5.0\FinalV1.runtimeconfig.dev.json
+C:\Internship\PROJ\FinalV1\FinalV1\bin\Debug\net5.0\FinalV1.dll
+C:\Internship\PROJ\FinalV1\FinalV1\bin\Debug\net5.0\ref\FinalV1.dll
+C:\Internship\PROJ\FinalV1\FinalV1\bin\Debug\net5.0\FinalV1.pdb
+C:\Internship\PROJ\FinalV1\FinalV1\obj\Debug\net5.0\FinalV1.csprojAssemblyReference.cache
+C:\Internship\PROJ\FinalV1\FinalV1\obj\Debug\net5.0\FinalV1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Internship\PROJ\FinalV1\FinalV1\obj\Debug\net5.0\FinalV1.AssemblyInfoInputs.cache
+C:\Internship\PROJ\FinalV1\FinalV1\obj\Debug\net5.0\FinalV1.AssemblyInfo.cs
+C:\Internship\PROJ\FinalV1\FinalV1\obj\Debug\net5.0\FinalV1.csproj.CoreCompileInputs.cache
+C:\Internship\PROJ\FinalV1\FinalV1\obj\Debug\net5.0\FinalV1.dll
+C:\Internship\PROJ\FinalV1\FinalV1\obj\Debug\net5.0\ref\FinalV1.dll
+C:\Internship\PROJ\FinalV1\FinalV1\obj\Debug\net5.0\FinalV1.pdb
+C:\Internship\PROJ\FinalV1\FinalV1\obj\Debug\net5.0\FinalV1.genruntimeconfig.cache
