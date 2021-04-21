@@ -11,13 +11,12 @@ namespace AssignTwo
     {
         public void Visit(Shape shape)
         {
-            float result = 0;
-            _ = shape switch
+            float result = shape switch
             {
-                Circle c => result = Convert.ToSingle(c.Radius * c.Radius * Math.PI),
-                Square s => result = s.Length * s.Length,
-                Rectangle r => result = r.Length * r.Width,
-                _ => result
+                Circle c =>  Convert.ToSingle(c.Radius * c.Radius * Math.PI),
+                Square s =>  s.Length * s.Length,
+                Rectangle r =>  r.Length * r.Width,
+                _ => 0
             };
 
             Publish((shape,result));

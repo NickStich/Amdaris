@@ -17,16 +17,14 @@ namespace AssignTwo.Observer
 
         public void Notify((Shape, float) item)
         {
-            var shape = item.Item1;
-            var area = item.Item2;
+            var (shape, area) = item;
 
-            string result;
-            _ = shape switch
+            string result = shape switch
             {
-                Circle circle when area > 30f => result = $"Area of circle with radius {circle.Radius} is too big",
-                Square square when area > 20f => result = $"Area of square with length {square.Length} is too big",
-                _ when area <= 0 => result = "Impossible area",
-                _ => result = "Seems right"
+                Circle circle when area > 30f =>  $"Area of circle with radius {circle.Radius} is too big",
+                Square square when area > 20f =>  $"Area of square with length {square.Length} is too big",
+                _ when area <= 0 =>  "Impossible area",
+                _ =>  "Seems right"
             };
             Console.WriteLine(result);
         }

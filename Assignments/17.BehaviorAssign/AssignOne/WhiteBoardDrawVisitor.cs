@@ -10,12 +10,12 @@ namespace AssignOne
     {
         public void Visit(Shape shape)
         {
-            string result;
-            _ = shape switch
+
+            string result = shape switch
             {
-                Circle c => result = $"Drawing circle with radius {c.Radius} on whiteBoard",
-                Square s => result = $"Drawing circle with radius {s.Length} on whiteBoard",
-                _ => result = "Inexisting shape"
+                Circle c =>  $"Drawing circle with radius {c.Radius} on whiteBoard",
+                Square s =>  $"Drawing circle with radius {s.Length} on whiteBoard",
+                _ => "Inexisting shape"
             };
             Console.WriteLine(result);
             
