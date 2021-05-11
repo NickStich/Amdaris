@@ -17,7 +17,7 @@ namespace Infrastructure
         private readonly string _connString;
         public AccountingAppDbContext()
         {
-            _connString = @"Data Source=DESKTOP-GB8VVC3\SQLEXPRESS;Database=Acc;Integrated Security=True";
+            _connString = @"Data Source=DESKTOP-GB8VVC3\SQLEXPRESS;Database=AccAMA;Integrated Security=True";
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,6 +27,14 @@ namespace Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Invoice>()
+            .ToTable("Invoices")
+            .HasDiscriminator<int>("InvoiceType")
+            .HasValue<Invoice>(0)
+            .HasValue<PurchasesInvoice>(1)
+            .HasValue<SalesInvoice>(2);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AccountingAppDbContext).Assembly);
 
             modelBuilder.Entity<PositionInvoice>()
                  .HasKey(pi => new { pi.PositionId, pi.InvoiceId });
@@ -52,11 +60,16 @@ namespace Infrastructure
         }
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<Invoice> Invoices { get; set; }
+
         public DbSet<ThirdPartyPerson> ThirdParties { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<InvoiceThirdParties> InvoiceThirdParties { get; set; }
         public DbSet<PositionInvoice> PositionInvoices { get; set; }
+
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<PurchasesInvoice> PurchasesInvoices { get; set; }
+        public DbSet<SalesInvoice> SalesInvoices { get; set; }
+
 
     }
 }

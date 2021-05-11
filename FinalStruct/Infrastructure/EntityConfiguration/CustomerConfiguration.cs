@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.EntityConfiguration
 {
-    public class ThirdPartyConfiguration : IEntityTypeConfiguration<ThirdPartyPerson>
+    public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
     {
-        public void Configure(EntityTypeBuilder<ThirdPartyPerson> builder)
+        public void Configure(EntityTypeBuilder<Customer> builder)
         {
-            builder.ToTable("ThirdParties");
+            builder.ToTable("Customers");
         }
     }
 }

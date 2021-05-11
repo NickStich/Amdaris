@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class testInsert : Migration
+    public partial class test1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    InvoiceType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,6 +73,23 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Customers_ThirdParties_Id",
+                        column: x => x.Id,
+                        principalTable: "ThirdParties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "InvoiceThirdParties",
                 columns: table => new
                 {
@@ -96,7 +114,24 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PositionInvoice",
+                name: "Suppliers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Suppliers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Suppliers_ThirdParties_Id",
+                        column: x => x.Id,
+                        principalTable: "ThirdParties",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PositionInvoices",
                 columns: table => new
                 {
                     PositionId = table.Column<int>(type: "int", nullable: false),
@@ -104,15 +139,15 @@ namespace Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PositionInvoice", x => new { x.PositionId, x.InvoiceId });
+                    table.PrimaryKey("PK_PositionInvoices", x => new { x.PositionId, x.InvoiceId });
                     table.ForeignKey(
-                        name: "FK_PositionInvoice_Invoices_InvoiceId",
+                        name: "FK_PositionInvoices_Invoices_InvoiceId",
                         column: x => x.InvoiceId,
                         principalTable: "Invoices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PositionInvoice_Positions_PositionId",
+                        name: "FK_PositionInvoices_Positions_PositionId",
                         column: x => x.PositionId,
                         principalTable: "Positions",
                         principalColumn: "Id",
@@ -125,8 +160,8 @@ namespace Infrastructure.Migrations
                 column: "ThirdPartyPersonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PositionInvoice_InvoiceId",
-                table: "PositionInvoice",
+                name: "IX_PositionInvoices_InvoiceId",
+                table: "PositionInvoices",
                 column: "InvoiceId");
 
             migrationBuilder.CreateIndex(
@@ -138,19 +173,25 @@ namespace Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Customers");
+
+            migrationBuilder.DropTable(
                 name: "InvoiceThirdParties");
 
             migrationBuilder.DropTable(
-                name: "PositionInvoice");
+                name: "PositionInvoices");
 
             migrationBuilder.DropTable(
-                name: "ThirdParties");
+                name: "Suppliers");
 
             migrationBuilder.DropTable(
                 name: "Invoices");
 
             migrationBuilder.DropTable(
                 name: "Positions");
+
+            migrationBuilder.DropTable(
+                name: "ThirdParties");
 
             migrationBuilder.DropTable(
                 name: "Products");

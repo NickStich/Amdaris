@@ -1,4 +1,4 @@
-﻿using Domain.Invoicing;
+﻿using Domain.ThirdParty;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.EntityConfiguration
 {
-    public class InvoiceConfiguration : IEntityTypeConfiguration<Invoice>
+    public class SupplierConfiguration : IEntityTypeConfiguration<Supplier>
     {
-        public void Configure(EntityTypeBuilder<Invoice> builder)
+        public void Configure(EntityTypeBuilder<Supplier> builder)
         {
-
+            builder.ToTable("Suppliers");
         }
     }
 }

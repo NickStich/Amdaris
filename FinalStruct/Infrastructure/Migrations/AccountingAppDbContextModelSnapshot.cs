@@ -59,6 +59,9 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("InvoiceType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
@@ -68,6 +71,8 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Invoices");
+
+                    b.HasDiscriminator<int>("InvoiceType").HasValue(0);
                 });
 
             modelBuilder.Entity("Domain.Position", b =>
@@ -129,6 +134,34 @@ namespace Infrastructure.Migrations
                     b.ToTable("ThirdParties");
                 });
 
+            modelBuilder.Entity("Domain.Invoicing.PurchasesInvoice", b =>
+                {
+                    b.HasBaseType("Domain.Invoicing.Invoice");
+
+                    b.HasDiscriminator().HasValue(1);
+                });
+
+            modelBuilder.Entity("Domain.Invoicing.SalesInvoice", b =>
+                {
+                    b.HasBaseType("Domain.Invoicing.Invoice");
+
+                    b.HasDiscriminator().HasValue(2);
+                });
+
+            modelBuilder.Entity("Domain.ThirdParty.Customer", b =>
+                {
+                    b.HasBaseType("Domain.ThirdParty.ThirdPartyPerson");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Domain.ThirdParty.Supplier", b =>
+                {
+                    b.HasBaseType("Domain.ThirdParty.ThirdPartyPerson");
+
+                    b.ToTable("Suppliers");
+                });
+
             modelBuilder.Entity("Domain.ConnectionEntities.InvoiceThirdParties", b =>
                 {
                     b.HasOne("Domain.Invoicing.Invoice", "Invoice")
@@ -176,6 +209,24 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Domain.ThirdParty.Customer", b =>
+                {
+                    b.HasOne("Domain.ThirdParty.ThirdPartyPerson", null)
+                        .WithOne()
+                        .HasForeignKey("Domain.ThirdParty.Customer", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.ThirdParty.Supplier", b =>
+                {
+                    b.HasOne("Domain.ThirdParty.ThirdPartyPerson", null)
+                        .WithOne()
+                        .HasForeignKey("Domain.ThirdParty.Supplier", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Invoicing.Invoice", b =>
