@@ -1,4 +1,5 @@
-﻿using Domain.Invoicing;
+﻿using Domain.ConnectionEntities;
+using Domain.Invoicing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,13 @@ namespace Domain.ThirdParty
         public string Name { get; set; }
         public string TaxId { get; set; }
         public virtual ThirdPartyType Type { get; set; }
-
-        public bool IsArchived = false;
-
+        public bool IsArchived;
         public override string ToString()
         {
             return $"ID:{Id} Name:{Name} with TaxID:{TaxId} as {Type}";
         }
 
-       // public ICollection<Invoice> Invoices { get; set; }
+        public ICollection<InvoiceThirdParties> Invoices { get; set; }
 
     }
 

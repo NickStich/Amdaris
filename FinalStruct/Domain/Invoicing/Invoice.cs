@@ -1,4 +1,5 @@
-﻿using Domain.ThirdParty;
+﻿using Domain.ConnectionEntities;
+using Domain.ThirdParty;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +13,16 @@ namespace Domain.Invoicing
         public int Id { get; set; }
         public string Number { get; set; }
         public DateTime Date { get; set; }
-        public virtual ThirdPartyPerson ThirdParty { get; set; }
-        public Product Product { get; set; }
-        public int Quantity { get; set; }
-        public double Value
-        {
-            get
-            {
-                return Product.Price * Quantity;
-            }
-        }
+        public ICollection<InvoiceThirdParties> ThirdParties { get; set; }
+        public ICollection<PositionInvoice> Positions { get; set; }
         public virtual VAT VatType { get; }
         public InvoiceStatus Status { get; set; }
 
         public override string ToString()
         {
-            return $"Number:{Number} |  Date:{Date} |  From/To:{ThirdParty}  | Value:{Value}";
+            return $"Number:{Number} |  Date:{Date} | ";
         }
 
-       // public ICollection<Product> Products { get; set; }
 
-      //  public ICollection<ThirdPartyPerson> ThirdParties { get; set; }
     }
 }

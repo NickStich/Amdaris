@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure
 {
-    public class InMemoryInvoiceRepository : IInvoiceRepository
+    /*public class InMemoryInvoiceRepository  : IInvoiceRepository
     {
         private List<Invoice> _invoices;
 
@@ -55,10 +55,10 @@ namespace Infrastructure
             }
             invoiceToUpdate.Number = invoice.Number;
             invoiceToUpdate.Date = invoice.Date;
-            invoiceToUpdate.Product = invoice.Product;
-            invoiceToUpdate.ThirdParty = invoice.ThirdParty;
-            invoiceToUpdate.Quantity = invoice.Quantity;
+            //invoiceToUpdate.Products = invoice.Products;
+            //invoiceToUpdate.ThirdParty = invoice.ThirdParty;
+            //invoiceToUpdate.Quantity = invoice.Quantity;
 
         }
-    }
+    }*/
 }

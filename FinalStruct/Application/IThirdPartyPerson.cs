@@ -9,10 +9,13 @@ namespace Application
 {
     public interface IThirdPartyPerson
     {
-        IEnumerable<ThirdPartyPerson> GetThirdPartyPersons();
-        ThirdPartyPerson GetThirdPartyPersonById(int thirdPartyPersonId);
         void AddThirdPartyPerson(ThirdPartyPerson thirdPartyPerson);
         void UpdateThirdPartyPerson(int thirdPartyPersonId, ThirdPartyPerson thirdPartyPerson);
         void DeleteThirdPartyPerson(int thirdPartyPersonId);
+        IEnumerable<ThirdPartyPerson> GetThirdPartyPersons();
+        ThirdPartyPerson GetThirdPartyPersonById(int thirdPartyPersonId);
+        ThirdPartyPerson FindPersonByTaxId(string taxId);
+        ThirdPartyPerson FindPersonByName(string name);
+
     }
 }

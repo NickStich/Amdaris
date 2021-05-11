@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure
 {
-    public class InMemoryStatusInvoiceRepository : IInvoiceStatus
+    /*public class InMemoryStatusInvoiceRepository : IInvoiceStatus
     {
         private List<Invoice> _invoices;
         public Invoice ChangeStatus(InvoiceStatus invoiceStatus, Invoice invoice)
@@ -21,5 +21,5 @@ namespace Infrastructure
         {
             return _invoices.Where(i => i.Status == invoiceStatus).ToList();
         }
-    }
+    }*/
 }

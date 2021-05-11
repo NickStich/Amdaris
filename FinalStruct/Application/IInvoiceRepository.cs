@@ -9,10 +9,13 @@ namespace Application
 {
     public interface IInvoiceRepository
     {
-        IEnumerable<Invoice> GetAllInvoices();
-        Invoice GetInvoiceById(int invoiceId);
         void CreateInvoice(Invoice invoice);
         void UpdateInvoice(int invoiceId, Invoice invoice);
         void DeleteInvoice(int invoiceId);
+        IEnumerable<Invoice> GetAllInvoices();
+        Invoice GetInvoiceById(int invoiceId);
+        IEnumerable<Invoice> FindInvoicesByThirdPartyId(int ThirdPartyId);
+        IEnumerable<Invoice> FindInvoiceByStatus(InvoiceStatus status);
+        IEnumerable<Invoice> FindInvoicesByDate(DateTime date);
     }
 }

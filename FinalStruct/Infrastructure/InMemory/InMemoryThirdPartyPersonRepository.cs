@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure
 {
-    public class InMemoryThirdPartyPersonRepository : IThirdPartyPerson
+   /* public class InMemoryThirdPartyPersonRepository : IThirdPartyPerson
     {
         List<ThirdPartyPerson> _thirdParties;
         public InMemoryThirdPartyPersonRepository()
@@ -61,5 +61,5 @@ namespace Infrastructure
             tpperson.Name = thirdPartyPerson.Name;
             tpperson.TaxId = thirdPartyPerson.TaxId;
         }
-    }
+    }*/
 }
