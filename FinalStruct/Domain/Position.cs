@@ -16,6 +16,10 @@ namespace Domain
         public double  Quantity { get; set; }
         public double Value
         {
+            set
+            {
+
+            }
             get
             {
                 return Product.Price * Quantity;

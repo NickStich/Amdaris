@@ -67,10 +67,13 @@ namespace ConsolePresentation
                 //Console.WriteLine("succes");
 
 
-                var repo = new InvoiceRepository(dbContext);
+               /* var repo = new InvoiceRepository(dbContext);
 
                 var intById = repo.GetInvoiceById(3);
-                Console.WriteLine(intById);
+                Console.WriteLine(intById);*/
+
+                int test = (int)InvoiceStatus.CANCELED;
+                Console.WriteLine(test);
 
 
             }
