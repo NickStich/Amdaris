@@ -1,15 +1,13 @@
-using Application;
-using Domain;
+﻿using Application;
 using Domain.Invoicing;
-using Domain.ThirdParty;
-using Infrastructure;
 using Infrastructure.Services;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -25,7 +23,7 @@ namespace Tests
             _invoiceService = new InvoiceService(_mockInvoiceRepository.Object);
         }
 
-        
+
         [Test]
         public void TestInvoiceNumberSameAsFromInvoiceService()
         {
