@@ -14,6 +14,13 @@ namespace Infrastructure.EntityConfiguration
         public void Configure(EntityTypeBuilder<Supplier> builder)
         {
             builder.ToTable("Suppliers");
+
+            builder.Property(x => x.Name).HasColumnName("Name")
+                   .IsRequired()
+                   .HasMaxLength(20);
+            builder.Property(x => x.TaxId).HasColumnName("TaxId")
+                   .IsRequired()
+                   .HasMaxLength(20);
         }
     }
 }

@@ -26,7 +26,8 @@ namespace Infrastructure
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        { 
+            // configuration of TPH
             modelBuilder.Entity<Invoice>()
             .ToTable("Invoices")
             .HasDiscriminator<int>("InvoiceType")
@@ -34,6 +35,7 @@ namespace Infrastructure
             .HasValue<PurchasesInvoice>(1)
             .HasValue<SalesInvoice>(2);
 
+            // configuration of TPT
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AccountingAppDbContext).Assembly);
 
             modelBuilder.Entity<PositionInvoice>()
