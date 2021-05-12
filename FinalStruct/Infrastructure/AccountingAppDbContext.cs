@@ -49,6 +49,7 @@ namespace Infrastructure
                 .HasOne(pi => pi.ThirdPartyPerson)
                 .WithMany(pi => pi.Invoices)
                 .HasForeignKey(pi => pi.ThirdPartyPersonId);
+
         }
 
         public DbSet<Product> Products { get; set; }

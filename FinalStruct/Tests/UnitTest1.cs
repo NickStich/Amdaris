@@ -1,6 +1,9 @@
+using Application;
 using Domain;
+using Domain.Invoicing;
 using Domain.ThirdParty;
 using Infrastructure;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
@@ -11,21 +14,36 @@ namespace Tests
 {
     public class Tests
     {
+        private Mock<IInvoiceRepository> _mockInvoiceRepository;
+        private InvoiceService _service;
 
         [SetUp]
         public void Setup()
         {
-            //var mockSet = new Mock<DbSet<Product>>();
-            //mockSet.As<IQueryable<Product>>().Setup(m => m.Provider).Returns(data.Provider);
-            //mockSet.As<IQueryable<Product>>().Setup(m => m.Expression).Returns(data.Expression);
-            //mockSet.As<IQueryable<Product>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            //mockSet.As<IQueryable<Product>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            _mockInvoiceRepository = new Mock<IInvoiceRepository>();
+            _service = new InvoiceService(_mockInvoiceRepository.Object);
         }
 
+        
         [Test]
         public void Test1()
         {
-            Assert.Pass();
+            // Arrange
+            var invoices = new List<Invoice>
+            {
+                new Invoice
+                {
+                    Number = "20210511"
+                }
+            };
+            _mockInvoiceRepository.Setup(i => i.GetAllInvoices()).Returns(invoices);
+
+            // Act
+            var invs = _service.GetAllInvoices();
+
+            // Assert
+            Assert.AreEqual(invs.Count(), invoices.Count);
+            Assert.AreEqual(invs.FirstOrDefault().Number, invoices.FirstOrDefault().Number);
         }
     }
 }
