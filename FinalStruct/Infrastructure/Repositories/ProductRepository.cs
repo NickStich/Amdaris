@@ -25,11 +25,6 @@ namespace Infrastructure.Repositories
             _dbContext.Remove(_dbContext.Products.Single(p => p.Id == productId));
         }
 
-        public IEnumerable<Product> FindProductsByName(string name)
-        {
-            return _dbContext.Products.Where(i => i.Name == name).ToList();
-        }
-
         public IEnumerable<Product> GetAllProducts()
         {
             return _dbContext.Products;

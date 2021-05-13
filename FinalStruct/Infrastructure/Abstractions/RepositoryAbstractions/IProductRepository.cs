@@ -14,7 +14,5 @@ namespace Application
         void DeleteProduct(int productId);
         IEnumerable<Product> GetAllProducts();
         Product GetProductById(int productId);
-        IEnumerable<Product> FindProductsByName(string name);
-        
     }
 }

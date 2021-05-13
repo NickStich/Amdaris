@@ -15,7 +15,6 @@ namespace Application
         IEnumerable<Invoice> GetAllInvoices();
         Invoice GetInvoiceById(int invoiceId);
         IEnumerable<Invoice> FindInvoicesByThirdPartyId(int ThirdPartyId);
-        IEnumerable<Invoice> FindInvoiceByStatus(InvoiceStatus status);
-        IEnumerable<Invoice> FindInvoicesByDate(DateTime date);
+   
     }
 }

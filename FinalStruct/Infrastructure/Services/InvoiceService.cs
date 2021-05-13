@@ -18,9 +18,34 @@ namespace Infrastructure.Services
             _invoiceRepository = invoiceRepository;
         }
 
+        public void CreateInvoice(Invoice invoice)
+        {
+            _invoiceRepository.CreateInvoice(invoice);
+        }
+
+        public void DeleteInvoice(int invoiceId)
+        {
+            _invoiceRepository.DeleteInvoice(invoiceId);
+        }
+
+        public IEnumerable<Invoice> FindInvoiceByStatus(InvoiceStatus status)
+        {
+            return _invoiceRepository.GetAllInvoices().Where(i => i.Status == status);
+        }
+
+        public IEnumerable<Invoice> FindInvoicesByDate(DateTime date)
+        {
+            return _invoiceRepository.GetAllInvoices().Where(i => i.Date == date);
+        }
+
+        public IEnumerable<Invoice> FindInvoicesByThirdPartyId(int ThirdPartyId)
+        {
+           return _invoiceRepository.FindInvoicesByThirdPartyId(ThirdPartyId);
+        }
+
         public ICollection<InvoiceDTO> GetAllInvoices()
         {
-            var invoices = _invoiceRepository.GetAllInvoices().Select(i => TransferToDTO(i) ).ToList();
+            var invoices = _invoiceRepository.GetAllInvoices().Select(i => TransferToDTO(i)).ToList();
             return invoices;
         }
 
@@ -30,7 +55,12 @@ namespace Infrastructure.Services
             return TransferToDTO(invoice);
         }
 
-        private InvoiceDTO TransferToDTO(Invoice invoice)
+        public void UpdateInvoice(int invoiceId, Invoice invoice)
+        {
+            _invoiceRepository.UpdateInvoice(invoiceId, invoice);
+        }
+
+        private  InvoiceDTO TransferToDTO(Invoice invoice)
         {
             var dto = new InvoiceDTO
             {

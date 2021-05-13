@@ -17,28 +17,6 @@ namespace Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Invoice> FindInvoiceByStatus(InvoiceStatus status)
-        {
-           return _dbContext.Invoices.Where(i => i.Status == status).ToList();
-        }
-
-        public IEnumerable<Invoice> FindInvoicesByDate(DateTime date)
-        {
-            return _dbContext.Invoices.Where(i => i.Date == date).ToList();
-        }
-
-        public IEnumerable<Invoice> FindInvoicesByThirdPartyId(int ThirdPartyId)
-        {
-            //var invoiceList = from invoice in _dbContext.Invoices
-            //                  join it in _dbContext.InvoiceThirdParties on invoice.Id equals it.InvoiceId
-            //                  join tpp in _dbContext.ThirdParties on it.ThirdPartyPersonId equals tpp.Id
-            //                  where tpp.Id == ThirdPartyId
-            //                  select invoice;
-            //return invoiceList.ToList();
-            throw new NotImplementedException();
-
-        }
-
         public IEnumerable<Invoice> GetAllInvoices()
         {
             return _dbContext.Invoices.ToList();
@@ -49,17 +27,17 @@ namespace Infrastructure.Repositories
            return _dbContext.Invoices.Find(invoiceId);
         }
 
-        void IInvoiceRepository.CreateInvoice(Invoice invoice)
+        public void CreateInvoice(Invoice invoice)
         {
             _dbContext.Invoices.Add(invoice);
         }
 
-        void IInvoiceRepository.DeleteInvoice(int invoiceId)
+        public void DeleteInvoice(int invoiceId)
         {
             _dbContext.Remove(_dbContext.Invoices.Single(i => i.Id == invoiceId));
         }
 
-        void IInvoiceRepository.UpdateInvoice(int invoiceId, Invoice invoice)
+        public void UpdateInvoice(int invoiceId, Invoice invoice)
         {
             var invoiceToBeModified = _dbContext.Invoices.First(i => i.Id == invoiceId);
             if (invoiceToBeModified != null)
@@ -69,6 +47,16 @@ namespace Infrastructure.Repositories
                 invoiceToBeModified.Status = invoice.Status;
                 _dbContext.SaveChanges();
             }
+        }
+
+        public IEnumerable<Invoice> FindInvoicesByThirdPartyId(int ThirdPartyId)
+        {
+            var invoicesByTPP = from i in _dbContext.Invoices
+                                join it in _dbContext.InvoiceThirdParties on i.Id equals it.InvoiceId
+                                join t in _dbContext.ThirdParties on it.ThirdPartyPersonId equals t.Id
+                                where t.Id == ThirdPartyId
+                                select i;
+            return invoicesByTPP.ToList();
         }
     }
 }

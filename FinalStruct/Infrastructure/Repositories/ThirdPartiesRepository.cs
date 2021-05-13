@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class ThirdPartiesRepository : IThirdPartyPerson
+    public class ThirdPartiesRepository : IThirdPartyPersonRepository
     {
         private AccountingAppDbContext _dbContext;
         public void AddThirdPartyPerson(ThirdPartyPerson thirdPartyPerson)
@@ -20,17 +20,6 @@ namespace Infrastructure.Repositories
         {
             _dbContext.ThirdParties.Remove(_dbContext.ThirdParties.Single(i => i.Id == thirdPartyPersonId));
         }
-
-        public ThirdPartyPerson FindPersonByName(string name)
-        {
-            return (ThirdPartyPerson)_dbContext.ThirdParties.Where(t => t.Name == name);
-        }
-
-        public ThirdPartyPerson FindPersonByTaxId(string taxId)
-        {
-            return (ThirdPartyPerson)_dbContext.ThirdParties.Where(t => t.TaxId == taxId);
-        }
-
         public ThirdPartyPerson GetThirdPartyPersonById(int thirdPartyPersonId)
         {
             return _dbContext.ThirdParties.Find(thirdPartyPersonId);

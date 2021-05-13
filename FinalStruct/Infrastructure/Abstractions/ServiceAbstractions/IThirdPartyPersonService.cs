@@ -5,17 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application
+namespace Application.ServiceAbstractions
 {
-    public interface IThirdPartyPerson
+    public interface IThirdPartyPersonService
     {
         void AddThirdPartyPerson(ThirdPartyPerson thirdPartyPerson);
         void UpdateThirdPartyPerson(int thirdPartyPersonId, ThirdPartyPerson thirdPartyPerson);
         void DeleteThirdPartyPerson(int thirdPartyPersonId);
         IEnumerable<ThirdPartyPerson> GetThirdPartyPersons();
         ThirdPartyPerson GetThirdPartyPersonById(int thirdPartyPersonId);
-        ThirdPartyPerson FindPersonByTaxId(string taxId);
-        ThirdPartyPerson FindPersonByName(string name);
-
+        IEnumerable<ThirdPartyPerson> FindPersonByTaxId(string taxId);
+        IEnumerable<ThirdPartyPerson> FindPersonByName(string name);
     }
 }

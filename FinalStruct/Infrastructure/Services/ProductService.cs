@@ -17,6 +17,22 @@ namespace Infrastructure.Services
         {
             _productRepository = productRepository;
         }
+
+        public void CreateProduct(Product product)
+        {
+            _productRepository.CreateProduct(product);
+        }
+
+        public void DeleteProduct(int productId)
+        {
+            _productRepository.DeleteProduct(productId);
+        }
+
+        public IEnumerable<Product> FindProductsByName(string name)
+        {
+           return _productRepository.GetAllProducts().Where(p => p.Name == name);
+        }
+
         public ICollection<ProductDTO> GetAllProducts()
         {
             var products = _productRepository.GetAllProducts().Select(i => TransferToDTO(i)).ToList();
@@ -27,6 +43,11 @@ namespace Infrastructure.Services
         {
             var product = _productRepository.GetProductById(productId);
             return TransferToDTO(product);
+        }
+
+        public void UpdateProduct(int productId, Product product)
+        {
+            _productRepository.UpdateProduct(productId, product);
         }
 
         private ProductDTO TransferToDTO(Product product)
