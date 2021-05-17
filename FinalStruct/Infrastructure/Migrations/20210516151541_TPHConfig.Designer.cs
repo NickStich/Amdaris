@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AccountingAppDbContext))]
-    [Migration("20210510064722_testInsertV2")]
-    partial class testInsertV2
+    [Migration("20210516151541_TPHConfig")]
+    partial class TPHConfig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,6 +61,9 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("InvoiceType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
@@ -70,6 +73,8 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Invoices");
+
+                    b.HasDiscriminator<int>("InvoiceType").HasValue(0);
                 });
 
             modelBuilder.Entity("Domain.Position", b =>
@@ -123,12 +128,45 @@ namespace Infrastructure.Migrations
                     b.Property<string>("TaxId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ThirdPartyPersonType")
+                        .HasColumnType("int");
+
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("ThirdParties");
+
+                    b.HasDiscriminator<int>("ThirdPartyPersonType").HasValue(0);
+                });
+
+            modelBuilder.Entity("Domain.Invoicing.PurchasesInvoice", b =>
+                {
+                    b.HasBaseType("Domain.Invoicing.Invoice");
+
+                    b.HasDiscriminator().HasValue(1);
+                });
+
+            modelBuilder.Entity("Domain.Invoicing.SalesInvoice", b =>
+                {
+                    b.HasBaseType("Domain.Invoicing.Invoice");
+
+                    b.HasDiscriminator().HasValue(2);
+                });
+
+            modelBuilder.Entity("Domain.ThirdParty.Customer", b =>
+                {
+                    b.HasBaseType("Domain.ThirdParty.ThirdPartyPerson");
+
+                    b.HasDiscriminator().HasValue(2);
+                });
+
+            modelBuilder.Entity("Domain.ThirdParty.Supplier", b =>
+                {
+                    b.HasBaseType("Domain.ThirdParty.ThirdPartyPerson");
+
+                    b.HasDiscriminator().HasValue(1);
                 });
 
             modelBuilder.Entity("Domain.ConnectionEntities.InvoiceThirdParties", b =>

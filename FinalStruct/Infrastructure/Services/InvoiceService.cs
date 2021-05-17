@@ -1,6 +1,7 @@
-﻿using Application;
-using Domain.Invoicing;
+﻿using Domain.Invoicing;
 using DTOs;
+using Infrastructure.Abstractions.RepositoryAbstractions;
+using Infrastructure.Services.ServiceAbstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,23 +31,24 @@ namespace Infrastructure.Services
 
         public IEnumerable<Invoice> FindInvoiceByStatus(InvoiceStatus status)
         {
-            return _invoiceRepository.GetAllInvoices().Where(i => i.Status == status);
+            return _invoiceRepository.GetFilteredBy(i => i.Status == status);
         }
 
         public IEnumerable<Invoice> FindInvoicesByDate(DateTime date)
         {
-            return _invoiceRepository.GetAllInvoices().Where(i => i.Date == date);
+            return _invoiceRepository.GetFilteredBy(i => i.Date == date);
         }
 
         public IEnumerable<Invoice> FindInvoicesByThirdPartyId(int ThirdPartyId)
         {
-           return _invoiceRepository.FindInvoicesByThirdPartyId(ThirdPartyId);
+           return _invoiceRepository.GetFilteredBy(i => i.ThirdPartyPersonId == ThirdPartyId);
         }
 
-        public ICollection<InvoiceDTO> GetAllInvoices()
+        public async Task<List<InvoiceDTO>> GetAllInvoices()
         {
-            var invoices = _invoiceRepository.GetAllInvoices().Select(i => TransferToDTO(i)).ToList();
-            return invoices;
+            var invoices = await _invoiceRepository.GetAllInvoices();
+            var invoiceResult = invoices.Select(i => TransferToDTO(i)).ToList();
+            return invoiceResult;
         }
 
         public InvoiceDTO GetInvoiceById(int invoiceId)

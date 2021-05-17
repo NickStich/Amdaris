@@ -13,14 +13,16 @@ namespace Domain.Invoicing
         public int Id { get; set; }
         public string Number { get; set; }
         public DateTime Date { get; set; }
-        public ICollection<InvoiceThirdParties> ThirdParties { get; set; }
+        //one
+        public int ThirdPartyPersonId { get; set; }
+        public ThirdPartyPerson ThirdPartyPerson { get; set; }
         public ICollection<PositionInvoice> Positions { get; set; }
         public virtual VAT VatType { get; }
         public InvoiceStatus Status { get; set; }
 
         public override string ToString()
         {
-            return $"Number:{Number} |  Date:{Date} | ";
+            return $"Number:{Number} | Date:{Date} ";
         }
 
 

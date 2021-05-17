@@ -1,5 +1,6 @@
-﻿using Application;
-using Domain.Invoicing;
+﻿using Domain.Invoicing;
+using Infrastructure.Abstractions.RepositoryAbstractions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Invoice> GetAllInvoices()
+        public async Task<List<Invoice>> GetAllInvoices()
         {
-            return _dbContext.Invoices.ToList();
+            return await _dbContext.Invoices.ToListAsync();
         }
 
         public Invoice GetInvoiceById(int invoiceId)
@@ -30,11 +31,13 @@ namespace Infrastructure.Repositories
         public void CreateInvoice(Invoice invoice)
         {
             _dbContext.Invoices.Add(invoice);
+            _dbContext.SaveChanges();
         }
 
         public void DeleteInvoice(int invoiceId)
         {
-            _dbContext.Remove(_dbContext.Invoices.Single(i => i.Id == invoiceId));
+            _dbContext.Remove(_dbContext.Invoices.First(i => i.Id == invoiceId));
+            _dbContext.SaveChanges();
         }
 
         public void UpdateInvoice(int invoiceId, Invoice invoice)
@@ -48,15 +51,9 @@ namespace Infrastructure.Repositories
                 _dbContext.SaveChanges();
             }
         }
-
-        public IEnumerable<Invoice> FindInvoicesByThirdPartyId(int ThirdPartyId)
+        public IEnumerable<Invoice> GetFilteredBy(Func<Invoice, bool> filter)
         {
-            var invoicesByTPP = from i in _dbContext.Invoices
-                                join it in _dbContext.InvoiceThirdParties on i.Id equals it.InvoiceId
-                                join t in _dbContext.ThirdParties on it.ThirdPartyPersonId equals t.Id
-                                where t.Id == ThirdPartyId
-                                select i;
-            return invoicesByTPP.ToList();
+            return _dbContext.Invoices.Where(filter);
         }
     }
 }

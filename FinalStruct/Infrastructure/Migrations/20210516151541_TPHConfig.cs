@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class testInsert : Migration
+    public partial class TPHConfig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    InvoiceType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,7 +45,8 @@ namespace Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TaxId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Type = table.Column<int>(type: "int", nullable: false)
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    ThirdPartyPersonType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,7 +98,7 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PositionInvoice",
+                name: "PositionInvoices",
                 columns: table => new
                 {
                     PositionId = table.Column<int>(type: "int", nullable: false),
@@ -104,15 +106,15 @@ namespace Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PositionInvoice", x => new { x.PositionId, x.InvoiceId });
+                    table.PrimaryKey("PK_PositionInvoices", x => new { x.PositionId, x.InvoiceId });
                     table.ForeignKey(
-                        name: "FK_PositionInvoice_Invoices_InvoiceId",
+                        name: "FK_PositionInvoices_Invoices_InvoiceId",
                         column: x => x.InvoiceId,
                         principalTable: "Invoices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PositionInvoice_Positions_PositionId",
+                        name: "FK_PositionInvoices_Positions_PositionId",
                         column: x => x.PositionId,
                         principalTable: "Positions",
                         principalColumn: "Id",
@@ -125,8 +127,8 @@ namespace Infrastructure.Migrations
                 column: "ThirdPartyPersonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PositionInvoice_InvoiceId",
-                table: "PositionInvoice",
+                name: "IX_PositionInvoices_InvoiceId",
+                table: "PositionInvoices",
                 column: "InvoiceId");
 
             migrationBuilder.CreateIndex(
@@ -141,7 +143,7 @@ namespace Infrastructure.Migrations
                 name: "InvoiceThirdParties");
 
             migrationBuilder.DropTable(
-                name: "PositionInvoice");
+                name: "PositionInvoices");
 
             migrationBuilder.DropTable(
                 name: "ThirdParties");

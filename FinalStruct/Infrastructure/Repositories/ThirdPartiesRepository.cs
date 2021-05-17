@@ -1,5 +1,5 @@
-﻿using Application;
-using Domain.ThirdParty;
+﻿using Domain.ThirdParty;
+using Infrastructure.Abstractions.RepositoryAbstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,10 @@ namespace Infrastructure.Repositories
     public class ThirdPartiesRepository : IThirdPartyPersonRepository
     {
         private AccountingAppDbContext _dbContext;
+        public ThirdPartiesRepository(AccountingAppDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public void AddThirdPartyPerson(ThirdPartyPerson thirdPartyPerson)
         {
             _dbContext.ThirdParties.Add(thirdPartyPerson);

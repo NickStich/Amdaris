@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.ServiceAbstractions
+namespace Infrastructure.Services.ServiceAbstractions
 {
     public interface IThirdPartyPersonService
     {

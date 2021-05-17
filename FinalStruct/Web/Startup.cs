@@ -1,8 +1,11 @@
-using Application.ServiceAbstractions;
 using Infrastructure;
+using Infrastructure.Abstractions.RepositoryAbstractions;
+using Infrastructure.Repositories;
 using Infrastructure.Services;
+using Infrastructure.Services.ServiceAbstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,13 +25,13 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
 
-            services.AddControllers();
-
-            //services.AddScoped<IInvoiceService, InvoiceService>();
+            services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+            services.AddScoped<IInvoiceService, InvoiceService>();
             //services.AddScoped<IProductService, ProductService>();
             //services.AddScoped<IThirdPartyPersonService, ThirdPartyPersonService>();
-            //services.AddDbContext<AccountingAppDbContext>();
+            services.AddDbContext<AccountingAppDbContext>();
 
             services.AddSwaggerGen(c =>
             {

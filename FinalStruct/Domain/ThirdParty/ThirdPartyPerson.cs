@@ -13,15 +13,12 @@ namespace Domain.ThirdParty
         public int Id { get; set; }
         public string Name { get; set; }
         public string TaxId { get; set; }
-        public virtual ThirdPartyType Type { get; set; }
-        public bool IsArchived;
+        public bool IsArchived { get; set; } = false;
         public override string ToString()
         {
-            return $"ID:{Id} Name:{Name} with TaxID:{TaxId} as {Type}";
+            return $"ID:{Id} Name:{Name} with TaxID:{TaxId}";
         }
-
-        public ICollection<InvoiceThirdParties> Invoices { get; set; }
-
+        public ICollection<Invoice> Invoices { get; set; }
     }
 
     public enum ThirdPartyType

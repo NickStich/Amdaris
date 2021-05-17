@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application
+namespace Infrastructure.Abstractions.RepositoryAbstractions
 {
     public interface IInvoiceRepository
     {
         void CreateInvoice(Invoice invoice);
         void UpdateInvoice(int invoiceId, Invoice invoice);
         void DeleteInvoice(int invoiceId);
-        IEnumerable<Invoice> GetAllInvoices();
+        Task<List<Invoice>> GetAllInvoices();
         Invoice GetInvoiceById(int invoiceId);
-        IEnumerable<Invoice> FindInvoicesByThirdPartyId(int ThirdPartyId);
+        IEnumerable<Invoice> GetFilteredBy(Func<Invoice, bool> filter);
    
     }
 }

@@ -1,6 +1,6 @@
-﻿using Application;
-using Application.ServiceAbstractions;
-using Domain.ThirdParty;
+﻿using Domain.ThirdParty;
+using Infrastructure.Abstractions.RepositoryAbstractions;
+using Infrastructure.Services.ServiceAbstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

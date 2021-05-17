@@ -1,6 +1,7 @@
-﻿using Application;
-using Domain;
+﻿using Domain;
 using DTOs;
+using Infrastructure.Abstractions.RepositoryAbstractions;
+using Infrastructure.Services.ServiceAbstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

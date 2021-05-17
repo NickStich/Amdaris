@@ -1,5 +1,5 @@
-﻿using Application;
-using Domain;
+﻿using Domain;
+using Infrastructure.Abstractions.RepositoryAbstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

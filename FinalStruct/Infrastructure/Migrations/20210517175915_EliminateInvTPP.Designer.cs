@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AccountingAppDbContext))]
-    [Migration("20210510063217_testInsert")]
-    partial class testInsert
+    [Migration("20210517175915_EliminateInvTPP")]
+    partial class EliminateInvTPP
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,21 +20,6 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Domain.ConnectionEntities.InvoiceThirdParties", b =>
-                {
-                    b.Property<int>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ThirdPartyPersonId")
-                        .HasColumnType("int");
-
-                    b.HasKey("InvoiceId", "ThirdPartyPersonId");
-
-                    b.HasIndex("ThirdPartyPersonId");
-
-                    b.ToTable("InvoiceThirdParties");
-                });
 
             modelBuilder.Entity("Domain.ConnectionEntities.PositionInvoice", b =>
                 {
@@ -48,7 +33,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("InvoiceId");
 
-                    b.ToTable("PositionInvoice");
+                    b.ToTable("PositionInvoices");
                 });
 
             modelBuilder.Entity("Domain.Invoicing.Invoice", b =>
@@ -61,15 +46,25 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("InvoiceType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<int>("ThirdPartyPersonId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("ThirdPartyPersonId");
+
                     b.ToTable("Invoices");
+
+                    b.HasDiscriminator<int>("InvoiceType").HasValue(0);
                 });
 
             modelBuilder.Entity("Domain.Position", b =>
@@ -123,31 +118,45 @@ namespace Infrastructure.Migrations
                     b.Property<string>("TaxId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ThirdPartyPersonType")
+                        .HasColumnType("int");
+
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("ThirdParties");
+
+                    b.HasDiscriminator<int>("ThirdPartyPersonType").HasValue(0);
                 });
 
-            modelBuilder.Entity("Domain.ConnectionEntities.InvoiceThirdParties", b =>
+            modelBuilder.Entity("Domain.Invoicing.PurchasesInvoice", b =>
                 {
-                    b.HasOne("Domain.Invoicing.Invoice", "Invoice")
-                        .WithMany("ThirdParties")
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasBaseType("Domain.Invoicing.Invoice");
 
-                    b.HasOne("Domain.ThirdParty.ThirdPartyPerson", "ThirdPartyPerson")
-                        .WithMany("Invoices")
-                        .HasForeignKey("ThirdPartyPersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasDiscriminator().HasValue(1);
+                });
 
-                    b.Navigation("Invoice");
+            modelBuilder.Entity("Domain.Invoicing.SalesInvoice", b =>
+                {
+                    b.HasBaseType("Domain.Invoicing.Invoice");
 
-                    b.Navigation("ThirdPartyPerson");
+                    b.HasDiscriminator().HasValue(2);
+                });
+
+            modelBuilder.Entity("Domain.ThirdParty.Customer", b =>
+                {
+                    b.HasBaseType("Domain.ThirdParty.ThirdPartyPerson");
+
+                    b.HasDiscriminator().HasValue(2);
+                });
+
+            modelBuilder.Entity("Domain.ThirdParty.Supplier", b =>
+                {
+                    b.HasBaseType("Domain.ThirdParty.ThirdPartyPerson");
+
+                    b.HasDiscriminator().HasValue(1);
                 });
 
             modelBuilder.Entity("Domain.ConnectionEntities.PositionInvoice", b =>
@@ -169,6 +178,17 @@ namespace Infrastructure.Migrations
                     b.Navigation("Position");
                 });
 
+            modelBuilder.Entity("Domain.Invoicing.Invoice", b =>
+                {
+                    b.HasOne("Domain.ThirdParty.ThirdPartyPerson", "ThirdPartyPerson")
+                        .WithMany("Invoices")
+                        .HasForeignKey("ThirdPartyPersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ThirdPartyPerson");
+                });
+
             modelBuilder.Entity("Domain.Position", b =>
                 {
                     b.HasOne("Domain.Product", "Product")
@@ -183,8 +203,6 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Invoicing.Invoice", b =>
                 {
                     b.Navigation("Positions");
-
-                    b.Navigation("ThirdParties");
                 });
 
             modelBuilder.Entity("Domain.Position", b =>

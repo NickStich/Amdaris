@@ -1,5 +1,5 @@
-﻿using Application;
-using Domain.Invoicing;
+﻿using Domain.Invoicing;
+using Infrastructure.Abstractions.RepositoryAbstractions;
 using Infrastructure.Services;
 using Moq;
 using NUnit.Framework;
