@@ -17,7 +17,7 @@ namespace Infrastructure
         private readonly string _connString;
         public AccountingAppDbContext()
         {
-            _connString = @"Data Source=DESKTOP-GB8VVC3\SQLEXPRESS;Database=AccApp;Integrated Security=True";
+            _connString = @"Data Source=DESKTOP-GB8VVC3\SQLEXPRESS;Database=MiddAssign;Integrated Security=True";
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -58,6 +58,8 @@ namespace Infrastructure
         public DbSet<ThirdPartyPerson> ThirdParties { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<PositionInvoice> PositionInvoices { get; set; }
+
+        public DbSet<WebAnalytics> WebAnalytics { get; set; }
 
     }
 }

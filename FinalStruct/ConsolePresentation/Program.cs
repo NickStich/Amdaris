@@ -18,50 +18,50 @@ namespace ConsolePresentation
         {
             using (var dbContext = new AccountingAppDbContext())
             {
-                dbContext.Database.EnsureCreated();
+                //dbContext.Database.EnsureCreated();
 
-                var product1 = new Product() { Name = "IPhone 8", Price = 2500 };
-                var product2 = new Product() { Name = "Samsung S10", Price = 1500 };
-                var product3 = new Product() { Name = "Huawei Mate 10", Price = 3000 };
-                var product4 = new Product() { Name = "Nokia 700", Price = 1000 };
-                var product5 = new Product() { Name = "Xiaomi 10", Price = 2700 };
-                dbContext.Products.Add(product1);
-                dbContext.Products.Add(product2);
-                dbContext.Products.Add(product3);
-                dbContext.Products.Add(product4);
-                dbContext.Products.Add(product5);
+                //var product1 = new Product() { Name = "IPhone 8", Price = 2500 };
+                //var product2 = new Product() { Name = "Samsung S10", Price = 1500 };
+                //var product3 = new Product() { Name = "Huawei Mate 10", Price = 3000 };
+                //var product4 = new Product() { Name = "Nokia 700", Price = 1000 };
+                //var product5 = new Product() { Name = "Xiaomi 10", Price = 2700 };
+                //dbContext.Products.Add(product1);
+                //dbContext.Products.Add(product2);
+                //dbContext.Products.Add(product3);
+                //dbContext.Products.Add(product4);
+                //dbContext.Products.Add(product5);
 
-                var tpp1 = new Customer { Name = "Metro", TaxId = "RO1689221"};
-                var tpp2 = new Supplier { Name = "Auchan", TaxId = "RO9521785"};
-                dbContext.ThirdParties.Add(tpp1);
-                dbContext.ThirdParties.Add(tpp2);
+                //var tpp1 = new Customer { Name = "Metro", TaxId = "RO1689221"};
+                //var tpp2 = new Supplier { Name = "Auchan", TaxId = "RO9521785"};
+                //dbContext.ThirdParties.Add(tpp1);
+                //dbContext.ThirdParties.Add(tpp2);
 
-                var inv1 = new Invoice { Number = "2105001", Date = DateTime.Now, ThirdPartyPerson = tpp1 , Status = InvoiceStatus.SENT };
-                var inv2 = new Invoice { Number = "2105002", Date = DateTime.Now, ThirdPartyPerson = tpp2, Status = InvoiceStatus.PAID };
-                dbContext.Invoices.Add(inv1);
-                dbContext.Invoices.Add(inv2);
+                //var inv1 = new Invoice { Number = "2105001", Date = DateTime.Now, ThirdPartyPerson = tpp1 , Status = InvoiceStatus.SENT };
+                //var inv2 = new Invoice { Number = "2105002", Date = DateTime.Now, ThirdPartyPerson = tpp2, Status = InvoiceStatus.PAID };
+                //dbContext.Invoices.Add(inv1);
+                //dbContext.Invoices.Add(inv2);
 
-                var position1 = new Position() { Product = product1, Quantity = 8 };
-                var position2 = new Position() { Product = product2, Quantity = 3 };
-                var position3 = new Position() { Product = product5, Quantity = 1 };
-                dbContext.Positions.Add(position1);
-                dbContext.Positions.Add(position2);
-                dbContext.Positions.Add(position3);
+                //var position1 = new Position() { Product = product1, Quantity = 8 };
+                //var position2 = new Position() { Product = product2, Quantity = 3 };
+                //var position3 = new Position() { Product = product5, Quantity = 1 };
+                //dbContext.Positions.Add(position1);
+                //dbContext.Positions.Add(position2);
+                //dbContext.Positions.Add(position3);
 
                 
 
-                var posInv1 = new PositionInvoice() { Invoice = inv1, Position = position1 };
-                var posInv2 = new PositionInvoice() { Invoice = inv1, Position = position2 };
-                var posInv3 = new PositionInvoice() { Invoice = inv2, Position = position2 };
-                var posInv4 = new PositionInvoice() { Invoice = inv2, Position = position3 };
-                dbContext.PositionInvoices.Add(posInv1);
-                dbContext.PositionInvoices.Add(posInv2);
-                dbContext.PositionInvoices.Add(posInv3);
-                dbContext.PositionInvoices.Add(posInv4);
+                //var posInv1 = new PositionInvoice() { Invoice = inv1, Position = position1 };
+                //var posInv2 = new PositionInvoice() { Invoice = inv1, Position = position2 };
+                //var posInv3 = new PositionInvoice() { Invoice = inv2, Position = position2 };
+                //var posInv4 = new PositionInvoice() { Invoice = inv2, Position = position3 };
+                //dbContext.PositionInvoices.Add(posInv1);
+                //dbContext.PositionInvoices.Add(posInv2);
+                //dbContext.PositionInvoices.Add(posInv3);
+                //dbContext.PositionInvoices.Add(posInv4);
 
 
-                dbContext.SaveChanges();
-                Console.WriteLine("succes");
+                //dbContext.SaveChanges();
+                //Console.WriteLine("succes");
 
 
                 /* var repo = new InvoiceRepository(dbContext);
