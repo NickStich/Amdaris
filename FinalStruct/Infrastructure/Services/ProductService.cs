@@ -31,7 +31,7 @@ namespace Infrastructure.Services
 
         public IEnumerable<Product> FindProductsByName(string name)
         {
-           return _productRepository.GetAllProducts().Where(p => p.Name == name);
+           return _productRepository.GetFilteredBy(p => p.Name == name);
         }
 
         public ICollection<ProductDTO> GetAllProducts()

@@ -18,11 +18,13 @@ namespace Infrastructure.Repositories
         public void CreateProduct(Product product)
         {
             _dbContext.Products.Add(product);
+            _dbContext.SaveChanges();
         }
 
         public void DeleteProduct(int productId)
         {
             _dbContext.Remove(_dbContext.Products.Single(p => p.Id == productId));
+            _dbContext.SaveChanges();
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -32,7 +34,7 @@ namespace Infrastructure.Repositories
 
         public Product GetProductById(int productId)
         {
-            return _dbContext.Products.FirstOrDefault(p => p.Id == productId);
+            return _dbContext.Products.Find(productId);
         }
 
         public void UpdateProduct(int productId, Product product)
@@ -45,6 +47,11 @@ namespace Infrastructure.Repositories
                 _dbContext.SaveChanges();
             }
 
+        }
+
+        public IEnumerable<Product> GetFilteredBy(Func<Product, bool> filter)
+        {
+            return _dbContext.Products.Where(filter);
         }
     }
 }

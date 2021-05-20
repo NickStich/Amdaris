@@ -24,26 +24,26 @@ namespace Tests
         }
 
 
-        [Test]
-        public void TestInvoiceNumberSameAsFromInvoiceService()
-        {
-            // Arrange
-            var invoices = new List<Invoice>
-            {
-                new Invoice
-                {
-                    Number = "20210511"
-                }
-            };
-            _mockInvoiceRepository.Setup(i => i.GetAllInvoices()).Returns(invoices);
+        //[Test]
+        //public void TestInvoiceNumberSameAsFromInvoiceService()
+        //{
+        //    // Arrange
+        //    var invoices = new List<Invoice>
+        //    {
+        //        new Invoice
+        //        {
+        //            Number = "20210511"
+        //        }
+        //    };
+        //    _mockInvoiceRepository.Setup(i => i.GetAllInvoices()).Returns(invoices);
 
-            // Act
-            var invs = _invoiceService.GetAllInvoices();
+        //    // Act
+        //    var invs = _invoiceService.GetAllInvoices();
 
-            // Assert
-            Assert.AreEqual(invoices.Count, invs.Count());
-            Assert.AreEqual(invoices.FirstOrDefault().Number, invs.FirstOrDefault().Number);
-        }
+        //    // Assert
+        //    Assert.AreEqual(invoices.Count, invs.Count());
+        //    Assert.AreEqual(invoices.FirstOrDefault().Number, invs.FirstOrDefault().Number);
+        //}
 
         [TestCase(1, 0)]
         public void TestInvoiceFromServiceStatusIndex(int invoiceID, int invoiceStatusIndex)

@@ -29,12 +29,12 @@ namespace Infrastructure.Services
 
         public IEnumerable<ThirdPartyPerson> FindPersonByName(string name)
         {
-            return _thirdPartyPersonRepository.GetThirdPartyPersons().Where(t => t.Name == name);
+            return _thirdPartyPersonRepository.GetFilteredBy(t => t.Name == name);
         }
 
         public IEnumerable<ThirdPartyPerson> FindPersonByTaxId(string taxId)
         {
-            return _thirdPartyPersonRepository.GetThirdPartyPersons().Where(t => t.TaxId == taxId);
+            return _thirdPartyPersonRepository.GetFilteredBy(t => t.TaxId == taxId);
         }
 
         public ThirdPartyPerson GetThirdPartyPersonById(int thirdPartyPersonId)

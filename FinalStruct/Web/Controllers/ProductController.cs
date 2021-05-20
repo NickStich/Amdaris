@@ -1,8 +1,7 @@
-﻿using Domain.Invoicing;
+﻿using Domain;
 using Infrastructure.Services.ServiceAbstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,23 +10,23 @@ using System.Threading.Tasks;
 namespace Web.Controllers
 {
     [ApiController]
-    [Route("inv/[action]")]
-    public class InvoiceController : ControllerBase
+    [Route("prod/[action]")]
+    public class ProductController : ControllerBase
     {
-        private readonly IInvoiceService _invoiceService;
+        private readonly IProductService _productService;
 
-        public InvoiceController(IInvoiceService invoiceService)
+        public ProductController(IProductService productService)
         {
-            _invoiceService = invoiceService;
+            _productService = productService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
             try
             {
-                var invoices = await _invoiceService.GetAllInvoices();
-                return Ok(invoices);
+                var products = _productService.GetAllProducts();
+                return Ok(products);
             }
             catch (Exception)
             {
@@ -40,32 +39,32 @@ namespace Web.Controllers
         {
             try
             {
-                var invoice = _invoiceService.GetInvoiceById(id);
-                return Ok(invoice);
+                var product = _productService.GetProductById(id);
+                return Ok(product);
             }
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Invoice with ID={id} not found!");
+                    $"Product with ID={id} not found!");
             }
         }
 
         [HttpPost]
-        public IActionResult Create(Invoice invoice)
+        public IActionResult Create(Product product)
         {
             try
             {
-                if (invoice == null)
+                if (product == null)
                 {
                     return BadRequest();
                 }
-                _invoiceService.CreateInvoice(invoice);
+                _productService.CreateProduct(product);
                 return Ok();
             }
             catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Invoice with ID={invoice.Id} not added!");
+                    $"Product with ID={product.Id} not added!");
             }
         }
 
@@ -74,15 +73,30 @@ namespace Web.Controllers
         {
             try
             {
-                _invoiceService.DeleteInvoice(id);
+                _productService.DeleteProduct(id);
                 Ok();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Invoice with ID={id} not found!");
+                    $"Product with ID={id} not found!");
             }
 
+        }
+
+        [HttpPut("{id:int}")]
+        public void Update(int id, Product product)
+        {
+            try
+            {
+                _productService.UpdateProduct(id, product);
+                Ok();
+            }
+            catch (Exception)
+            {
+                StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Product with ID={id} not found!");
+            }
         }
     }
 }

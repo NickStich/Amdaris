@@ -1,5 +1,6 @@
 ﻿using Domain.ThirdParty;
 using Infrastructure.Abstractions.RepositoryAbstractions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,13 @@ namespace Infrastructure.Repositories
         public void AddThirdPartyPerson(ThirdPartyPerson thirdPartyPerson)
         {
             _dbContext.ThirdParties.Add(thirdPartyPerson);
+            _dbContext.SaveChanges();
         }
 
         public void DeleteThirdPartyPerson(int thirdPartyPersonId)
         {
             _dbContext.ThirdParties.Remove(_dbContext.ThirdParties.Single(i => i.Id == thirdPartyPersonId));
+            _dbContext.SaveChanges();
         }
         public ThirdPartyPerson GetThirdPartyPersonById(int thirdPartyPersonId)
         {
@@ -31,12 +34,24 @@ namespace Infrastructure.Repositories
 
         public IEnumerable<ThirdPartyPerson> GetThirdPartyPersons()
         {
-            return _dbContext.ThirdParties;
+            return _dbContext.ThirdParties.Include(t => t.Invoices);
         }
 
         public void UpdateThirdPartyPerson(int thirdPartyPersonId, ThirdPartyPerson thirdPartyPerson)
         {
-            throw new NotImplementedException();
+            var tppToBeModified =_dbContext.ThirdParties.First(t => t.Id == thirdPartyPersonId);
+            if (tppToBeModified != null)
+            {
+                tppToBeModified.Name = thirdPartyPerson.Name;
+                tppToBeModified.TaxId = thirdPartyPerson.TaxId;
+                _dbContext.SaveChanges();
+            }
         }
+
+        public IEnumerable<ThirdPartyPerson> GetFilteredBy(Func<ThirdPartyPerson, bool> filter)
+        {
+            return _dbContext.ThirdParties.Where(filter);
+        }
+
     }
 }

@@ -14,5 +14,6 @@ namespace Infrastructure.Abstractions.RepositoryAbstractions
         void DeleteThirdPartyPerson(int thirdPartyPersonId);
         IEnumerable<ThirdPartyPerson> GetThirdPartyPersons();
         ThirdPartyPerson GetThirdPartyPersonById(int thirdPartyPersonId);
+        IEnumerable<ThirdPartyPerson> GetFilteredBy(Func<ThirdPartyPerson, bool> filter);
     }
 }

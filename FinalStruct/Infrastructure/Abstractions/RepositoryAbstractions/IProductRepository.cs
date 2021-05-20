@@ -14,5 +14,6 @@ namespace Infrastructure.Abstractions.RepositoryAbstractions
         void DeleteProduct(int productId);
         IEnumerable<Product> GetAllProducts();
         Product GetProductById(int productId);
+        IEnumerable<Product> GetFilteredBy(Func<Product, bool> filter);
     }
 }

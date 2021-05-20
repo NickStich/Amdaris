@@ -1,5 +1,6 @@
 using Infrastructure;
 using Infrastructure.Abstractions.RepositoryAbstractions;
+using Infrastructure.Abstractions.ServiceAbstractions;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Infrastructure.Services.ServiceAbstractions;
@@ -25,17 +26,26 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddScoped<IInvoiceService, InvoiceService>();
-            //services.AddScoped<IProductService, ProductService>();
-            //services.AddScoped<IThirdPartyPersonService, ThirdPartyPersonService>();
+
+            services.AddScoped<IThirdPartyPersonRepository, ThirdPartiesRepository>();
+            services.AddScoped<IThirdPartyPersonService, ThirdPartyPersonService>();
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
+
+            services.AddScoped<IPositionRepository, PositionRepository>();
+            services.AddScoped<IPositionService, PositionService>();
+
             services.AddDbContext<AccountingAppDbContext>();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AccountingApp", Version = "v1" });
             });
         }
 
@@ -46,7 +56,7 @@ namespace Web
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AccountingApp v1"));
             }
 
             app.UseHttpsRedirection();
