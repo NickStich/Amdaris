@@ -1,6 +1,20 @@
-<body>
-  <app-nav-menu></app-nav-menu>
-  <div class="container">
-    <router-outlet></router-outlet>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark my-5">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+          <ul class="text-center list-inline py-3">
+            <li class="list-inline-item">
+              <a routerLink="/GetAll" class="btn btn-info">ThirdPartyPersons List</a>
+                </li>
+                <li class="list-inline-item">
+                  <a routerLink="/Create" class="btn btn-info">Add ThirdPartyPerson</a>
+                    </li> 
+          </ul>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</body>
+</div>

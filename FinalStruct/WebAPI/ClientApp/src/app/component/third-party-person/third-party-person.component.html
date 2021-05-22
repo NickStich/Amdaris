@@ -1,0 +1,35 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">TaxID</th>
+          </tr>
+        </thead>
+
+        <!-- <thead >
+          <tr>
+            <th><select scope="col">
+              <option value=null> -Select- </option>
+              <option  *ngFor="let tpp of tpps" value = tpp.name >{{tpp.name}}</option>
+            </select></th>
+            <th><select scope="col">
+              <option value=null> -Select- </option>
+              <option  *ngFor="let tpp of tpps" value = tpp.taxId >{{tpp.taxId}}</option>
+            </select></th>
+          </tr>
+        </thead> -->
+
+        <tbody>
+           <tr *ngFor="let tpp of tpps">
+               <td>{{tpp.name}}</td>
+               <td>{{tpp.taxId}}</td>
+            </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+ 
+ <!-- <p  *ngFor="let tpp of tpps" value = tpps.name >{{tpps.name}}></p> -->
