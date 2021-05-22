@@ -84,5 +84,21 @@ namespace Web.Controllers
             }
 
         }
+
+        [HttpPut("{id:int}")]
+        public void Update(int id, Invoice invoice)
+        {
+            try
+            {
+                _invoiceService.UpdateInvoice(id, invoice);
+                Ok();
+            }
+            catch (Exception)
+            {
+                StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Invoice with ID={id} not found!");
+            }
+        }
+
     }
 }
