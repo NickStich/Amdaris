@@ -1,4 +1,5 @@
 ﻿using Domain.ThirdParty;
+using DTOs;
 using Infrastructure.Abstractions.RepositoryAbstractions;
 using Infrastructure.Services.ServiceAbstractions;
 using System;
@@ -42,14 +43,26 @@ namespace Infrastructure.Services
             return _thirdPartyPersonRepository.GetThirdPartyPersonById(thirdPartyPersonId);
         }
 
-        public IEnumerable<ThirdPartyPerson> GetThirdPartyPersons()
+        public IEnumerable<ThirdPartyPersonDTO> GetThirdPartyPersons()
         {
-            return _thirdPartyPersonRepository.GetThirdPartyPersons();
+            var tppersons = _thirdPartyPersonRepository.GetThirdPartyPersons();
+            var tppersonsResult = tppersons.Select(i => TransferToDTO(i)).ToList();
+            return tppersonsResult;
         }
 
         public void UpdateThirdPartyPerson(int thirdPartyPersonId, ThirdPartyPerson thirdPartyPerson)
         {
             _thirdPartyPersonRepository.UpdateThirdPartyPerson(thirdPartyPersonId, thirdPartyPerson);
+        }
+
+        private ThirdPartyPersonDTO TransferToDTO(ThirdPartyPerson tpperson)
+        {
+            var dto = new ThirdPartyPersonDTO
+            {
+                Name = tpperson.Name,
+                TaxId = tpperson.TaxId
+            };
+            return dto;
         }
     }
 }
