@@ -2,12 +2,13 @@
     <div class="card-body">
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
+           <a routerLink="Create" class="btn btn-info" >Add</a>
+           <a routerLink="Delete" class="btn btn-info" style="float: right; color: red">Delete</a>
           <tr>
             <th scope="col">Name</th>
             <th scope="col">TaxID</th>
           </tr>
         </thead>
-
         <!-- <thead >
           <tr>
             <th><select scope="col">
@@ -20,14 +21,12 @@
             </select></th>
           </tr>
         </thead> -->
-
         <tbody>
            <tr *ngFor="let tpp of tpps">
-               <td>{{tpp.name}}</td>
+               <td >{{tpp.name}}</td>
                <td>{{tpp.taxId}}</td>
             </tr>
         </tbody>
-
       </table>
     </div>
   </div>

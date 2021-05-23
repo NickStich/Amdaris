@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThirdPartyPerson } from 'src/app/model/third-party-person';
+import { ThirdPersonType } from 'src/app/model/ThirdPersonType';
 import { ThirdPartyPersonService } from 'src/app/service/third-party-person.service';
 
 @Component({
@@ -9,7 +10,6 @@ import { ThirdPartyPersonService } from 'src/app/service/third-party-person.serv
 })
 export class ThirdPartyPersonComponent implements OnInit {
 
-  lengthDisplay: number;
   tpps: ThirdPartyPerson[] = [];
 
   constructor(private tppService: ThirdPartyPersonService) { }
@@ -17,8 +17,8 @@ export class ThirdPartyPersonComponent implements OnInit {
   ngOnInit(): void {
     this.tppService.findAll().subscribe(data => {
       this.tpps = data;
-      this.lengthDisplay = this.tpps.length;
     });
   }
+
 
 }

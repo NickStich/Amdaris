@@ -26,8 +26,8 @@ export class ThirdPartyPersonFormComponent implements OnInit {
     this.tppService.save(this.tpperson).subscribe(result => this.gotoThirdPartyPersonList());
   }
 
-  gotoThirdPartyPersonList(){
-    this.router.navigate(['/GetAll']);
+  gotoThirdPartyPersonList() {
+    this.router.navigate(['tpperson']);
   }
 
 }
