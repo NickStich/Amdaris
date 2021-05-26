@@ -3,10 +3,14 @@
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
            <a routerLink="Create" class="btn btn-info" >Add</a>
-           <a routerLink="Delete" class="btn btn-info" style="float: right; color: red">Delete</a>
+           
           <tr>
+            <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">TaxID</th>
+            <th scope="col">Type</th>
+            <th scope="col">Actions</th>
+
           </tr>
         </thead>
         <!-- <thead >
@@ -23,8 +27,14 @@
         </thead> -->
         <tbody>
            <tr *ngFor="let tpp of tpps">
-               <td >{{tpp.name}}</td>
+               <td>{{tpp.id}}</td>
+               <td>{{tpp.name}}</td>
                <td>{{tpp.taxId}}</td>
+               <td>{{tpp.type}}</td>
+               <td>
+                <a routerLink="Edit/{{tpp.id}}" class="btn btn-info">Edit</a>
+                <a (click)="deleteClick(tpp.id)" class="btn btn-info" style="color: white" >Delete</a>
+               </td>
             </tr>
         </tbody>
       </table>

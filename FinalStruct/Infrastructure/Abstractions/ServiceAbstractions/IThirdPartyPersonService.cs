@@ -13,7 +13,7 @@ namespace Infrastructure.Services.ServiceAbstractions
         void AddThirdPartyPerson(ThirdPartyPerson thirdPartyPerson);
         void UpdateThirdPartyPerson(int thirdPartyPersonId, ThirdPartyPerson thirdPartyPerson);
         void DeleteThirdPartyPerson(int thirdPartyPersonId);
-        IEnumerable<ThirdPartyPersonDTO> GetThirdPartyPersons();
+        IEnumerable<ThirdPartyPerson> GetThirdPartyPersons();
         ThirdPartyPerson GetThirdPartyPersonById(int thirdPartyPersonId);
         IEnumerable<ThirdPartyPerson> FindPersonByTaxId(string taxId);
         IEnumerable<ThirdPartyPerson> FindPersonByName(string name);

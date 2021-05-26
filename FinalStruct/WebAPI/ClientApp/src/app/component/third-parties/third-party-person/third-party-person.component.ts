@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ThirdPartyPerson } from 'src/app/model/third-party-person';
-import { ThirdPersonType } from 'src/app/model/ThirdPersonType';
-import { ThirdPartyPersonService } from 'src/app/service/third-party-person.service';
+import { ThirdPartyPerson } from 'src/app/model/thirdPartyPerson/third-party-person';
+import { ThirdPersonType } from 'src/app/model/thirdPartyPerson/ThirdPersonType';
+import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/third-party-person.service';
 
 @Component({
   selector: 'app-third-party-person',
@@ -20,5 +20,13 @@ export class ThirdPartyPersonComponent implements OnInit {
     });
   }
 
+  deleteClick(tppId) {
+    this.tppService.delete(tppId).subscribe();
+    this.refreshPage();
+  }
+
+  refreshPage() {
+    window.location.reload();
+  }
 
 }

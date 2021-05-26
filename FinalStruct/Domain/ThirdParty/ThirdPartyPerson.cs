@@ -14,16 +14,16 @@ namespace Domain.ThirdParty
         public string Name { get; set; }
         public string TaxId { get; set; }
         public bool IsArchived { get; set; } = false;
+        public ICollection<Invoice> Invoices { get; set; }
         public override string ToString()
         {
             return $"ID:{Id} Name:{Name} with TaxID:{TaxId}";
         }
-        public ICollection<Invoice> Invoices { get; set; }
     }
 
     public enum ThirdPartyType
     {
-        Customer,
-        Supplier
+        Customer = 1,
+        Supplier = 2
     }
 }

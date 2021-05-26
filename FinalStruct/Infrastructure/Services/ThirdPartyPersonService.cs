@@ -43,11 +43,11 @@ namespace Infrastructure.Services
             return _thirdPartyPersonRepository.GetThirdPartyPersonById(thirdPartyPersonId);
         }
 
-        public IEnumerable<ThirdPartyPersonDTO> GetThirdPartyPersons()
+        public IEnumerable<ThirdPartyPerson> GetThirdPartyPersons()
         {
-            var tppersons = _thirdPartyPersonRepository.GetThirdPartyPersons();
-            var tppersonsResult = tppersons.Select(i => TransferToDTO(i)).ToList();
-            return tppersonsResult;
+            return _thirdPartyPersonRepository.GetThirdPartyPersons();
+            //var tppersonsResult = tppersons.Select(i => TransferToDTO(i)).ToList();
+            //return tppersonsResult;
         }
 
         public void UpdateThirdPartyPerson(int thirdPartyPersonId, ThirdPartyPerson thirdPartyPerson)
