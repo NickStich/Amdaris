@@ -34,7 +34,7 @@ namespace Infrastructure.Repositories
 
         public IEnumerable<ThirdPartyPerson> GetThirdPartyPersons()
         {
-            return _dbContext.ThirdParties.Include(t => t.Invoices);
+            return _dbContext.ThirdParties;
         }
 
         public void UpdateThirdPartyPerson(int thirdPartyPersonId, ThirdPartyPerson thirdPartyPerson)
@@ -44,6 +44,7 @@ namespace Infrastructure.Repositories
             {
                 tppToBeModified.Name = thirdPartyPerson.Name;
                 tppToBeModified.TaxId = thirdPartyPerson.TaxId;
+                tppToBeModified.Type = thirdPartyPerson.Type;
                 _dbContext.SaveChanges();
             }
         }
@@ -53,5 +54,9 @@ namespace Infrastructure.Repositories
             return _dbContext.ThirdParties.Where(filter);
         }
 
+        public List<string> GetPersonsType()
+        {
+            return _dbContext.ThirdParties.Select(t => t.GetType().Name).ToList();
+        }
     }
 }

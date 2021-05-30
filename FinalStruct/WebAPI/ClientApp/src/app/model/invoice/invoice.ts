@@ -5,7 +5,7 @@ export class Invoice {
     id: number;
     number: string;
     date: Date;
-    thirdPartyPerson: ThirdPartyPerson;
-    positions: Position[];
+    thirdPartyPersonId: number;
+    positionId: number;
     vat: number;
 }

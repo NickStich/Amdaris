@@ -13,6 +13,7 @@ export class EditThirdPartyPersonComponent implements OnInit {
   thirdPartyPerson: ThirdPartyPerson;
 
   message: string;
+  types: number[] = [1, 2];
 
   constructor(private route: ActivatedRoute,
     private router: Router,

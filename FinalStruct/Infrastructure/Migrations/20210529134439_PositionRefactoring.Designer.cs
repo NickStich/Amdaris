@@ -4,14 +4,16 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AccountingAppDbContext))]
-    partial class AccountingAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210529134439_PositionRefactoring")]
+    partial class PositionRefactoring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,6 +30,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("InvoiceType")
+                        .HasColumnType("int");
 
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
@@ -47,7 +52,7 @@ namespace Infrastructure.Migrations
 
                     b.ToTable("Invoices");
 
-                    b.HasDiscriminator<int>("Type").HasValue(0);
+                    b.HasDiscriminator<int>("InvoiceType").HasValue(0);
                 });
 
             modelBuilder.Entity("Domain.Position", b =>
@@ -123,14 +128,14 @@ namespace Infrastructure.Migrations
                 {
                     b.HasBaseType("Domain.Invoicing.Invoice");
 
-                    b.HasDiscriminator().HasValue(2);
+                    b.HasDiscriminator().HasValue(1);
                 });
 
             modelBuilder.Entity("Domain.Invoicing.SalesInvoice", b =>
                 {
                     b.HasBaseType("Domain.Invoicing.Invoice");
 
-                    b.HasDiscriminator().HasValue(1);
+                    b.HasDiscriminator().HasValue(2);
                 });
 
             modelBuilder.Entity("Domain.ThirdParty.Customer", b =>

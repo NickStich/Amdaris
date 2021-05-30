@@ -50,7 +50,7 @@ namespace Infrastructure.Repositories
             {
                 positionToModify.Product = position.Product;
                 positionToModify.Quantity = position.Quantity;
-                positionToModify.Invoices = position.Invoices;
+                positionToModify.Invoice = position.Invoice;
                 _dbContext.SaveChanges();
             }
         }

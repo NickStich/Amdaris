@@ -4,20 +4,37 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AccountingAppDbContext))]
-    partial class AccountingAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210528133337_ThirdPartyPersonTypeImpl")]
+    partial class ThirdPartyPersonTypeImpl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Domain.ConnectionEntities.PositionInvoice", b =>
+                {
+                    b.Property<int>("PositionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InvoiceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PositionId", "InvoiceId");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.ToTable("PositionInvoices");
+                });
 
             modelBuilder.Entity("Domain.Invoicing.Invoice", b =>
                 {
@@ -29,6 +46,9 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("InvoiceType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
@@ -38,16 +58,13 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ThirdPartyPersonId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ThirdPartyPersonId");
 
                     b.ToTable("Invoices");
 
-                    b.HasDiscriminator<int>("Type").HasValue(0);
+                    b.HasDiscriminator<int>("InvoiceType").HasValue(0);
                 });
 
             modelBuilder.Entity("Domain.Position", b =>
@@ -57,9 +74,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("InvoiceId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -67,8 +81,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InvoiceId");
 
                     b.HasIndex("ProductId");
 
@@ -123,14 +135,14 @@ namespace Infrastructure.Migrations
                 {
                     b.HasBaseType("Domain.Invoicing.Invoice");
 
-                    b.HasDiscriminator().HasValue(2);
+                    b.HasDiscriminator().HasValue(1);
                 });
 
             modelBuilder.Entity("Domain.Invoicing.SalesInvoice", b =>
                 {
                     b.HasBaseType("Domain.Invoicing.Invoice");
 
-                    b.HasDiscriminator().HasValue(1);
+                    b.HasDiscriminator().HasValue(2);
                 });
 
             modelBuilder.Entity("Domain.ThirdParty.Customer", b =>
@@ -147,6 +159,25 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator().HasValue(2);
                 });
 
+            modelBuilder.Entity("Domain.ConnectionEntities.PositionInvoice", b =>
+                {
+                    b.HasOne("Domain.Invoicing.Invoice", "Invoice")
+                        .WithMany("Positions")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Position", "Position")
+                        .WithMany("Invoices")
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Invoice");
+
+                    b.Navigation("Position");
+                });
+
             modelBuilder.Entity("Domain.Invoicing.Invoice", b =>
                 {
                     b.HasOne("Domain.ThirdParty.ThirdPartyPerson", "ThirdPartyPerson")
@@ -160,19 +191,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Position", b =>
                 {
-                    b.HasOne("Domain.Invoicing.Invoice", "Invoice")
-                        .WithMany("Positions")
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Product", "Product")
                         .WithMany("Positions")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Invoice");
 
                     b.Navigation("Product");
                 });
@@ -180,6 +203,11 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Invoicing.Invoice", b =>
                 {
                     b.Navigation("Positions");
+                });
+
+            modelBuilder.Entity("Domain.Position", b =>
+                {
+                    b.Navigation("Invoices");
                 });
 
             modelBuilder.Entity("Domain.Product", b =>

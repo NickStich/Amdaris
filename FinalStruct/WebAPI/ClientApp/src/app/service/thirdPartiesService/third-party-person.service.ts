@@ -22,15 +22,23 @@ export class ThirdPartyPersonService {
     return this.http.post<ThirdPartyPerson>(this.tppUrl + '/Create', tpp);
   }
 
-  public update(tppId: number, tpp: ThirdPartyPerson){
+  public update(tppId: number, tpp: ThirdPartyPerson) {
     return this.http.put(this.tppUrl + '/Update/' + tppId, tpp);
   }
 
-  public delete(tppId: number){
+  public delete(tppId: number) {
     return this.http.delete(this.tppUrl + '/Delete/' + tppId);
   }
 
-  public getById(tppId: number){
+  public getById(tppId: number) {
     return this.http.get<ThirdPartyPerson>(this.tppUrl + '/GetById/' + tppId);
   }
+
+  public getType(): Observable<string[]> {
+    return this.http.get<string[]>(this.tppUrl + '/GetType');
+  }
+
+  // public getByName(tppName: string): Observable<ThirdPartyPerson> {
+  //  return this.http.get<ThirdPartyPerson>(this.tppUrl + '/GetByName/' + tppName);
+  // }
 }

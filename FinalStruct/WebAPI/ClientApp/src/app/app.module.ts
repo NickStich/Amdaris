@@ -10,9 +10,17 @@ import { ThirdPartyPersonService } from './service/thirdPartiesService/third-par
 import { ThirdPartyPersonFormComponent } from './component/third-parties/third-party-person-form/third-party-person-form.component';
 import { AboutComponent } from './component/about/about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InvoicesComponent } from './component/invoices/invoices.component';
+import { InvoicesComponent } from './component/invoice/invoices/invoices.component';
 import { ThirdPartyPersonComponent } from './component/third-parties/third-party-person/third-party-person.component';
 import { EditThirdPartyPersonComponent } from './component/third-parties/edit-third-party-person/edit-third-party-person.component';
+import { InvoiceFormComponent } from './component/invoice/invoice-form/invoice-form.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { TypePipePipe } from './component/third-parties/third-party-person/type-pipe.pipe';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -22,7 +30,9 @@ import { EditThirdPartyPersonComponent } from './component/third-parties/edit-th
     ThirdPartyPersonFormComponent,
     AboutComponent,
     EditThirdPartyPersonComponent,
-    InvoicesComponent
+    InvoicesComponent,
+    InvoiceFormComponent,
+    TypePipePipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,9 +44,16 @@ import { EditThirdPartyPersonComponent } from './component/third-parties/edit-th
       { path: 'tpperson/Create', component: ThirdPartyPersonFormComponent},
       { path: 'tpperson/Edit/:id', component: EditThirdPartyPersonComponent},
       { path: 'invs', component: InvoicesComponent},
+      { path: 'invs/Create', component: InvoiceFormComponent},
       { path: 'about', component: AboutComponent}
     ]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [ThirdPartyPersonService],
   bootstrap: [AppComponent]

@@ -1,18 +1,29 @@
 <div class="card my-5">
-    <div class="card-body">
-      <form (ngSubmit)="onSubmit()" #tppersonForm="ngForm">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" [(ngModel)]="thirdPartyPerson.name" class="form-control" name="name" required #name="ngModel">
-        </div>
-        <div [hidden]="name.valid" class="alert alert-danger">Field is required</div>
-  
-        <div class="form-group">
-          <label for="taxId">TaxID</label>
-          <input type="text" [(ngModel)]="thirdPartyPerson.taxId" class="form-control" name="taxId" required #taxId="ngModel">
-          <div [hidden]="taxId.valid" class="alert alert-danger">Field is required</div>
-        </div>  
-        <button type="submit" [disabled]="tppersonForm.form.pristine || tppersonForm.form.invalid" class="btn btn-info" >Submit</button>
-      </form>
-    </div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #tppersonForm="ngForm">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]="thirdPartyPerson.name" class="form-control" name="name" required
+          #name="ngModel">
+      </div>
+      <div [hidden]="name.valid" class="alert alert-danger">Field is required</div>
+
+      <div class="form-group">
+        <label for="taxId">TaxID</label>
+        <input type="text" [(ngModel)]="thirdPartyPerson.taxId" class="form-control" name="taxId" required
+          #taxId="ngModel">
+        <div [hidden]="taxId.valid" class="alert alert-danger">Field is required</div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select type="text" [(ngModel)]="thirdPartyPerson.type" class="form-control" id="type" name="type"  required #type="ngModel">
+          <option *ngFor="let type of types" [value]="type">{{type | typePipe}}</option>
+        </select>
+      </div> 
+
+      <button type="submit" [disabled]="tppersonForm.form.pristine || tppersonForm.form.invalid" class="btn btn-info">Submit</button>
+    </form>
   </div>
+</div>

@@ -15,6 +15,7 @@ namespace Domain.ThirdParty
         public string TaxId { get; set; }
         public bool IsArchived { get; set; } = false;
         public ICollection<Invoice> Invoices { get; set; }
+        public virtual ThirdPartyType Type { get; set; }
         public override string ToString()
         {
             return $"ID:{Id} Name:{Name} with TaxID:{TaxId}";
@@ -23,6 +24,7 @@ namespace Domain.ThirdParty
 
     public enum ThirdPartyType
     {
+        ThirdPartyPerson = 0,
         Customer = 1,
         Supplier = 2
     }

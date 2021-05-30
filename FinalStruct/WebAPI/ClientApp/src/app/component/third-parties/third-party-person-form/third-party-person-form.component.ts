@@ -11,6 +11,7 @@ import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/thi
 export class ThirdPartyPersonFormComponent implements OnInit {
 
   tpperson: ThirdPartyPerson;
+  types: number[] = [1, 2];
 
   constructor(
     private route: ActivatedRoute,

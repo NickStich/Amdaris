@@ -29,35 +29,26 @@ namespace Infrastructure
         {
             modelBuilder.Entity<Invoice>()
             .ToTable("Invoices")
-            .HasDiscriminator<int>("InvoiceType")
+            .HasDiscriminator(i => i.Type)
             .HasValue<Invoice>(0)
-            .HasValue<PurchasesInvoice>(1)
-            .HasValue<SalesInvoice>(2);
+            .HasValue<SalesInvoice>(InvoiceType.SalesInvoice)
+            .HasValue<PurchasesInvoice>(InvoiceType.PurchasesInvoice);
+            
 
             modelBuilder.Entity<ThirdPartyPerson>()
             .ToTable("ThirdParties")
-            .HasDiscriminator<int>("ThirdPartyPersonType")
-            .HasValue<ThirdPartyPerson>(0)
-            .HasValue<Supplier>(1)
-            .HasValue<Customer>(2);
+            .HasDiscriminator(t => t.Type)
+            .HasValue<ThirdPartyPerson>(ThirdPartyType.ThirdPartyPerson)
+            .HasValue<Supplier>(ThirdPartyType.Supplier)
+            .HasValue<Customer>(ThirdPartyType.Customer);
 
-            modelBuilder.Entity<PositionInvoice>()
-                 .HasKey(pi => new { pi.PositionId, pi.InvoiceId });
-            modelBuilder.Entity<PositionInvoice>()
-                .HasOne(pi => pi.Position)
-                .WithMany(pi => pi.Invoices)
-                .HasForeignKey(pi => pi.PositionId);
-            modelBuilder.Entity<PositionInvoice>()
-                .HasOne(pi => pi.Invoice)
-                .WithMany(pi => pi.Positions)
-                .HasForeignKey(pi => pi.InvoiceId);
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<ThirdPartyPerson> ThirdParties { get; set; }
         public DbSet<Position> Positions { get; set; }
-        public DbSet<PositionInvoice> PositionInvoices { get; set; }
+        //public DbSet<PositionInvoice> PositionInvoices { get; set; }
 
     }
 }

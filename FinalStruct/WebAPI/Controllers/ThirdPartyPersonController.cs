@@ -96,5 +96,33 @@ namespace WebAPI.Controllers
                     $"Third Party Person with ID={id} not found!");
             }
         }
+
+        [HttpGet]
+        public IActionResult GetType()
+        {
+            try
+            {
+                var tppType = _thirdPartyPersonService.GetPersonsType();
+                return Ok(tppType);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Error accesing database");
+            }
+        }
+
+        [HttpGet("{id:int}")]
+        public IActionResult GetByName(string name)
+        {
+            try
+            {
+                var tppByName = _thirdPartyPersonService.FindPersonByName(name);
+                return Ok(tppByName);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Error accesing database");
+            }
+        }
     }
 }

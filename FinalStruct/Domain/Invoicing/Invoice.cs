@@ -16,7 +16,8 @@ namespace Domain.Invoicing
         //one
         public int ThirdPartyPersonId { get; set; }
         public ThirdPartyPerson ThirdPartyPerson { get; set; }
-        public ICollection<PositionInvoice> Positions { get; set; }
+        public virtual InvoiceType Type { get; set; }
+        public ICollection<Position> Positions { get; set; }
         public virtual VAT VatType { get; }
         public InvoiceStatus Status { get; set; }
 
@@ -26,5 +27,12 @@ namespace Domain.Invoicing
         }
 
 
+    }
+
+    public enum InvoiceType
+    {
+        Invoice = 0,
+        SalesInvoice = 1,
+        PurchasesInvoice = 2
     }
 }

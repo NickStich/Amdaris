@@ -14,8 +14,8 @@ namespace Domain
         public int ProductId { get; set; }
         public Product Product { get; set; }
         public double  Quantity { get; set; }
-        
-        public ICollection<PositionInvoice> Invoices { get; set; }
+        public int InvoiceId { get; set; }
+        public Invoice Invoice { get; set; }
 
     }
 }

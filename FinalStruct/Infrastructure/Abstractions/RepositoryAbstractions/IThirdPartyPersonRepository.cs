@@ -15,5 +15,6 @@ namespace Infrastructure.Abstractions.RepositoryAbstractions
         IEnumerable<ThirdPartyPerson> GetThirdPartyPersons();
         ThirdPartyPerson GetThirdPartyPersonById(int thirdPartyPersonId);
         IEnumerable<ThirdPartyPerson> GetFilteredBy(Func<ThirdPartyPerson, bool> filter);
+        List<string> GetPersonsType();
     }
 }

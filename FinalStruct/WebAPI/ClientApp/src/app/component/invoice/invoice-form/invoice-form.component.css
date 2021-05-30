@@ -1,0 +1,13 @@
+  .mainbox {
+    width: 100%;
+    border: 2px solid #138164;
+    padding: 50px;
+  }
+
+  .invoice{
+      text-align: center;
+  }
+
+  .ThirdPartyPerson{
+    margin-bottom: 0px;
+  }

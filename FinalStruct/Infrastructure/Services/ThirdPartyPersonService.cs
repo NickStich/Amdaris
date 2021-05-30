@@ -55,6 +55,11 @@ namespace Infrastructure.Services
             _thirdPartyPersonRepository.UpdateThirdPartyPerson(thirdPartyPersonId, thirdPartyPerson);
         }
 
+        public List<string> GetPersonsType()
+        {
+            return _thirdPartyPersonRepository.GetPersonsType();
+        }
+
         private ThirdPartyPersonDTO TransferToDTO(ThirdPartyPerson tpperson)
         {
             var dto = new ThirdPartyPersonDTO
