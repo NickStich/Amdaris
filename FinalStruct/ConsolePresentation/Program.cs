@@ -36,19 +36,17 @@ namespace ConsolePresentation
                 //dbContext.ThirdParties.Add(tpp1);
                 //dbContext.ThirdParties.Add(tpp2);
 
-                //var inv1 = new Invoice { Number = "2105001", Date = DateTime.Now, ThirdPartyPerson = tpp1 , Status = InvoiceStatus.SENT };
-                //var inv2 = new Invoice { Number = "2105002", Date = DateTime.Now, ThirdPartyPerson = tpp2, Status = InvoiceStatus.PAID };
+                //var inv1 = new Invoice { Number = "2105001", Date = DateTime.Now, ThirdPartyPerson = tpp1, Status = InvoiceStatus.SENT, Type = InvoiceType.SalesInvoice };
+                //var inv2 = new Invoice { Number = "2105002", Date = DateTime.Now, ThirdPartyPerson = tpp2, Status = InvoiceStatus.PAID, Type = InvoiceType.PurchasesInvoice };
                 //dbContext.Invoices.Add(inv1);
                 //dbContext.Invoices.Add(inv2);
 
-                //var position1 = new Position() { Product = product1, Quantity = 8 };
-                //var position2 = new Position() { Product = product2, Quantity = 3 };
-                //var position3 = new Position() { Product = product5, Quantity = 1 };
+                //var position1 = new Position() { Product = product1, Quantity = 8, Invoice = inv1 };
+                //var position2 = new Position() { Product = product2, Quantity = 3, Invoice = inv1 };
+                //var position3 = new Position() { Product = product5, Quantity = 1, Invoice = inv2 };
                 //dbContext.Positions.Add(position1);
                 //dbContext.Positions.Add(position2);
                 //dbContext.Positions.Add(position3);
-
-
 
                 //var posInv1 = new PositionInvoice() { Invoice = inv1, Position = position1 };
                 //var posInv2 = new PositionInvoice() { Invoice = inv1, Position = position2 };
@@ -59,9 +57,8 @@ namespace ConsolePresentation
                 //dbContext.PositionInvoices.Add(posInv3);
                 //dbContext.PositionInvoices.Add(posInv4);
 
-
-                //dbContext.SaveChanges();
-                //Console.WriteLine("succes");
+                dbContext.SaveChanges();
+                Console.WriteLine("succes");
 
 
             }

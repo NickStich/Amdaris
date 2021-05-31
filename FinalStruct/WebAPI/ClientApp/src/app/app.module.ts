@@ -14,13 +14,14 @@ import { InvoicesComponent } from './component/invoice/invoices/invoices.compone
 import { ThirdPartyPersonComponent } from './component/third-parties/third-party-person/third-party-person.component';
 import { EditThirdPartyPersonComponent } from './component/third-parties/edit-third-party-person/edit-third-party-person.component';
 import { InvoiceFormComponent } from './component/invoice/invoice-form/invoice-form.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TypePipePipe } from './component/third-parties/third-party-person/type-pipe.pipe';
 import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,12 +41,12 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'tpperson', component: ThirdPartyPersonComponent},
-      { path: 'tpperson/Create', component: ThirdPartyPersonFormComponent},
-      { path: 'tpperson/Edit/:id', component: EditThirdPartyPersonComponent},
-      { path: 'invs', component: InvoicesComponent},
-      { path: 'invs/Create', component: InvoiceFormComponent},
-      { path: 'about', component: AboutComponent}
+      { path: 'tpperson', component: ThirdPartyPersonComponent },
+      { path: 'tpperson/Create', component: ThirdPartyPersonFormComponent },
+      { path: 'tpperson/Edit/:id', component: EditThirdPartyPersonComponent },
+      { path: 'invs', component: InvoicesComponent },
+      { path: 'invs/Create', component: InvoiceFormComponent },
+      { path: 'about', component: AboutComponent }
     ]),
     BrowserAnimationsModule,
     MatTableModule,
@@ -53,7 +54,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
   ],
   providers: [ThirdPartyPersonService],
   bootstrap: [AppComponent]
