@@ -44,17 +44,18 @@ namespace Infrastructure.Services
            return _invoiceRepository.GetFilteredBy(i => i.ThirdPartyPersonId == ThirdPartyId);
         }
 
-        public async Task<List<InvoiceDTO>> GetAllInvoices()
+        public async Task<List<Invoice>> GetAllInvoices()
         {
             var invoices = await _invoiceRepository.GetAllInvoices();
-            var invoiceResult = invoices.Select(i => TransferToDTO(i)).ToList();
-            return invoiceResult;
+            //var invoiceResult = invoices.Select(i => TransferToDTO(i)).ToList();
+            return invoices;
         }
 
-        public InvoiceDTO GetInvoiceById(int invoiceId)
+        public Invoice GetInvoiceById(int invoiceId)
         {
-            var invoice = _invoiceRepository.GetInvoiceById(invoiceId);
-            return TransferToDTO(invoice);
+            //var invoice = _invoiceRepository.GetInvoiceById(invoiceId);
+            //return TransferToDTO(invoice);
+            return _invoiceRepository.GetInvoiceById(invoiceId);
         }
 
         public void UpdateInvoice(int invoiceId, Invoice invoice)

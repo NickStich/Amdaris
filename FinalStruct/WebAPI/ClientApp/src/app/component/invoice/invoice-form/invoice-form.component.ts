@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 
 import { Invoice } from 'src/app/model/invoice/invoice';
 import { Position } from 'src/app/model/position/position';
@@ -21,18 +21,19 @@ export class InvoiceFormComponent implements OnInit {
   private fieldArray: Array<any> = [];
   private newAttribute: any = {};
   private invoice: Invoice;
-  private position: Position;
-  private product: Product;
   private date: Date;
   // input values
-  positionsForm: FormGroup;
-  positions: FormArray;
-  productName: string;
-  productPrice: number;
-  quantity: number;
+  // productName = '';
+  // productPrice = 0;
+  // quantity = 0;
   thirdPartyPersons: ThirdPartyPerson[] = [];
+  products: Product[] = [];
   thirdPartyPerson: ThirdPartyPerson;
-  index = 1;
+
+  private position: Position;
+  // private product: Product;
+  positions: Position[] = [];
+  invoiceForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -42,24 +43,60 @@ export class InvoiceFormComponent implements OnInit {
     private productService: ProductService,
     private formBuilder: FormBuilder) {
     this.invoice = new Invoice();
-    this.position = new Position();
-    this.product = new Product();
+    // this.position = new Position();
+    // this.product = new Product();
   }
 
   ngOnInit() {
     this.tppService.findAll().subscribe(data => {
       this.thirdPartyPersons = data;
     });
+    this.productService.findAll().subscribe(data => {
+      this.products = data;
+    });
+    this.invoiceForm = this.formBuilder.group({
+      positions: this.formBuilder.array([this.createItem(), this.createItem()]),
+    });
+
+    this.invoiceForm.setValue({
+      thirdPartyPersonId: 0,
+      date: '',
+      number: '',
+      positions: [
+        {
+          product: {
+            name: '',
+            price: 0,
+          },
+          quantity: 0,
+        }
+      ],
+    });
+  }
+
+  get invoicePositions() {
+    return this.invoiceForm.get('positions') as FormArray;
+  }
+
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      product: this.formBuilder.group({
+        name: '',
+        price: 0,
+      }),
+      quantity: 0,
+    });
+  }
+
+  addItem(): void {
+    // this.positions = this.invoiceForm.get('positions') as FormArray;
+    // this.positions.push(this.createItem());
+
+    this.invoicePositions.push(this.createItem());
   }
 
   onSubmit() {
-    console.log(this.invoice.thirdPartyPersonId);
-    console.log(this.invoice.date);
-    this.product.name = this.productName;
-    this.product.price = this.productPrice;
-    this.position.product = this.product;
-    this.position.quantity = this.quantity;
-    this.invoice.positions = [this.position];
+    this.invoice = this.invoiceForm.value;
     this.invoiceService.save(this.invoice).subscribe(result => this.gotoInvoiceList());
   }
   gotoInvoiceList() {

@@ -34,10 +34,9 @@ namespace Infrastructure.Services
            return _productRepository.GetFilteredBy(p => p.Name == name);
         }
 
-        public ICollection<ProductDTO> GetAllProducts()
+        public IEnumerable<Product> GetAllProducts()
         {
-            var products = _productRepository.GetAllProducts().Select(i => TransferToDTO(i)).ToList();
-            return products;
+            return _productRepository.GetAllProducts();
         }
 
         public ProductDTO GetProductById(int productId)

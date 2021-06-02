@@ -22,6 +22,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TypePipePipe } from './component/third-parties/third-party-person/type-pipe.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductListComponent } from './component/product/product-list/product-list.component';
+import { ProductFormComponent } from './component/product/product-form/product-form.component';
+import { ProductEditComponent } from './component/product/product-edit/product-edit.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { InvoiceViewComponent } from './component/invoice/invoice-view/invoice-view.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     EditThirdPartyPersonComponent,
     InvoicesComponent,
     InvoiceFormComponent,
-    TypePipePipe
+    TypePipePipe,
+    ProductListComponent,
+    ProductFormComponent,
+    ProductEditComponent,
+    InvoiceViewComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,6 +55,10 @@ import { ReactiveFormsModule } from '@angular/forms';
       { path: 'tpperson/Edit/:id', component: EditThirdPartyPersonComponent },
       { path: 'invs', component: InvoicesComponent },
       { path: 'invs/Create', component: InvoiceFormComponent },
+      { path: 'invs/View/:id', component: InvoiceViewComponent},
+      { path: 'prdt' , component: ProductListComponent},
+      { path: 'prdt/Create', component : ProductFormComponent},
+      { path: 'prdt/Edit/:id', component: ProductEditComponent},
       { path: 'about', component: AboutComponent }
     ]),
     BrowserAnimationsModule,
@@ -56,7 +69,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatDialogModule
   ],
+  entryComponents: [InvoiceViewComponent],
   providers: [ThirdPartyPersonService],
   bootstrap: [AppComponent]
 })

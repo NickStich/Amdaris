@@ -16,7 +16,7 @@ namespace Infrastructure.Services.ServiceAbstractions
         public IEnumerable<Invoice> FindInvoicesByDate(DateTime date);
         public IEnumerable<Invoice> FindInvoicesByThirdPartyId(int ThirdPartyId);
         public void UpdateInvoice(int invoiceId, Invoice invoice);
-        Task<List<InvoiceDTO>> GetAllInvoices();
-        InvoiceDTO GetInvoiceById(int invoiceId);
+        Task<List<Invoice>> GetAllInvoices();
+        Invoice GetInvoiceById(int invoiceId);
     }
 }

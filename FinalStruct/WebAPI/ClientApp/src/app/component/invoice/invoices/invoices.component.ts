@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from 'src/app/model/invoice/invoice';
 import { InvoiceService } from 'src/app/service/invoiceService/invoice.service';
+import {MatDialog} from '@angular/material/dialog';
+import { InvoiceViewComponent } from '../invoice-view/invoice-view.component';
 
 @Component({
   selector: 'app-invoices',
@@ -11,7 +13,8 @@ export class InvoicesComponent implements OnInit {
 
   invoices: Invoice[] = [];
 
-  constructor(private invoiceService: InvoiceService) { }
+  constructor(private invoiceService: InvoiceService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.invoiceService.findAll().subscribe(data => {
@@ -19,4 +22,13 @@ export class InvoicesComponent implements OnInit {
     });
   }
 
+  view() {
+    const dialogRef = this.dialog.open(InvoiceViewComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
+
+

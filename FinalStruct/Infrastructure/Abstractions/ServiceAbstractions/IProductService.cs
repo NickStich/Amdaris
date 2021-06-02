@@ -14,7 +14,7 @@ namespace Infrastructure.Services.ServiceAbstractions
         public void DeleteProduct(int productId);
         public IEnumerable<Product> FindProductsByName(string name);
         public void UpdateProduct(int productId, Product product);
-        ICollection<ProductDTO> GetAllProducts();
+        IEnumerable<Product> GetAllProducts();
         ProductDTO GetProductById(int productId);
     }
 }

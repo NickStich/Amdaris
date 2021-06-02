@@ -1,0 +1,27 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+         <a routerLink="Create" class="btn btn-info" >Add</a>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Actions</th>
+
+        </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let product of products">
+             <td>{{product.id}}</td>
+             <td>{{product.name}}</td>
+             <td>{{product.price}}</td>
+             <td>
+              <a routerLink="Edit/{{product.id}}" class="btn btn-info">Edit</a>
+              <a (click)="deleteClick(product.id)" class="btn btn-info" style="color: white" >Delete</a>
+             </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

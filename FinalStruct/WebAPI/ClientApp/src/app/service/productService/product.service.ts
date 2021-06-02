@@ -31,6 +31,10 @@ export class ProductService {
     return this.http.put(this.productUrl + '/Update/' + productId, product);
   }
 
+  // public update(tppId: number, tpp: ThirdPartyPerson) {
+  //   return this.http.put(this.tppUrl + '/Update/' + tppId, tpp);
+  // }
+
   public delete(productId: number) {
     return this.http.delete(this.productUrl + '/Delete/' + productId);
   }

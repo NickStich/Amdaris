@@ -1,4 +1,4 @@
-<div class="mainbox">
+<!-- <div class="mainbox">
     <form (ngSubmit)="onSubmit()" #invoiceForm="ngForm">
 
         <div>
@@ -7,7 +7,6 @@
                 <select [(ngModel)]="invoice.thirdPartyPersonId" class="form-control" name="invoice.thirdPartyPersonId">
                     <option *ngFor="let tpp of thirdPartyPersons" [value]="tpp.id">{{tpp.name}}</option>
                 </select>
-
 
                 <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
@@ -19,9 +18,9 @@
 
             <div class="form-group">
                 <label for="name">Number</label>
-                <input type="text" [(ngModel)]="invoice.number" class="form-control" id="name" name="invoice.number" required #name="ngModel">
+                <input type="text" [(ngModel)]="invoice.number" class="form-control" id="name" name="invoice.number"
+                    required #name="ngModel">
             </div>
-
         </div>
 
         <h1 class="invoice">Invoice</h1>
@@ -44,7 +43,7 @@
                         <input [(ngModel)]="quantity" class="form-control" type="text" name="quantity" />
                     </td>
                     <td>
-                        <input [(ngModel)]="productPrice" class="form-control" type="text" name="productPrice" />
+                        <input [(ngModel)]="productPrice" class="form-control" type="text" name="productPrice"  />
                     </td>
                     <td>
                         <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)"> - </button>
@@ -63,3 +62,25 @@
         <button type="submit" [disabled]="!invoiceForm.form.valid" class="btn btn-info">Save</button>
     </form>
 </div>
+ -->
+
+ <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <div>
+        <input formControlName="thirdPartyPersonId">
+        <input type="date" formControlName="date">
+        <input formControlName="number">
+    </div>
+    <div formArrayName="positions">
+      <div *ngFor="let item of invoicePositions.controls; let i = index;">
+        <div [formGroupName]="i">
+          <ng-container formGroupName="product">
+            <input formControlName="name" placeholder="prod name">
+            <input formControlName="price" placeholder="prod quantity">
+          </ng-container>
+          <input formControlName="quantity" placeholder="prod quantity">
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="addItem()">Add Item</button>
+    <button type="submit" class="btn btn-info">Save</button>
+  </form>
