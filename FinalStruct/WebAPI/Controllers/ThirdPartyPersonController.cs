@@ -124,5 +124,20 @@ namespace WebAPI.Controllers
                 return StatusCode(500, "Error accesing database");
             }
         }
+
+        [HttpGet("{type:int}")]
+        public IActionResult GetByType(int type)
+        {
+            try
+            {
+                var tpperson = _thirdPartyPersonService.GetThirdPartyPersonsByType((ThirdPartyType)type);
+                return Ok(tpperson);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Third Party Person with ID={type} not found!");
+            }
+        }
     }
 }

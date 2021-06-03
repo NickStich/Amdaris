@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
-
 import { Invoice } from 'src/app/model/invoice/invoice';
 import { Position } from 'src/app/model/position/position';
 import { Product } from 'src/app/model/product/product';
 import { ThirdPartyPerson } from 'src/app/model/thirdPartyPerson/third-party-person';
 import { InvoiceService } from 'src/app/service/invoiceService/invoice.service';
-import { PositionService } from 'src/app/service/positionService/position.service';
-import { ProductService } from 'src/app/service/productService/product.service';
 import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/third-party-person.service';
 
 @Component({
@@ -21,44 +18,36 @@ export class InvoiceFormComponent implements OnInit {
   private fieldArray: Array<any> = [];
   private newAttribute: any = {};
   private invoice: Invoice;
-  private date: Date;
-  // input values
-  // productName = '';
-  // productPrice = 0;
-  // quantity = 0;
   thirdPartyPersons: ThirdPartyPerson[] = [];
   products: Product[] = [];
   thirdPartyPerson: ThirdPartyPerson;
-
-  private position: Position;
-  // private product: Product;
   positions: Position[] = [];
   invoiceForm: FormGroup;
+  typeVariable: number;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private invoiceService: InvoiceService,
     private tppService: ThirdPartyPersonService,
-    private positionService: PositionService,
-    private productService: ProductService,
     private formBuilder: FormBuilder) {
     this.invoice = new Invoice();
-    // this.position = new Position();
-    // this.product = new Product();
   }
 
   ngOnInit() {
-    this.tppService.findAll().subscribe(data => {
+    this.typeVariable = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    console.log(this.typeVariable);
+    this.tppService.getByType(this.typeVariable).subscribe(data => {
       this.thirdPartyPersons = data;
     });
-    this.productService.findAll().subscribe(data => {
-      this.products = data;
-    });
     this.invoiceForm = this.formBuilder.group({
-      positions: this.formBuilder.array([this.createItem(), this.createItem()]),
+      thirdPartyPersonId: 0,
+      date: '',
+      number: '',
+      positions: this.formBuilder.array([this.createItem()]),
+      type: this.typeVariable
     });
 
-    this.invoiceForm.setValue({
+    this.invoiceForm.patchValue({
       thirdPartyPersonId: 0,
       date: '',
       number: '',
@@ -71,6 +60,7 @@ export class InvoiceFormComponent implements OnInit {
           quantity: 0,
         }
       ],
+      type: this.typeVariable
     });
   }
 
@@ -89,9 +79,6 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   addItem(): void {
-    // this.positions = this.invoiceForm.get('positions') as FormArray;
-    // this.positions.push(this.createItem());
-
     this.invoicePositions.push(this.createItem());
   }
 
@@ -109,6 +96,10 @@ export class InvoiceFormComponent implements OnInit {
     this.newAttribute = {};
   }
   deleteFieldValue(index) {
-    this.fieldArray.splice(index, 1);
+    this.invoicePositions.removeAt(index);
+  }
+
+  go() {
+    console.log(this.thirdPartyPersons.length);
   }
 }

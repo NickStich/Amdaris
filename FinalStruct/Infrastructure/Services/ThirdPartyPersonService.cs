@@ -69,5 +69,10 @@ namespace Infrastructure.Services
             };
             return dto;
         }
+
+        IEnumerable<ThirdPartyPerson> IThirdPartyPersonService.GetThirdPartyPersonsByType(ThirdPartyType thirdPartyType)
+        {
+            return _thirdPartyPersonRepository.GetFilteredBy(t => t.Type == thirdPartyType);
+        }
     }
 }

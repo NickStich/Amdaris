@@ -2,7 +2,11 @@
   <div class="card-body">
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
-        <a routerLink="Create" class="btn btn-info">Add</a>
+        <a class="btn btn-info" mat-button [matMenuTriggerFor]="menu">Add</a>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="Create/1">Sales Invoice</button>
+          <button mat-menu-item routerLink="Create/2">Purchase Invoice</button>
+        </mat-menu>
 
         <tr>
           <th scope="col">ID</th>

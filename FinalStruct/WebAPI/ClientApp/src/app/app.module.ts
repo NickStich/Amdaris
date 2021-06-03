@@ -27,6 +27,7 @@ import { ProductFormComponent } from './component/product/product-form/product-f
 import { ProductEditComponent } from './component/product/product-edit/product-edit.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { InvoiceViewComponent } from './component/invoice/invoice-view/invoice-view.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { InvoiceViewComponent } from './component/invoice/invoice-view/invoice-v
       { path: 'tpperson/Create', component: ThirdPartyPersonFormComponent },
       { path: 'tpperson/Edit/:id', component: EditThirdPartyPersonComponent },
       { path: 'invs', component: InvoicesComponent },
-      { path: 'invs/Create', component: InvoiceFormComponent },
+      { path: 'invs/Create/:id', component: InvoiceFormComponent },
       { path: 'invs/View/:id', component: InvoiceViewComponent},
       { path: 'prdt' , component: ProductListComponent},
       { path: 'prdt/Create', component : ProductFormComponent},
@@ -69,7 +70,8 @@ import { InvoiceViewComponent } from './component/invoice/invoice-view/invoice-v
     MatNativeDateModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   entryComponents: [InvoiceViewComponent],
   providers: [ThirdPartyPersonService],

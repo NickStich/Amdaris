@@ -38,6 +38,10 @@ export class ThirdPartyPersonService {
     return this.http.get<string[]>(this.tppUrl + '/GetType');
   }
 
+  public getByType(tppType: number): Observable<ThirdPartyPerson[]> {
+    return this.http.get<ThirdPartyPerson[]>(this.tppUrl + '/GetByType/' + tppType);
+  }
+
   // public getByName(tppName: string): Observable<ThirdPartyPerson> {
   //  return this.http.get<ThirdPartyPerson>(this.tppUrl + '/GetByName/' + tppName);
   // }

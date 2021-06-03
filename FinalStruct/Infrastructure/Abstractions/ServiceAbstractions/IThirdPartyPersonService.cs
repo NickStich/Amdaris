@@ -18,5 +18,6 @@ namespace Infrastructure.Services.ServiceAbstractions
         IEnumerable<ThirdPartyPerson> FindPersonByTaxId(string taxId);
         IEnumerable<ThirdPartyPerson> FindPersonByName(string name);
         List<string> GetPersonsType();
+        IEnumerable<ThirdPartyPerson> GetThirdPartyPersonsByType(ThirdPartyType thirdPartyType);
     }
 }

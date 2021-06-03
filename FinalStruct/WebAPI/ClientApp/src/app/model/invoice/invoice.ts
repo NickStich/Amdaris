@@ -7,5 +7,6 @@ export class Invoice {
     date: Date;
     thirdPartyPersonId: number;
     positions: Position[];
+    type: number;
     vat: number;
 }
