@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from 'src/app/model/invoice/invoice';
 import { InvoiceService } from 'src/app/service/invoiceService/invoice.service';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { InvoiceViewComponent } from '../invoice-view/invoice-view.component';
 
 @Component({
@@ -12,6 +12,9 @@ import { InvoiceViewComponent } from '../invoice-view/invoice-view.component';
 export class InvoicesComponent implements OnInit {
 
   invoices: Invoice[] = [];
+  purchaseInvoices: Invoice[] = [];
+  saleInvoices: Invoice[] = [];
+  tempInvoice: Invoice[] = [];
 
   constructor(private invoiceService: InvoiceService,
     private dialog: MatDialog) { }
@@ -19,15 +22,33 @@ export class InvoicesComponent implements OnInit {
   ngOnInit(): void {
     this.invoiceService.findAll().subscribe(data => {
       this.invoices = data;
+      this.tempInvoice = data;
     });
   }
+  refreshPage() {
+    window.location.reload();
+  }
 
-  view() {
-    const dialogRef = this.dialog.open(InvoiceViewComponent);
+  displayPurchaseInvoices() {
+    this.invoices = this.tempInvoice;
+    for (const invoice of this.invoices) {
+      if (invoice.type === 2) {
+        this.purchaseInvoices.push(invoice);
+      }
+    }
+    this.invoices = this.purchaseInvoices;
+    this.purchaseInvoices = [];
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  displaySaleInvoices() {
+    this.invoices = this.tempInvoice;
+    for (const invoice of this.invoices) {
+      if (invoice.type === 1) {
+        this.saleInvoices.push(invoice);
+      }
+    }
+    this.invoices = this.saleInvoices;
+    this.saleInvoices = [];
   }
 }
 

@@ -7,17 +7,18 @@
 </mat-dialog-actions> -->
 
 
-    <button  (click)="gotoInvoiceList()">Close</button>
+    <button  (click)="gotoInvoiceList()" class="btn btn-info">Close</button>
+	<a (click)="gotoInvoiceEdit(invoice.id)" class="btn btn-info">Edit</a>
 	<body>
-		
 		<div class="invoice-box">
+			
 			<table>
 				<tr class="top">
 					<td colspan="2">
 						<table>
 							<tr>
 								<td class="title">
-									<img src="./images/logo.png" alt="Company logo" style="width: 100%; max-width: 300px" />
+									<img alt="Company logo" style="width: 100%; max-width: 300px" />
 								</td>
 
 								<td>

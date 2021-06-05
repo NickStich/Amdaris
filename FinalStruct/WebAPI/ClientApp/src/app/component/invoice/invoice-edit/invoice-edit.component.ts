@@ -4,30 +4,34 @@ import { Invoice } from 'src/app/model/invoice/invoice';
 import { InvoiceService } from 'src/app/service/invoiceService/invoice.service';
 
 @Component({
-  selector: 'app-invoice-view',
-  templateUrl: './invoice-view.component.html',
-  styleUrls: ['./invoice-view.component.css']
+  selector: 'app-invoice-edit',
+  templateUrl: './invoice-edit.component.html',
+  styleUrls: ['./invoice-edit.component.css']
 })
-export class InvoiceViewComponent implements OnInit {
+export class InvoiceEditComponent implements OnInit {
 
   invoice: Invoice;
-  id: number;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private invoiceService: InvoiceService) {
       this.invoice = new Invoice();
-     }
+    }
 
-  ngOnInit(): void {
-    this.id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.invoiceService.getById(this.id).subscribe(data => {
+  ngOnInit() {
+    let id: number;
+    id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+    this.invoiceService.getById(id).subscribe(data => {
       this.invoice = data;
     });
   }
 
-  gotoInvoiceEdit(id: number) {
-    this.router.navigate(['invs/Edit/' + id]);
+  check() {
+    console.log(this.invoice.number);
+  }
+
+  gotoInvoiceList() {
+    this.router.navigate(['invs']);
   }
 
 }

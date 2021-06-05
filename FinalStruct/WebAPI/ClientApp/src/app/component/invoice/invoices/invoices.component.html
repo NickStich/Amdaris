@@ -1,10 +1,19 @@
 <div class="card my-5">
   <div class="card-body">
+
+    <button (click)="refreshPage()" class="btn btn-info">All Invoices</button>
+    <button (click)="displaySaleInvoices()" class="btn btn-info">Sale Invoices</button>
+    <button (click)="displayPurchaseInvoices()" class="btn btn-info">Purchase Invoices</button>
+    
+
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
+
+        
+
         <a class="btn btn-info" mat-button [matMenuTriggerFor]="menu">Add</a>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="Create/1">Sales Invoice</button>
+          <button mat-menu-item routerLink="Create/1">Sale Invoice</button>
           <button mat-menu-item routerLink="Create/2">Purchase Invoice</button>
         </mat-menu>
 

@@ -28,6 +28,7 @@ import { ProductEditComponent } from './component/product/product-edit/product-e
 import {MatDialogModule} from '@angular/material/dialog';
 import { InvoiceViewComponent } from './component/invoice/invoice-view/invoice-view.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { InvoiceEditComponent } from './component/invoice/invoice-edit/invoice-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatMenuModule} from '@angular/material/menu';
     ProductListComponent,
     ProductFormComponent,
     ProductEditComponent,
-    InvoiceViewComponent
+    InvoiceViewComponent,
+    InvoiceEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -57,6 +59,7 @@ import {MatMenuModule} from '@angular/material/menu';
       { path: 'invs', component: InvoicesComponent },
       { path: 'invs/Create/:id', component: InvoiceFormComponent },
       { path: 'invs/View/:id', component: InvoiceViewComponent},
+      { path: 'invs/Edit/:id', component: InvoiceEditComponent},
       { path: 'prdt' , component: ProductListComponent},
       { path: 'prdt/Create', component : ProductFormComponent},
       { path: 'prdt/Edit/:id', component: ProductEditComponent},
