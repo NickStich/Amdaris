@@ -9,13 +9,7 @@ namespace Domain.Invoicing
 {
     public class SalesInvoice : Invoice
     {
-        public override InvoiceType Type
-        {
-            get
-            {
-                return InvoiceType.SalesInvoice;
-            }
-        }
+        
         public SalesInvoice()
         {
             if (this.Type != InvoiceType.SalesInvoice)
@@ -23,7 +17,13 @@ namespace Domain.Invoicing
                 throw new InvalidOperationException($"Invalid InvoiceType, might be SalesInvoice, but is: {this.Type} !");
             }
         }
-
+        public override InvoiceType Type
+        {
+            get
+            {
+                return InvoiceType.SalesInvoice;
+            }
+        }
         public override VAT VatType {
             get
             {

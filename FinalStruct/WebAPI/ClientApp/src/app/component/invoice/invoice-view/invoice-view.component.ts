@@ -26,6 +26,10 @@ export class InvoiceViewComponent implements OnInit {
     });
   }
 
+  gotoInvoiceList() {
+    this.router.navigate(['invs']);
+  }
+
   gotoInvoiceEdit(id: number) {
     this.router.navigate(['invs/Edit/' + id]);
   }

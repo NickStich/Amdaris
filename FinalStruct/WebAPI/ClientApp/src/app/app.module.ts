@@ -19,7 +19,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
-import { TypePipePipe } from './component/third-parties/third-party-person/type-pipe.pipe';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductListComponent } from './component/product/product-list/product-list.component';
@@ -29,6 +28,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { InvoiceViewComponent } from './component/invoice/invoice-view/invoice-view.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { InvoiceEditComponent } from './component/invoice/invoice-edit/invoice-edit.component';
+import { BalanceListComponent } from './component/balance/balance-list/balance-list.component';
+import { ThirdPartyPersonTypePipe } from './pipes/third-party-person/third-party-person-type.pipe';
+import { VatTypePipe } from './pipes/invoice/vat-type.pipe';
+import { InvoiceStatusPipe } from './pipes/invoice/invoice-status.pipe';
 
 @NgModule({
   declarations: [
@@ -40,12 +43,15 @@ import { InvoiceEditComponent } from './component/invoice/invoice-edit/invoice-e
     EditThirdPartyPersonComponent,
     InvoicesComponent,
     InvoiceFormComponent,
-    TypePipePipe,
     ProductListComponent,
     ProductFormComponent,
     ProductEditComponent,
     InvoiceViewComponent,
-    InvoiceEditComponent
+    InvoiceEditComponent,
+    BalanceListComponent,
+    ThirdPartyPersonTypePipe,
+    VatTypePipe,
+    InvoiceStatusPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -63,6 +69,7 @@ import { InvoiceEditComponent } from './component/invoice/invoice-edit/invoice-e
       { path: 'prdt' , component: ProductListComponent},
       { path: 'prdt/Create', component : ProductFormComponent},
       { path: 'prdt/Edit/:id', component: ProductEditComponent},
+      { path: 'blnc', component: BalanceListComponent},
       { path: 'about', component: AboutComponent }
     ]),
     BrowserAnimationsModule,

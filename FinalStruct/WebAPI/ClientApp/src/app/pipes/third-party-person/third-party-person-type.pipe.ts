@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'typePipe'
+  name: 'thirdPartyPersonType'
 })
-export class TypePipePipe implements PipeTransform {
+export class ThirdPartyPersonTypePipe implements PipeTransform {
 
   transform(type: number): string {
     if (type === 2) {

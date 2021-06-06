@@ -18,8 +18,11 @@ namespace Domain.Invoicing
         public ThirdPartyPerson ThirdPartyPerson { get; set; }
         public virtual InvoiceType Type { get; set; }
         public ICollection<Position> Positions { get; set; }
-        public virtual VAT VatType { get; }
+        public double Value { get; set; }
+        public double VATValue { get; set; }
+        public virtual VAT VatType { get; set; }
         public InvoiceStatus Status { get; set; }
+
 
         public override string ToString()
         {

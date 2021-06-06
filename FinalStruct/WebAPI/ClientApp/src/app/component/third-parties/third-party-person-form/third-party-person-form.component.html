@@ -19,7 +19,7 @@
         <div class="form-group">
           <label for="type">Type</label>
           <select type="text" [(ngModel)]="tpperson.type" class="form-control" id="type" name="type" placeholder="Enter type " required #type="ngModel">
-            <option *ngFor="let type of types">{{type | typePipe}}</option>
+            <option *ngFor="let type of types">{{type | thirdPartyPersonType}}</option>
           </select>
           <div [hidden]="!type.pristine" class="alert alert-danger">Field is required</div>
         </div>  

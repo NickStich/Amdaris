@@ -24,6 +24,7 @@ export class InvoiceFormComponent implements OnInit {
   positions: Position[] = [];
   invoiceForm: FormGroup;
   typeVariable: number;
+  invoiceTotal: number;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -31,6 +32,7 @@ export class InvoiceFormComponent implements OnInit {
     private tppService: ThirdPartyPersonService,
     private formBuilder: FormBuilder) {
     this.invoice = new Invoice();
+    // this.invoiceTotal = this.calculateTotal();
   }
 
   ngOnInit() {
@@ -44,7 +46,11 @@ export class InvoiceFormComponent implements OnInit {
       date: '',
       number: '',
       positions: this.formBuilder.array([this.createItem()]),
-      type: this.typeVariable
+      type: this.typeVariable,
+      status: 0,
+      vatType: (this.typeVariable - 1),
+      value: 0,
+      vatValue: 0
     });
 
     this.invoiceForm.patchValue({
@@ -60,8 +66,18 @@ export class InvoiceFormComponent implements OnInit {
           quantity: 0,
         }
       ],
-      type: this.typeVariable
+      type: this.typeVariable,
+      status: 0,
+      vatType: (this.typeVariable - 1),
+      value: 0,
+      vatValue: 0
     });
+
+    this.invoiceForm.controls.value.markAsDirty();
+    this.invoiceForm.controls.value.markAsTouched();
+
+    this.invoiceForm.controls.vatValue.markAsDirty();
+    this.invoiceForm.controls.vatValue.markAsTouched();
   }
 
   get invoicePositions() {
@@ -86,8 +102,24 @@ export class InvoiceFormComponent implements OnInit {
     this.invoice = this.invoiceForm.value;
     this.invoiceService.save(this.invoice).subscribe(result => this.gotoInvoiceList());
   }
+
   gotoInvoiceList() {
     this.router.navigate(['invs']);
+  }
+
+  go() {
+    console.log(this.invoiceForm);
+  }
+
+  calculateTotal(): number {
+    this.positions = this.invoicePositions.value;
+    let tempValue = 0;
+    for (const productValue of this.positions) {
+      tempValue = tempValue + (productValue.quantity * productValue.product.price);
+    }
+    this.positions = [];
+    this.invoiceTotal = tempValue;
+    return tempValue;
   }
 
   // list manipulation methods
@@ -97,9 +129,5 @@ export class InvoiceFormComponent implements OnInit {
   }
   deleteFieldValue(index) {
     this.invoicePositions.removeAt(index);
-  }
-
-  go() {
-    console.log(this.thirdPartyPersons.length);
   }
 }

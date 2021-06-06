@@ -8,5 +8,8 @@ export class Invoice {
     thirdPartyPersonId: number;
     positions: Position[];
     type: number;
-    vat: number;
+    status: number;
+    vatType: number;
+    value: number;
+    vatValue: number;
 }

@@ -19,7 +19,7 @@
       <div class="form-group">
         <label for="type">Type</label>
         <select type="text" [(ngModel)]="thirdPartyPerson.type" class="form-control" id="type" name="type"  required #type="ngModel">
-          <option *ngFor="let type of types" [value]="type">{{type | typePipe}}</option>
+          <option *ngFor="let type of types" [value]="type">{{type | thirdPartyPersonType}}</option>
         </select>
       </div> 
 

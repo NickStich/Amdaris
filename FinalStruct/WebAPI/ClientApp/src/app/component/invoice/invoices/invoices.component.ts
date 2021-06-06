@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Invoice } from 'src/app/model/invoice/invoice';
 import { InvoiceService } from 'src/app/service/invoiceService/invoice.service';
 import { MatDialog } from '@angular/material/dialog';
-import { InvoiceViewComponent } from '../invoice-view/invoice-view.component';
 
 @Component({
   selector: 'app-invoices',
@@ -29,6 +28,10 @@ export class InvoicesComponent implements OnInit {
     window.location.reload();
   }
 
+  displayAllInvoices() {
+    this.invoices = this.tempInvoice;
+  }
+
   displayPurchaseInvoices() {
     this.invoices = this.tempInvoice;
     for (const invoice of this.invoices) {
@@ -49,6 +52,11 @@ export class InvoicesComponent implements OnInit {
     }
     this.invoices = this.saleInvoices;
     this.saleInvoices = [];
+  }
+
+  deleteClick(invoiceId) {
+    this.invoiceService.delete(invoiceId).subscribe();
+    this.refreshPage();
   }
 }
 
