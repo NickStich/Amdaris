@@ -15,12 +15,8 @@ import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/thi
 })
 export class InvoiceFormComponent implements OnInit {
 
-  private fieldArray: Array<any> = [];
-  private newAttribute: any = {};
   private invoice: Invoice;
   thirdPartyPersons: ThirdPartyPerson[] = [];
-  products: Product[] = [];
-  thirdPartyPerson: ThirdPartyPerson;
   positions: Position[] = [];
   invoiceForm: FormGroup;
   typeVariable: number;
@@ -32,7 +28,6 @@ export class InvoiceFormComponent implements OnInit {
     private tppService: ThirdPartyPersonService,
     private formBuilder: FormBuilder) {
     this.invoice = new Invoice();
-    // this.invoiceTotal = this.calculateTotal();
   }
 
   ngOnInit() {
@@ -69,15 +64,9 @@ export class InvoiceFormComponent implements OnInit {
       type: this.typeVariable,
       status: 0,
       vatType: (this.typeVariable - 1),
-      value: 0,
+      value: this.invoicePositions.length,
       vatValue: 0
     });
-
-    this.invoiceForm.controls.value.markAsDirty();
-    this.invoiceForm.controls.value.markAsTouched();
-
-    this.invoiceForm.controls.vatValue.markAsDirty();
-    this.invoiceForm.controls.vatValue.markAsTouched();
   }
 
   get invoicePositions() {
@@ -98,19 +87,6 @@ export class InvoiceFormComponent implements OnInit {
     this.invoicePositions.push(this.createItem());
   }
 
-  onSubmit() {
-    this.invoice = this.invoiceForm.value;
-    this.invoiceService.save(this.invoice).subscribe(result => this.gotoInvoiceList());
-  }
-
-  gotoInvoiceList() {
-    this.router.navigate(['invs']);
-  }
-
-  go() {
-    console.log(this.invoiceForm);
-  }
-
   calculateTotal(): number {
     this.positions = this.invoicePositions.value;
     let tempValue = 0;
@@ -122,12 +98,23 @@ export class InvoiceFormComponent implements OnInit {
     return tempValue;
   }
 
-  // list manipulation methods
-  addFieldValue() {
-    this.fieldArray.push(this.newAttribute);
-    this.newAttribute = {};
+  onSubmit() {
+    this.invoice = this.invoiceForm.value;
+    console.log(this.invoice.value);
+    this.invoiceService.save(this.invoice).subscribe(result => this.gotoInvoiceList());
   }
+
+  gotoInvoiceList() {
+    this.router.navigate(['invs']);
+  }
+
+  go() {
+    console.log(this.invoiceForm.controls.value.value);
+  }
+
+  // list manipulation methods
   deleteFieldValue(index) {
     this.invoicePositions.removeAt(index);
   }
+
 }

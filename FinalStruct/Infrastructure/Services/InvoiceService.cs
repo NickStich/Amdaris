@@ -21,6 +21,15 @@ namespace Infrastructure.Services
 
         public void CreateInvoice(Invoice invoice)
         {
+            double totalValue = 0;
+            foreach(var position in invoice.Positions)
+            {
+                totalValue += (position.Product.Price * position.Quantity);
+            }
+            double vatValue = totalValue * 0.19;
+            totalValue += vatValue;
+            invoice.Value = totalValue;
+            invoice.VATValue = vatValue;
             _invoiceRepository.CreateInvoice(invoice);
         }
 

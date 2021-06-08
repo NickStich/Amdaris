@@ -1,3 +1,6 @@
-<button (click)="elaborate()" class="btn btn-info">Generate Balance</button>
+<button (click)="generateBalance()" class="btn btn-info">Generate Balance</button>
 <h1>Turnover (total value of the sales): {{turnover | number: '.2'}} $</h1>
 <h1>Total value of the purchased goods: {{purchases | number: '.2'}} $</h1>
+<h1 *ngIf="vatTotalValue > 0 ;else other_type">VAT:{{2 | vatType}} = {{vatTotalValue | number: '.2'}} $</h1>
+
+<ng-template #other_type>VAT:{{3 | vatType}} = {{vatTotalValue | number: '.2'}} $</ng-template>

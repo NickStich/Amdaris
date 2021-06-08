@@ -7,90 +7,88 @@
 </mat-dialog-actions> -->
 
 
-    <button  (click)="gotoInvoiceList()" class="btn btn-info">Close</button>
-	<a (click)="gotoInvoiceEdit(invoice.id)" class="btn btn-info">Edit</a>
-	<body>
-		<div class="invoice-box">
-			
-			<table>
-				<tr class="top">
-					<td colspan="2">
-						<table>
-							<tr>
-								<td class="title">
-									<img alt="Company logo" style="width: 100%; max-width: 300px" />
-								</td>
+<button (click)="gotoInvoiceList()" class="btn btn-info">Close</button>
+<a (click)="gotoInvoiceEdit(invoice.id)" class="btn btn-info">Edit</a>
 
-								<td>
-									Invoice #: {{invoice.number}}<br />
-									Created: {{invoice.date | date: 'dd/MM/yyyy'}}<br />
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
+<body>
+	<div class="invoice-box">
 
-				<tr class="information">
-					<td colspan="2">
-						<table>
-							<tr>
-								<td>
-									Sparksuite, Inc.<br />
-									12345 Sunny Road<br />
-									Sunnyville, TX 12345
-								</td>
+		<table>
+			<tr class="top">
+				<td colspan="2">
+					<table>
+						<tr>
+							<td class="title">
+								<img alt="Company logo" style="width: 100%; max-width: 300px" />
+							</td>
 
-								<td>
-									Acme Corp.<br />
-									John Doe<br />
-									john@example.com
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
+							<td>
+								Invoice #: {{invoice.number}}<br />
+								Created: {{invoice.date | date: 'dd/MM/yyyy'}}<br />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
 
-				<tr class="heading">
-					<td>Payment Method</td>
+			<tr class="information">
+				<td colspan="2">
+					<table>
+						<tr>
+							<td>
+								Company address <br />
+								information
+							</td>
 
-					<td>Check #</td>
-				</tr>
+							<td>
+								John Smith<br />
+								john@example.com
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
 
-				<tr class="details">
-					<td>Check</td>
+			<tr class="heading">
+				<td>Payment Method</td>
 
-					<td>1000</td>
-				</tr>
+				<td>Check #</td>
+			</tr>
 
-				<tr class="heading">
-					<td>Item</td>
+			<tr class="details">
+				<td>Check</td>
 
-					<td>Price</td>
-				</tr>
+				<td>1000</td>
+			</tr>
+			<tr class="heading">
+				<td>Item</td>
 
-				<tr class="item">
-					<td>Website design</td>
+				<td>Price</td>
+			</tr>
 
-					<td>$300.00</td>
-				</tr>
+			<tr class="item">
+				<td>Product 1</td>
 
-				<tr class="item">
-					<td>Hosting (3 months)</td>
+				<td>$300.00</td>
+			</tr>
 
-					<td>$75.00</td>
-				</tr>
+			<tr class="item">
+				<td>Product 2</td>
 
-				<tr class="item last">
-					<td>Domain name (1 year)</td>
+				<td>$75.00</td>
+			</tr>
 
-					<td>$10.00</td>
-				</tr>
+			<tr class="item last">
+				<td>Product 3</td>
 
-				<tr class="total">
-					<td></td>
+				<td>$10.00</td>
+			</tr>
 
-					<td>Total: $385.00</td>
-				</tr>
-			</table>
-		</div>
-	</body>
+			<tr class="total">
+				<td></td>
+
+				<td>Total: $385.00</td>
+			</tr>
+	</table>
+	</div>
+</body>

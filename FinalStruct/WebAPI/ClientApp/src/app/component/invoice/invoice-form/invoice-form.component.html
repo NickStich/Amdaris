@@ -67,18 +67,27 @@
 
 <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
 
-    <h1 *ngIf="typeVariable==1">Invoice</h1>
+    <h1>Invoice</h1>
 
-    <input formControlName="thirdPartyPersonId">
-    <input type="date" formControlName="date">
-    <input formControlName="number">
+    <div>{{typeVariable | thirdPartyPersonType}}
+        <select formControlName="thirdPartyPersonId">
+            <option *ngFor="let tpp of thirdPartyPersons" [value]="tpp.id">{{tpp.name}}</option>
+        </select>
+    </div>
+    <br>
+    Date: <input type="date" formControlName="date">
+
+    Number: <input formControlName="number">
+    <br>
+
+    <button class="btn btn-default" type="button" (click)="addItem()">Add Row</button>
 
     <div formArrayName="positions">
         <div *ngFor="let item of invoicePositions.controls; let i = index;">
             <div [formGroupName]="i">
                 <ng-container formGroupName="product">
                     <input formControlName="name" placeholder="prod name" required>
-                    <input formControlName="price" placeholder="prod quantity" [required]>
+                    <input formControlName="price" placeholder="prod quantity" required>
                 </ng-container>
                 <input formControlName="quantity" placeholder="prod quantity" [required]>
                 <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Remove Row</button>
@@ -86,15 +95,15 @@
         </div>
     </div>
 
-    <div> Vat: {{vatType }}</div>
-    <div> invoiceTotal: {{calculateTotal()}}</div>
+    Value: {{calculateTotal()+ (calculateTotal() * 0.19)}}
+    VAT:{{(calculateTotal() * 0.19)}}
 
-    <input type="number" formControlName="value" value="{{calculateTotal()+ (calculateTotal() * 0.19)}}">{{calculateTotal()+ (calculateTotal() * 0.19)}}
-    <input type="number" formControlName="vatValue" [value]="(calculateTotal() * 0.19)">{{(calculateTotal() * 0.19)}}
+    <!-- <input type="number" formControlName="value" >{{calculateTotal()+ (calculateTotal() * 0.19)}}
+    <input type="number" formControlName="vatValue" >{{(calculateTotal() * 0.19)}} -->
 
-    <!-- <input type="number" [(ngModel)]="product.price" class="form-control" id="price" name="price" placeholder="Enter price " required #price="ngModel"> -->
-
-    <button class="btn btn-default" type="button" (click)="addItem()">Add Row</button>
+    <div>{{invoiceForm.value.value}}</div>
+    <!-- <input type="number" formControlName="value" value="{{calculateTotal()+ (calculateTotal() * 0.19)}}">{{calculateTotal()+ (calculateTotal() * 0.19)}}
+    <input type="number" formControlName="vatValue" [value]="(calculateTotal() * 0.19)">{{(calculateTotal() * 0.19)}} -->
     <br>
     <button type="submit" class="btn btn-info">Save</button>
 

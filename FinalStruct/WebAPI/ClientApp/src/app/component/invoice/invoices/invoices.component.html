@@ -21,6 +21,7 @@
           <th scope="col">ID</th>
           <th scope="col">Number</th>
           <th scope="col">Date</th>
+          <th scope="col">Value</th>
           <th scope="col">Status</th>
           <th scope="col">Actions</th>
         </tr>
@@ -30,6 +31,7 @@
           <td>{{invoice.id}}</td>
           <td>{{invoice.number}}</td>
           <td>{{invoice.date | date: 'dd/MM/yyyy'}}</td>
+          <td>{{invoice.value | number : '1.2-2'}}</td>
           <td>{{invoice.status | invoiceStatus}}</td>
           <td><a routerLink="View/{{invoice.id}}" class="btn btn-info">View</a>
             <a (click)="deleteClick(invoice.id)" class="btn btn-info" style="color: white" >Delete</a>
