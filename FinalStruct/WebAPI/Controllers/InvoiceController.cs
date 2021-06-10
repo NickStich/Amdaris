@@ -100,5 +100,19 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet("{id:int}")]
+        public IActionResult GetInvJSON(int id)
+        {
+            try
+            {
+                var invoice = _invoiceService.GetCompleteInvoiceById(id);
+                return Ok(invoice);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Invoice with ID={id} not found!");
+            }
+        }
     }
 }

@@ -57,9 +57,13 @@ namespace ConsolePresentation
                 //dbContext.PositionInvoices.Add(posInv3);
                 //dbContext.PositionInvoices.Add(posInv4);
 
-                dbContext.SaveChanges();
-                Console.WriteLine("succes");
+                //dbContext.SaveChanges();
+                //Console.WriteLine("succes");
 
+                var repo = new InvoiceRepository(dbContext);
+                var inv = repo.GetCompleteInvoiceById(113);
+                Console.WriteLine(inv.Number);
+                inv.Positions.ToList().ForEach(p => Console.WriteLine(p.Product.Name+" "+p.Product.Price+" "+p.Id));
 
             }
 

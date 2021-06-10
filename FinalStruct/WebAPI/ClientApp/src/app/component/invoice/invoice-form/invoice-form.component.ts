@@ -100,16 +100,11 @@ export class InvoiceFormComponent implements OnInit {
 
   onSubmit() {
     this.invoice = this.invoiceForm.value;
-    console.log(this.invoice.value);
     this.invoiceService.save(this.invoice).subscribe(result => this.gotoInvoiceList());
   }
 
   gotoInvoiceList() {
     this.router.navigate(['invs']);
-  }
-
-  go() {
-    console.log(this.invoiceForm.controls.value.value);
   }
 
   // list manipulation methods

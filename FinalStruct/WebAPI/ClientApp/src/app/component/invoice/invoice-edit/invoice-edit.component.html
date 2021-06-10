@@ -1,11 +1,11 @@
-<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
 
     <h1>Invoice</h1>
 
+  
+
     <div>{{typeVariable | thirdPartyPersonType}}
-        <select formControlName="thirdPartyPersonId" >
-            <option *ngFor="let tpp of getTppByType(invoice.type)"  selected>{{tpp.name}}</option>
-        </select>
+        TPP: <input formControlName="thirdPartyPersonId" value="{{invoice.thirdPartyPersonId}}">
     </div>
     <br>
     Date: <input type="date" formControlName="date" value="{{invoice.date | date:'yyyy-MM-dd'}}">
@@ -20,22 +20,130 @@
             <div [formGroupName]="i">
                 <ng-container formGroupName="product">
                     <input formControlName="name" placeholder="prod name" required>
-                    <input formControlName="price" placeholder="prod quantity" required>
+                    <input type="number" formControlName="price" placeholder="prod quantity" required>
                 </ng-container>
-                <input formControlName="quantity" placeholder="prod quantity" [required]>
+                <input type="number" formControlName="quantity" placeholder="prod quantity" [required]>
                 <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Remove Row</button>
             </div>
         </div>
     </div>
-
-    <!-- <div> Vat: {{vatType }}</div>
-    <div> invoiceTotal: {{calculateTotal()}}</div>
-
-    <input type="number" formControlName="value" value="{{calculateTotal()+ (calculateTotal() * 0.19)}}">{{calculateTotal()+ (calculateTotal() * 0.19)}}
-    <input type="number" formControlName="vatValue" [value]="(calculateTotal() * 0.19)">{{(calculateTotal() * 0.19)}} -->
     <br>
     <button type="submit" class="btn btn-info">Save</button>
 
-    <button (click)="go()">go</button>
+    <button type="button" (click)="go()">go</button>
+
+</form> -->
+
+<button type="button" (click)="enableEdit()">edit</button>
+
+<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+
+    <body>
+        <div class="invoice-box">
+            <table>
+                <tr class="top">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div>{{typeVariable | thirdPartyPersonType}}
+                                        <select formControlName="thirdPartyPersonId">
+                                            <option *ngFor="let tpp of thirdPartyPersons" [value]="tpp.id">{{tpp.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="title" style="text-align: left;">
+                                    Invoice
+                                </td>
+                                <td class="details">
+                                    Invoice #: <input formControlName="number"><br />
+                                    Created: <input type="date" formControlName="date"><br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    Company address <br />
+                                    information
+                                </td>
+
+                                <td>
+                                    John Smith<br />
+                                    john@example.com
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <ng-container>
+                                <th>
+                                    Product
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+                            </ng-container>
+
+                            <th>
+                                Quantity
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody formArrayName="positions">
+                        <tr *ngFor="let item of invoicePositions.controls; let i = index;">
+                            <ng-container [formGroupName]="i">
+                                <ng-container formGroupName="product">
+                                    <td>
+                                        <input formControlName="name" placeholder="prod name" required>
+                                    </td>
+                                    <td>
+                                        <input formControlName="price" placeholder="prod price" required>
+                                    </td>
+                                </ng-container>
+
+                                <td>
+                                    <input formControlName="quantity" placeholder="prod quantity" [required]>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)"> -
+                                    </button>
+                                </td>
+                            </ng-container>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button id="add" class="btn btn-default" type="button" (click)="addItem()">+</button>
+                            </td>
+                        </tr>
+                        <br>
+                    </tbody>
+                </table>
+                <h2>Total VAT of invoice: {{(calculateTotal() * 0.19) | number:'1.2-2'}} </h2>
+                <h2>Total amount of invoice: {{calculateTotal()+ (calculateTotal() * 0.19) | number:'1.2-2'}}</h2>
+                <br>
+                <button type="submit" class="btn btn-info">Save</button>
+            </table>
+        </div>
+    </body>
 
 </form>

@@ -18,5 +18,6 @@ namespace Infrastructure.Services.ServiceAbstractions
         public void UpdateInvoice(int invoiceId, Invoice invoice);
         Task<List<Invoice>> GetAllInvoices();
         Invoice GetInvoiceById(int invoiceId);
+        Invoice GetCompleteInvoiceById(int id);
     }
 }

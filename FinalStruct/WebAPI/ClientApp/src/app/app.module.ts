@@ -32,6 +32,7 @@ import { BalanceListComponent } from './component/balance/balance-list/balance-l
 import { ThirdPartyPersonTypePipe } from './pipes/third-party-person/third-party-person-type.pipe';
 import { VatTypePipe } from './pipes/invoice/vat-type.pipe';
 import { InvoiceStatusPipe } from './pipes/invoice/invoice-status.pipe';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { InvoiceStatusPipe } from './pipes/invoice/invoice-status.pipe';
     BalanceListComponent,
     ThirdPartyPersonTypePipe,
     VatTypePipe,
-    InvoiceStatusPipe
+    InvoiceStatusPipe,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

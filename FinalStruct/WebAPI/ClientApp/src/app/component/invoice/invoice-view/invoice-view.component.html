@@ -1,30 +1,27 @@
-<!-- <h2 mat-dialog-title>{{invoice.number}}</h2>
-<mat-dialog-content class="mat-typography">
+<!-- <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()"> -->
 
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button  (click)="gotoInvoiceList()">Close</button>
-</mat-dialog-actions> -->
+<button (click)="gotoInvoiceEdit(invoice.id)" class="btn btn-info">Edit</button>
+<button style="float: right;" (click)="gotoInvoiceList()" class="btn btn-info">Close</button>
 
-
-<button (click)="gotoInvoiceList()" class="btn btn-info">Close</button>
-<a (click)="gotoInvoiceEdit(invoice.id)" class="btn btn-info">Edit</a>
 
 <body>
 	<div class="invoice-box">
-
 		<table>
 			<tr class="top">
 				<td colspan="2">
 					<table>
 						<tr>
-							<td class="title">
-								<img alt="Company logo" style="width: 100%; max-width: 300px" />
+							<td style="text-align: left;">
+								{{invoice.type | thirdPartyPersonType}} :
+								{{getThirdPartyPersonNameById(invoice.thirdPartyPersonId)}}
 							</td>
-
-							<td>
+							<td class="title" style="text-align: center;">
+								INVOICE
+							</td>
+							<td class="details">
 								Invoice #: {{invoice.number}}<br />
-								Created: {{invoice.date | date: 'dd/MM/yyyy'}}<br />
+								Created: {{invoice.date | date:'yyyy-MM-dd'}}<br />
+								Status: {{invoice.status | invoiceStatus}}
 							</td>
 						</tr>
 					</table>
@@ -35,7 +32,7 @@
 				<td colspan="2">
 					<table>
 						<tr>
-							<td>
+							<td style="text-align: left;">
 								Company address <br />
 								information
 							</td>
@@ -49,46 +46,59 @@
 				</td>
 			</tr>
 
-			<tr class="heading">
-				<td>Payment Method</td>
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>
+							Product
+						</th>
 
-				<td>Check #</td>
-			</tr>
+						<th>
+							Price
+						</th>
 
-			<tr class="details">
-				<td>Check</td>
+						<th>
+							Quantity
+						</th>
 
-				<td>1000</td>
-			</tr>
-			<tr class="heading">
-				<td>Item</td>
 
-				<td>Price</td>
-			</tr>
+					</tr>
+				</thead>
 
-			<tr class="item">
-				<td>Product 1</td>
+				<tbody>
+					<tr *ngFor="let item of invoice.positions; let i = index;">
+						<td>
+							<!-- <input formControlName="name" placeholder="prod name" required> -->
+							{{item.product.name}}
+						</td>
+						<td style="text-align: center;">
+							<!-- <input formControlName="price" placeholder="prod price" required> -->
+							{{item.product.price | number:'1.2-2'}}
 
-				<td>$300.00</td>
-			</tr>
+						</td>
 
-			<tr class="item">
-				<td>Product 2</td>
+						<td>
+							<!-- <input formControlName="quantity" placeholder="prod quantity" [required]> -->
+							{{item.quantity | number:'1.2-2'}}
 
-				<td>$75.00</td>
-			</tr>
+						</td>
 
-			<tr class="item last">
-				<td>Product 3</td>
-
-				<td>$10.00</td>
-			</tr>
-
-			<tr class="total">
-				<td></td>
-
-				<td>Total: $385.00</td>
-			</tr>
-	</table>
+					</tr>
+					<!-- <tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<button id="add" class="btn btn-default" type="button" (click)="addItem()">+</button>
+							</td>
+						</tr> -->
+					<br>
+				</tbody>
+			</table>
+			<h2 style="text-align: right;">Total VAT of invoice: {{invoice.vatValue | number:'1.2-2'}} <br>
+				Total amount of invoice: <b>{{invoice.value | number:'1.2-2'}} </b></h2>
+		</table>
 	</div>
 </body>
+
+<!-- </form> -->

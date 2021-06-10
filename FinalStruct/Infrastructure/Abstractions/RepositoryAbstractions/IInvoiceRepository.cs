@@ -15,6 +15,7 @@ namespace Infrastructure.Abstractions.RepositoryAbstractions
         Task<List<Invoice>> GetAllInvoices();
         Invoice GetInvoiceById(int invoiceId);
         IEnumerable<Invoice> GetFilteredBy(Func<Invoice, bool> filter);
+        Invoice GetCompleteInvoiceById(int id);
    
     }
 }

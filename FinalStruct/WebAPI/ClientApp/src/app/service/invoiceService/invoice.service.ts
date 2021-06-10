@@ -33,4 +33,8 @@ export class InvoiceService {
   public getById(invoiceId: number) {
     return this.http.get<Invoice>(this.invoiceUrl + '/GetById/' + invoiceId);
   }
+
+  public getJsonById(invoiceId: number) {
+    return this.http.get<Invoice>(this.invoiceUrl + '/GetInvJSON/' + invoiceId);
+  }
 }
