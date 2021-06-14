@@ -88,20 +88,6 @@ body a {
   font-weight: bold;
 }
 
-@media only screen and (max-width: 600px) {
-  .invoice-box table tr.top table td {
-      width: 100%;
-      display: block;
-      text-align: center;
-  }
-
-  .invoice-box table tr.information table td {
-      width: 100%;
-      display: block;
-      text-align: center;
-  }
-}
-
 .details{
   width: 4px;
 }
@@ -113,3 +99,6 @@ body a {
 .heading{
   text-align: left;
 }
+
+
+

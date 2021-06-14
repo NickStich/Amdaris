@@ -1,4 +1,4 @@
-<div class="card my-5">
+<!-- <div class="card my-5">
   <div class="card-body">
 
     <button (click)="displayAllInvoices()" class="btn btn-info">All Invoices</button>
@@ -8,9 +8,6 @@
 
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
-
-        
-
         <a class="btn btn-info" mat-button [matMenuTriggerFor]="menu">Add</a>
         <mat-menu #menu="matMenu">
           <button mat-menu-item routerLink="Create/1">Sale Invoice</button>
@@ -40,5 +37,61 @@
       </tbody>
     </table>
   </div>
-</div>
+</div> -->
 
+<button (click)="displayAllInvoices()" class="btn btn-info">All Invoices</button>
+<button (click)="displaySaleInvoices()" class="btn btn-info">Sale Invoices</button>
+<button (click)="displayPurchaseInvoices()" class="btn btn-info">Purchase Invoices</button><br>
+
+<a class="btn btn-info" mat-button [matMenuTriggerFor]="menu">Add</a>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="Create/1">Sale Invoice</button>
+  <button mat-menu-item routerLink="Create/2">Purchase Invoice</button>
+</mat-menu>
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput placeholder="Invoice example" (keyup)="applyFilter($event)">
+</mat-form-field>
+
+<div style="width: 100%;">
+  <mat-table style="width: 100%;" [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let invoice">{{ invoice.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>number</th>
+      <td mat-cell *matCellDef="let invoice">{{ invoice.number }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>date</th>
+      <td mat-cell *matCellDef="let invoice">{{ invoice.date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>type</th>
+      <td mat-cell *matCellDef="let invoice">{{ invoice.type }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>status</th>
+      <td mat-cell *matCellDef="let invoice">{{ invoice.status }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef id="actionHeader">Action</th>
+      <td mat-cell *matCellDef="let invoice">
+        <a routerLink="View/{{invoice.id}}" class="btn btn-info">View</a>
+        <a (click)="deleteClick(invoice.id)" class="btn btn-info" style="color: white">Delete</a>
+      </td>
+    </ng-container>
+
+    <mat-header-row class="thead-dark" *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="invoices.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>

@@ -7,6 +7,7 @@ import { Product } from 'src/app/model/product/product';
 import { ThirdPartyPerson } from 'src/app/model/thirdPartyPerson/third-party-person';
 import { InvoiceService } from 'src/app/service/invoiceService/invoice.service';
 import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/third-party-person.service';
+import { ProductService } from 'src/app/service/productService/product.service';
 
 @Component({
   selector: 'app-invoice-form',
@@ -21,21 +22,26 @@ export class InvoiceFormComponent implements OnInit {
   invoiceForm: FormGroup;
   typeVariable: number;
   invoiceTotal: number;
+  products: Product[] = [];
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private invoiceService: InvoiceService,
     private tppService: ThirdPartyPersonService,
+    private productService: ProductService,
     private formBuilder: FormBuilder) {
     this.invoice = new Invoice();
   }
 
   ngOnInit() {
     this.typeVariable = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    console.log(this.typeVariable);
     this.tppService.getByType(this.typeVariable).subscribe(data => {
       this.thirdPartyPersons = data;
     });
+    if (this.typeVariable === 1) {
+      this.productService.findAll().subscribe(data => this.products = data);
+    }
+
     this.invoiceForm = this.formBuilder.group({
       thirdPartyPersonId: 0,
       date: '',

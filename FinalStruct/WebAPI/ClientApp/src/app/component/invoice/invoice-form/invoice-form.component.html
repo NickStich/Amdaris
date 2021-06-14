@@ -72,16 +72,24 @@
                         <tr *ngFor="let item of invoicePositions.controls; let i = index;">
                             <ng-container [formGroupName]="i">
                                 <ng-container formGroupName="product">
-                                    <td>
+                                    <td *ngIf="typeVariable === 2 ; else sales_select">
                                         <input formControlName="name" placeholder="prod name" required>
                                     </td>
+
+                                    <ng-template class="selected" #sales_select>
+                                        <select formControlName="name">
+                                            <option *ngFor="let prod of products" [value]="prod.name">{{prod.name}}
+                                            </option>
+                                        </select>
+                                    </ng-template>
+
                                     <td>
-                                        <input formControlName="price" placeholder="prod price" required>
+                                        <input formControlName="price" placeholder="prod price" style="width:100px" required>
                                     </td>
                                 </ng-container>
 
                                 <td>
-                                    <input formControlName="quantity" placeholder="prod quantity" [required]>
+                                    <input formControlName="quantity" placeholder="prod quantity" style="width:100px" [required]>
                                 </td>
                                 <td>
                                     <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)"> -

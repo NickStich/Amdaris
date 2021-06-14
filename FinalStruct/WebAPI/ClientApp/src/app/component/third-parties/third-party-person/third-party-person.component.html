@@ -1,32 +1,84 @@
-<div class="card my-5">
-    <div class="card-body">
-      <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-           <a routerLink="Create" class="btn btn-info" >Add</a>
-           
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">TaxID</th>
-            <th scope="col">Type</th>
-            <th scope="col">Actions</th>
+<!-- <div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+         <a routerLink="Create" class="btn btn-info" >Add</a>
+         
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">TaxID</th>
+          <th scope="col">Type</th>
+          <th scope="col">Actions</th>
 
+        </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let tpp of tpps">
+             <td>{{tpp.id}}</td>
+             <td>{{tpp.name}}</td>
+             <td>{{tpp.taxId}}</td>
+             <td>{{tpp.type | thirdPartyPersonType }}</td>
+             <td>
+              <a routerLink="Edit/{{tpp.id}}" class="btn btn-info">Edit</a>
+              <a (click)="deleteClick(tpp.id)" class="btn btn-info" style="color: white" >Delete</a>
+             </td>
           </tr>
-        </thead>
-        <tbody>
-           <tr *ngFor="let tpp of tpps">
-               <td>{{tpp.id}}</td>
-               <td>{{tpp.name}}</td>
-               <td>{{tpp.taxId}}</td>
-               <td>{{tpp.type | thirdPartyPersonType }}</td>
-               <td>
-                <a routerLink="Edit/{{tpp.id}}" class="btn btn-info">Edit</a>
-                <a (click)="deleteClick(tpp.id)" class="btn btn-info" style="color: white" >Delete</a>
-               </td>
-            </tr>
-        </tbody>
-      </table>
-    </div>
+      </tbody>
+    </table>
   </div>
- 
- <!-- <p  *ngFor="let tpp of tpps" value = tpps.name >{{tpps.name}}></p> -->
+</div> -->
+
+
+<!-- <div>
+  <table mat-table [dataSource]="dataSource" matSort *ngFor="let tpp of tpps">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell mat-sort-header *matHeaderRowDef="displayedColumns">ID</th>
+      <td mat-cell *matCellDef="let row">{{tpp.id}}</td>
+    </ng-container>
+
+  </table>
+</div> -->
+
+<a routerLink="Create" class="btn btn-info">Add</a>
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput placeholder="Company name" (keyup)="applyFilter($event)">
+</mat-form-field>
+
+<div style="width: 100%;">
+  <mat-table style="width: 100%;" [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let tpp">{{ tpp.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>name</th>
+      <td mat-cell *matCellDef="let tpp">{{ tpp.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="taxId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>taxId</th>
+      <td mat-cell *matCellDef="let tpp">{{ tpp.taxId }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>type</th>
+      <td mat-cell *matCellDef="let tpp">{{ tpp.type }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef id="actionHeader">Action</th>
+      <td mat-cell *matCellDef="let tpp">
+        <a routerLink="Edit/{{tpp.id}}" class="btn btn-info">Edit</a>
+        <a (click)="deleteClick(tpp.id)" class="btn btn-info" style="color: white">Delete</a>
+      </td>
+    </ng-container>
+
+    <mat-header-row class="thead-dark" *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="tpps.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>

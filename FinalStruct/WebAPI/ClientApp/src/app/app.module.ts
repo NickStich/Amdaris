@@ -24,15 +24,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductListComponent } from './component/product/product-list/product-list.component';
 import { ProductFormComponent } from './component/product/product-form/product-form.component';
 import { ProductEditComponent } from './component/product/product-edit/product-edit.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { InvoiceViewComponent } from './component/invoice/invoice-view/invoice-view.component';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { InvoiceEditComponent } from './component/invoice/invoice-edit/invoice-edit.component';
 import { BalanceListComponent } from './component/balance/balance-list/balance-list.component';
 import { ThirdPartyPersonTypePipe } from './pipes/third-party-person/third-party-person-type.pipe';
 import { VatTypePipe } from './pipes/invoice/vat-type.pipe';
 import { InvoiceStatusPipe } from './pipes/invoice/invoice-status.pipe';
 import { DateFormatPipe } from './pipes/date-format.pipe';
+import { ProductService } from './service/productService/product.service';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -66,12 +69,12 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
       { path: 'tpperson/Edit/:id', component: EditThirdPartyPersonComponent },
       { path: 'invs', component: InvoicesComponent },
       { path: 'invs/Create/:id', component: InvoiceFormComponent },
-      { path: 'invs/View/:id', component: InvoiceViewComponent},
-      { path: 'invs/Edit/:id', component: InvoiceEditComponent},
-      { path: 'prdt' , component: ProductListComponent},
-      { path: 'prdt/Create', component : ProductFormComponent},
-      { path: 'prdt/Edit/:id', component: ProductEditComponent},
-      { path: 'blnc', component: BalanceListComponent},
+      { path: 'invs/View/:id', component: InvoiceViewComponent },
+      { path: 'invs/Edit/:id', component: InvoiceEditComponent },
+      { path: 'prdt', component: ProductListComponent },
+      { path: 'prdt/Create', component: ProductFormComponent },
+      { path: 'prdt/Edit/:id', component: ProductEditComponent },
+      { path: 'blnc', component: BalanceListComponent },
       { path: 'about', component: AboutComponent }
     ]),
     BrowserAnimationsModule,
@@ -83,10 +86,12 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     MatSelectModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   entryComponents: [InvoiceViewComponent],
-  providers: [ThirdPartyPersonService],
+  providers: [ThirdPartyPersonService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
