@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -9,8 +9,6 @@ import { Position } from 'src/app/model/position/position';
 import { Product } from 'src/app/model/product/product';
 import { ThirdPartyPerson } from 'src/app/model/thirdPartyPerson/third-party-person';
 import { InvoiceService } from 'src/app/service/invoiceService/invoice.service';
-import { PositionService } from 'src/app/service/positionService/position.service';
-import { ProductService } from 'src/app/service/productService/product.service';
 import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/third-party-person.service';
 
 @Component({
@@ -34,17 +32,18 @@ export class InvoiceEditComponent implements OnInit {
     private router: Router,
     private invoiceService: InvoiceService,
     private tppService: ThirdPartyPersonService,
-    private positionService: PositionService,
-    private productService: ProductService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    ) {
     this.invoice = new Invoice();
   }
 
   ngOnInit() {
     let id: number;
     id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.invoiceService.getJsonById(id).subscribe(data => {
+    const observable = this.invoiceService.getJsonById(id);
+    observable.subscribe(data => {
       this.invoice = data;
+      this.enableEdit();
     });
     this.invoiceForm = this.formBuilder.group({
       thirdPartyPersonId: 0,
@@ -57,8 +56,6 @@ export class InvoiceEditComponent implements OnInit {
       value: 0,
       vatValue: 0
     });
-
-    console.log(this.invoice.number);
   }
 
   enableEdit() {
@@ -107,14 +104,6 @@ export class InvoiceEditComponent implements OnInit {
     this.invoicePositions.push(this.createItem());
   }
 
-  // getTppById(id: number): string {
-  //   let person = new ThirdPartyPerson();
-  //   this.tppService.getById(id).subscribe(data => {
-  //     person = data;
-  //   });
-  //   return person.name;
-  // }
-
   getTppByType(type: number): ThirdPartyPerson[] {
     let persons: ThirdPartyPerson[] = [];
     this.tppService.getByType(type).subscribe(data => {
@@ -122,8 +111,6 @@ export class InvoiceEditComponent implements OnInit {
     });
     return persons;
   }
-
-
   gotoInvoiceList() {
     this.router.navigate(['invs']);
   }

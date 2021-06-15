@@ -7,22 +7,23 @@
           <input type="text" [(ngModel)]="tpperson.name" class="form-control" id="name" name="name"
             placeholder="Enter name" required #name="ngModel">
         </div>
-        <div [hidden]="!name.pristine" class="alert alert-danger">Field is required</div>
+        <div [hidden]="name.pristine || !name.invalid" class="alert alert-danger">Field is required</div>
   
         <div class="form-group">
           <label for="taxId">TaxID</label>
           <input type="text" [(ngModel)]="tpperson.taxId" class="form-control" id="taxId" name="TaxId"
             placeholder="Enter taxId " required #taxId="ngModel">
-          <div [hidden]="!taxId.pristine" class="alert alert-danger">Field is required</div>
         </div> 
+        <div [hidden]="taxId.pristine || !taxId.invalid" class="alert alert-danger">Field is required</div>
+
 
         <div class="form-group">
           <label for="type">Type</label>
           <select type="text" [(ngModel)]="tpperson.type" class="form-control" id="type" name="type" placeholder="Enter type " required #type="ngModel">
             <option *ngFor="let type of types">{{type | thirdPartyPersonType}}</option>
           </select>
-          <div [hidden]="!type.pristine" class="alert alert-danger">Field is required</div>
         </div>  
+        <div [hidden]="type.pristine || !type.invalid" class="alert alert-danger">Field is required</div>
 
         <button type="submit" [disabled]="!tppersonForm.form.valid" 
         class="btn btn-info">Submit</button>

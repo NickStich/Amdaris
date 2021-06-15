@@ -1,41 +1,3 @@
-<!-- <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
-
-    <h1>Invoice</h1>
-
-  
-
-    <div>{{typeVariable | thirdPartyPersonType}}
-        TPP: <input formControlName="thirdPartyPersonId" value="{{invoice.thirdPartyPersonId}}">
-    </div>
-    <br>
-    Date: <input type="date" formControlName="date" value="{{invoice.date | date:'yyyy-MM-dd'}}">
-
-    Number: <input formControlName="number" value="{{invoice.number}}">
-    <br>
-
-    <button class="btn btn-default" type="button" (click)="addItem()">Add Row</button>
-
-    <div formArrayName="positions">
-        <div *ngFor="let item of invoicePositions.controls; let i = index;">
-            <div [formGroupName]="i">
-                <ng-container formGroupName="product">
-                    <input formControlName="name" placeholder="prod name" required>
-                    <input type="number" formControlName="price" placeholder="prod quantity" required>
-                </ng-container>
-                <input type="number" formControlName="quantity" placeholder="prod quantity" [required]>
-                <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Remove Row</button>
-            </div>
-        </div>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-info">Save</button>
-
-    <button type="button" (click)="go()">go</button>
-
-</form> -->
-
-<button type="button" (click)="enableEdit()">edit</button>
-
 <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
 
     <body>
@@ -147,3 +109,12 @@
     </body>
 
 </form>
+
+<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
+<div mat-dialog-content>
+  <p>What's your favorite animal?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div> -->

@@ -13,6 +13,7 @@ import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/thi
 })
 export class BalanceListComponent implements OnInit {
 
+  panelOpenState = false;
   invoices: Invoice[] = [];
   saleInvoices: Invoice[] = [];
   purchaseInvoices: Invoice[] = [];
@@ -77,11 +78,11 @@ export class BalanceListComponent implements OnInit {
         }
       });
     }
-    // outputInvoices = this.invoices.filter(i => i.thirdPartyPersonId === tppId);
     console.log('length=' + this.invoices.length);
   }
 
   selectedTPPId(event: any) {
+    console.log(this.tppByType.length);
     this.selectedValue = event.target.value;
   }
 
@@ -115,7 +116,8 @@ export class BalanceListComponent implements OnInit {
     this.invoices = [];
   }
 
-  getTTPByType(id: number) {
+  getTTPByType(theId: number) {
+    const id = theId;
     console.log(id);
     this.tppService.getByType(id).subscribe(data => {
       this.tppByType = data;

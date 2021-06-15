@@ -1,39 +1,74 @@
-<button (click)="clearFilters()">Clean all filters</button>
+<button class="btn btn-info" (click)="clearFilters()">Clean all filters</button>
 
-<div>Filter by range:
-  <input type="date" name="start" #start value="dateNow">
-  <input type="date" #end name="end" value="null">
-</div>
 <br>
 <br>
-<div>Filter by Third Party Person
-  <!-- <select >
-    <option value="null" selected>-Select a type-</option>
-    <option *ngFor="let type of tppType" [value]="type">{{type | thirdPartyPersonType}} </option>
-  </select> -->
-
-  <select name="my-select" [(ngModel)]="selected" (change)="getTTPByType($event.target.value)">
-    <option [value]="item" *ngFor="let item of tppType">
-      {{item | thirdPartyPersonType}}
-    </option>
-  </select>
-
-  <select [(ngModel)]="selected" (change)="selectedTPPId($event)">
-    <option value="null" selected>-Select name-</option>
-    <option *ngFor="let tpp of tppByType"  [value]="tpp.id">{{tpp.name}} </option>
-  </select>
-</div>
 <br>
 
-<button (click)="generateBalance(start.value, end.value, selectedValue)" class="btn btn-info" style="float: right;">Generate
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filter by date range
+      </mat-panel-title>
+      <mat-panel-description>
+        Please, choose a range you want to generate balance for
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="From" name="start" #start value="dateNow">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker3" placeholder="To" #end name="end" value="null">
+      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+      <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filter by Third Party Person
+      </mat-panel-title>
+      <mat-panel-description>
+        Please, choose a Third Party Person you want to generate balance for
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <mat-label>Third Party Person type</mat-label>
+      <mat-select [(ngModel)]="selected" [(value)]="selectedType" (selectionChange)="getTTPByType(selected)">
+        <mat-option *ngFor="let item of tppType" [value]="item" >
+          {{item | thirdPartyPersonType}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Third Party Person name</mat-label>
+      <mat-select [(ngModel)]="selected" (change)="selectedTPPId($event)">
+        <mat-option *ngFor="let tpp of tppByType"  [value]="tpp.id">
+          {{tpp.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+  </mat-expansion-panel>
+</mat-accordion>
+
+<button (click)="generateBalance(start.value, end.value, selectedValue)" class="btn btn-info"
+  style="float: right;">Generate
   Balance</button>
+
+<br>
+<br>
+
 <h1>Turnover (total value of the sales): {{turnover | number: '.2'}} $</h1>
 <h1>Total value of the purchased goods: {{purchases | number: '.2'}} $</h1>
 <h1 *ngIf="vatTotalValue > 0 ;else other_type">VAT:{{2 | vatType}} = {{vatTotalValue | number: '.2'}} $</h1>
 
 <ng-template #other_type>VAT:{{3 | vatType}} = {{vatTotalValue | number: '.2'}} $</ng-template>
-
-<!-- <mat-paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-</mat-paginator> -->

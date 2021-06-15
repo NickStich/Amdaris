@@ -36,6 +36,8 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
 import { ProductService } from './service/productService/product.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -89,6 +91,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatMenuModule,
     MatPaginatorModule,
     MatSortModule,
+    MatExpansionModule,
+    MatDividerModule
   ],
   entryComponents: [InvoiceViewComponent],
   providers: [ThirdPartyPersonService, ProductService],
