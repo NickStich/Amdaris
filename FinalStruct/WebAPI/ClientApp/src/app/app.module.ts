@@ -38,6 +38,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
+import { ThirdPartyPersonNamePipe } from './pipes/third-party-person/third-party-person-name.pipe';
+import { MatListModule } from '@angular/material';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import { MatDividerModule } from '@angular/material/divider';
     ThirdPartyPersonTypePipe,
     VatTypePipe,
     InvoiceStatusPipe,
-    DateFormatPipe
+    DateFormatPipe,
+    ThirdPartyPersonNamePipe,
+    // MatListItem
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -92,7 +97,10 @@ import { MatDividerModule } from '@angular/material/divider';
     MatPaginatorModule,
     MatSortModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDividerModule,
+    MatListModule,
+    MatIconModule
   ],
   entryComponents: [InvoiceViewComponent],
   providers: [ThirdPartyPersonService, ProductService],

@@ -1,7 +1,7 @@
 import { Product } from '../product/product';
 
 export class Position {
-    positionId: number;
+    id: number;
     product: Product;
     quantity: number;
 }

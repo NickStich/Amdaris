@@ -48,7 +48,7 @@ namespace Infrastructure.Repositories
             var positionToModify = _dbContext.Positions.First(p => p.Id == positionId);
             if (positionToModify != null)
             {
-                positionToModify.Product = position.Product;
+                positionToModify.ProductId = position.ProductId;
                 positionToModify.Quantity = position.Quantity;
                 positionToModify.Invoices = position.Invoices;
                 _dbContext.SaveChanges();

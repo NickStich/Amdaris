@@ -18,28 +18,34 @@ export class InvoicesComponent implements OnInit {
   tempInvoice: Invoice[] = [];
 
   dataSource = new MatTableDataSource<Invoice>();
-   displayedColumns = ['id', 'number', 'date', 'status', 'action'];
-   @ViewChild(MatSort, { static: true }) sort: MatSort;
-   @ViewChild(MatPaginator , {static: true}) paginator: MatPaginator;
+  displayedColumns = ['id', 'number', 'date', 'status', 'action'];
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private invoiceService: InvoiceService,
-    private dialog: MatDialog) { }
+  constructor(private invoiceService: InvoiceService) { }
 
   ngOnInit(): void {
     this.invoiceService.findAll().subscribe(data => {
       this.invoices = data;
       this.tempInvoice = data;
-      this.dataSource = new MatTableDataSource(this.invoices);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+      this.tempInvoice = data;
+      this.applyPaginatorAndSort(this.invoices);
     });
   }
+
+  applyPaginatorAndSort(invoiceList: Invoice[]) {
+    this.dataSource = new MatTableDataSource(invoiceList);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
   refreshPage() {
     window.location.reload();
   }
 
   displayAllInvoices() {
     this.invoices = this.tempInvoice;
+    this.applyPaginatorAndSort(this.invoices);
   }
 
   displayPurchaseInvoices() {
@@ -49,6 +55,7 @@ export class InvoicesComponent implements OnInit {
         this.purchaseInvoices.push(invoice);
       }
     }
+    this.applyPaginatorAndSort(this.purchaseInvoices);
     this.invoices = this.purchaseInvoices;
     this.purchaseInvoices = [];
   }
@@ -60,6 +67,7 @@ export class InvoicesComponent implements OnInit {
         this.saleInvoices.push(invoice);
       }
     }
+    this.applyPaginatorAndSort(this.saleInvoices);
     this.invoices = this.saleInvoices;
     this.saleInvoices = [];
   }

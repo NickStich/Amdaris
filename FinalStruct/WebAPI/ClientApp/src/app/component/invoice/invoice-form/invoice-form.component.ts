@@ -41,7 +41,6 @@ export class InvoiceFormComponent implements OnInit {
     if (this.typeVariable === 1) {
       this.productService.findAll().subscribe(data => this.products = data);
     }
-
     this.invoiceForm = this.formBuilder.group({
       thirdPartyPersonId: 0,
       date: '',
@@ -53,7 +52,6 @@ export class InvoiceFormComponent implements OnInit {
       value: 0,
       vatValue: 0
     });
-
     this.invoiceForm.patchValue({
       thirdPartyPersonId: 0,
       date: '',

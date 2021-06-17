@@ -20,7 +20,7 @@ export class VatTypePipe implements PipeTransform {
         return 'ToReceive';
         break;
       default:
-        return 'Invalide VAT type';
+        return 'Unknown';
         break;
     }
   }

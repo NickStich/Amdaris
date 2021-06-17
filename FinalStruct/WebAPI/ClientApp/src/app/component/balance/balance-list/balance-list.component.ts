@@ -20,6 +20,7 @@ export class BalanceListComponent implements OnInit {
   tppType = [1, 2];
   selectedValue = 0;
   tppByType: ThirdPartyPerson[] = [];
+  changeText: boolean;
 
   // filtering
   fromDate: Date;
@@ -27,6 +28,7 @@ export class BalanceListComponent implements OnInit {
   dateNow = Date.now();
 
   vatTotalValue: number;
+  vatTypeDisplay: number;
   turnover: number;
   purchases: number;
 
@@ -35,6 +37,7 @@ export class BalanceListComponent implements OnInit {
     this.turnover = 0;
     this.purchases = 0;
     this.vatTotalValue = 0;
+    this.changeText = false;
   }
 
   ngOnInit(): void {
@@ -113,6 +116,7 @@ export class BalanceListComponent implements OnInit {
     this.filterByThirdPartyPerson(tppId);
     this.populate();
     this.vatTotalValue = this.takeVAT(this.saleInvoices) - this.takeVAT(this.purchaseInvoices);
+    this.vatTypeDisplay = (this.vatTotalValue > 0) ? 2 : 3;
     this.invoices = [];
   }
 
@@ -126,5 +130,13 @@ export class BalanceListComponent implements OnInit {
 
   clearFilters() {
     location.reload();
+  }
+
+  showMyIcons(event) {
+    event.target.classList.remove('hidden');
+  }
+
+  hideMyIcons(event) {
+    event.target.classList.add('hidden');
   }
 }

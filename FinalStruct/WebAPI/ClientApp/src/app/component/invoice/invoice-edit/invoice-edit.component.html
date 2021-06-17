@@ -21,6 +21,10 @@
                                 <td class="details">
                                     Invoice #: <input formControlName="number"><br />
                                     Created: <input type="date" formControlName="date"><br />
+                                    Status: <br>
+                                    <select formControlName="status">
+                                        <option *ngFor="let stat of invoiceStatus" [value]="stat">{{stat | invoiceStatus}} </option>
+                                    </select>
                                 </td>
                             </tr>
                         </table>
@@ -76,12 +80,14 @@
                                         <input formControlName="name" placeholder="prod name" required>
                                     </td>
                                     <td>
-                                        <input formControlName="price" placeholder="prod price" style="width:100px" required>
+                                        <input formControlName="price" placeholder="prod price" style="width:100px"
+                                            required>
                                     </td>
                                 </ng-container>
 
                                 <td>
-                                    <input formControlName="quantity" placeholder="prod quantity" style="width:100px" [required]>
+                                    <input formControlName="quantity" placeholder="prod quantity" style="width:100px"
+                                        [required]>
                                 </td>
                                 <td>
                                     <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)"> -

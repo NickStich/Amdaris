@@ -7,14 +7,14 @@
           <input type="text" [(ngModel)]="product.name" class="form-control" id="name" name="name"
             placeholder="Enter name" required #name="ngModel">
         </div>
-        <div [hidden]="!name.pristine" class="alert alert-danger">Field is required</div>
+        <div [hidden]="name.pristine || !name.invalid" class="alert alert-danger">Field is required</div>
   
         <div class="form-group">
           <label for="price">Price</label>
           <input type="number" [(ngModel)]="product.price" class="form-control" id="price" name="price"
             placeholder="Enter price " required #price="ngModel">
-          <div [hidden]="!price.pristine" class="alert alert-danger">Field is required</div>
         </div> 
+        <div [hidden]="price.pristine || !price.invalid" class="alert alert-danger">Field is required</div>
 
         <button type="submit" [disabled]="!productForm.form.valid" 
         class="btn btn-info">Submit</button>

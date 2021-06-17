@@ -1,4 +1,5 @@
-﻿using Domain.Invoicing;
+﻿using Domain;
+using Domain.Invoicing;
 using Infrastructure.Abstractions.RepositoryAbstractions;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,12 +21,14 @@ namespace Infrastructure.Repositories
 
         public async Task<List<Invoice>> GetAllInvoices()
         {
-            return await _dbContext.Invoices.ToListAsync();
+
+            List<Invoice> invoices = await _dbContext.Invoices.ToListAsync();
+            return invoices;
         }
 
         public Invoice GetInvoiceById(int invoiceId)
         {
-           return _dbContext.Invoices.Find(invoiceId);
+            return _dbContext.Invoices.Find(invoiceId);
         }
 
         public void CreateInvoice(Invoice invoice)
@@ -49,21 +52,38 @@ namespace Infrastructure.Repositories
             _dbContext.SaveChanges();
         }
 
-        public void UpdateInvoice(int invoiceId, Invoice invoice)
+        public void UpdateInvoice(int invoiceId, Invoice updatedInvoice)
         {
-            var invoiceToBeModified = _dbContext.Invoices.First(i => i.Id == invoiceId);
+            var invoiceToBeModified = _dbContext.Invoices.Include(i => i.Positions).ThenInclude(p => p.Product).First(i => i.Id == invoiceId);
             if (invoiceToBeModified != null)
             {
-                invoiceToBeModified.Number = invoice.Number;
-                invoiceToBeModified.Date = invoice.Date;
-                invoiceToBeModified.Status = invoice.Status;
-                invoiceToBeModified.ThirdPartyPersonId = invoice.ThirdPartyPersonId;
-                invoiceToBeModified.Type = invoice.Type;
-                invoiceToBeModified.Positions = invoice.Positions;
-                invoiceToBeModified.VatType = invoice.VatType;
+                invoiceToBeModified.Number = updatedInvoice.Number;
+                invoiceToBeModified.Date = updatedInvoice.Date;
+                invoiceToBeModified.Status = updatedInvoice.Status;
+                invoiceToBeModified.ThirdPartyPersonId = updatedInvoice.ThirdPartyPersonId;
+                invoiceToBeModified.Type = updatedInvoice.Type;
+
+                //_dbContext.Positions.RemoveRange(invoiceToBeModified.Positions);
+                foreach ( var position in updatedInvoice.Positions)
+                {
+                    var existingPosition = invoiceToBeModified.Positions.FirstOrDefault(p => p.Id == position.Id);
+                    if(existingPosition != null)
+                    {
+                        existingPosition.Quantity = position.Quantity;
+                        existingPosition.Product.Name = position.Product.Name;
+                        existingPosition.Product.Price = position.Product.Price;
+                    }
+                    else
+                    {
+                        invoiceToBeModified.Positions.Add(position);
+                    }
+                }
+
+                //invoiceToBeModified.Positions = updatedInvoice.Positions;
+                invoiceToBeModified.VatType = updatedInvoice.VatType;
 
                 double totalValue = 0;
-                foreach (var position in invoice.Positions)
+                foreach (var position in updatedInvoice.Positions)
                 {
                     totalValue += (position.Product.Price * position.Quantity);
                 }
@@ -73,7 +93,15 @@ namespace Infrastructure.Repositories
                 invoiceToBeModified.Value = totalValue;
                 invoiceToBeModified.VATValue = vatValue;
 
-                _dbContext.SaveChanges();
+                try
+                {
+                    _dbContext.SaveChanges();
+
+                }
+                catch (Exception e)
+                {
+                  
+                }
             }
         }
         public IEnumerable<Invoice> GetFilteredBy(Func<Invoice, bool> filter)

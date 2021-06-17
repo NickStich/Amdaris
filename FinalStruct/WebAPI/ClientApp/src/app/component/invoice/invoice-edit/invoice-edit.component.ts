@@ -27,6 +27,7 @@ export class InvoiceEditComponent implements OnInit {
   invoiceForm: FormGroup;
   typeVariable: number;
   invoiceTotal: number;
+  invoiceStatus = [0, 1, 2, 3, 4];
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -44,6 +45,7 @@ export class InvoiceEditComponent implements OnInit {
     observable.subscribe(data => {
       this.invoice = data;
       this.enableEdit();
+      this.tppService.getByType(this.invoice.type).subscribe(tpps => this.thirdPartyPersons = tpps);
     });
     this.invoiceForm = this.formBuilder.group({
       thirdPartyPersonId: 0,
@@ -76,7 +78,9 @@ export class InvoiceEditComponent implements OnInit {
     const formArray = new FormArray([]);
     positionsArray.forEach(p => {
       formArray.push(this.formBuilder.group({
+        id: p.id,
         product: this.formBuilder.group({
+          id: p.product.id,
           name: p.product.name,
           price: p.product.price,
         }),
