@@ -6,3 +6,37 @@
     opacity:0;
     visibility: hidden;
   }
+
+.explication {
+    font-size: 11px;
+    color: forestgreen;
+}
+
+.title{
+    text-align: center;
+    font-size: 45px;
+}
+
+.mat-list-base .mat-list-item {
+    font-size: 20px;
+}
+
+.category{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.vat{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.green{
+    color: darkgreen;
+}
+
+#positive{
+    color: aquamarine;
+}

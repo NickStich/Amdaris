@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
 import { ThirdPartyPersonService } from './service/thirdPartiesService/third-party-person.service';
@@ -41,6 +40,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ThirdPartyPersonNamePipe } from './pipes/third-party-person/third-party-person-name.pipe';
 import { MatListModule } from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import { NumberABSPipe } from './pipes/number-abs.pipe';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import {MatIconModule} from '@angular/material/icon';
     InvoiceStatusPipe,
     DateFormatPipe,
     ThirdPartyPersonNamePipe,
-    // MatListItem
+    NumberABSPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -100,7 +101,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatDividerModule,
     MatDividerModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   entryComponents: [InvoiceViewComponent],
   providers: [ThirdPartyPersonService, ProductService],

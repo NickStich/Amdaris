@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
 import { Invoice } from 'src/app/model/invoice/invoice';
 import { ThirdPartyPerson } from 'src/app/model/thirdPartyPerson/third-party-person';
 import { InvoiceService } from 'src/app/service/invoiceService/invoice.service';
@@ -13,8 +11,10 @@ import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/thi
 })
 export class BalanceListComponent implements OnInit {
 
-  panelOpenState = false;
+  panelOpenStateDate = false;
+  panelOpenStateTPP = false;
   invoices: Invoice[] = [];
+  reloadedInvoices: Invoice[] = [];
   saleInvoices: Invoice[] = [];
   purchaseInvoices: Invoice[] = [];
   tppType = [1, 2];
@@ -25,12 +25,14 @@ export class BalanceListComponent implements OnInit {
   // filtering
   fromDate: Date;
   toDate: Date;
-  dateNow = Date.now();
+  personType = '';
+  personName = '';
 
   vatTotalValue: number;
   vatTypeDisplay: number;
   turnover: number;
   purchases: number;
+  profitOrLoss = 0;
 
   constructor(private invoiceService: InvoiceService,
     private tppService: ThirdPartyPersonService) {
@@ -38,41 +40,35 @@ export class BalanceListComponent implements OnInit {
     this.purchases = 0;
     this.vatTotalValue = 0;
     this.changeText = false;
+    this.fromDate = new Date();
+    this.toDate = new Date();
   }
 
   ngOnInit(): void {
     this.invoiceService.findAll().subscribe(data => {
       this.invoices = data;
+      this.reloadedInvoices = data;
     });
   }
 
   filterByPeriod(start: Date, finish: Date) {
-    console.log(start);
-    console.log(finish);
     let outputInvoices: Invoice[] = [];
     if (!start && !finish) {
-      console.log('all');
       outputInvoices = this.invoices;
     } else if (!finish) {
-      console.log('no finish');
       outputInvoices = this.invoices.filter((item) =>
         new Date(item.date) >= new Date(start));
     } else if (!start) {
-      console.log('no start');
       outputInvoices = this.invoices.filter((item) =>
         new Date(item.date) <= new Date(finish));
     } else {
-      console.log('nothing');
       outputInvoices = this.invoices.filter((item) =>
         new Date(item.date) >= new Date(start) && new Date(item.date) <= new Date(finish));
     }
-    console.log(outputInvoices);
     this.invoices = outputInvoices;
   }
 
   filterByThirdPartyPerson(tppId) {
-    console.log('init length=' + this.invoices.length);
-    console.log('id=' + tppId);
     const outputInvoices: Invoice[] = [];
     if (tppId) {
       this.invoices.forEach((invoice, index) => {
@@ -81,11 +77,9 @@ export class BalanceListComponent implements OnInit {
         }
       });
     }
-    console.log('length=' + this.invoices.length);
   }
 
   selectedTPPId(event: any) {
-    console.log(this.tppByType.length);
     this.selectedValue = event.target.value;
   }
 
@@ -112,31 +106,35 @@ export class BalanceListComponent implements OnInit {
 
   generateBalance(start, finish, tppId) {
     this.filterByPeriod(start, finish);
-    console.log(tppId);
     this.filterByThirdPartyPerson(tppId);
     this.populate();
     this.vatTotalValue = this.takeVAT(this.saleInvoices) - this.takeVAT(this.purchaseInvoices);
     this.vatTypeDisplay = (this.vatTotalValue > 0) ? 2 : 3;
+    this.profitOrLoss = (this.turnover - this.purchases);
     this.invoices = [];
   }
 
   getTTPByType(theId: number) {
     const id = theId;
-    console.log(id);
     this.tppService.getByType(id).subscribe(data => {
       this.tppByType = data;
     });
   }
 
   clearFilters() {
-    location.reload();
-  }
-
-  showMyIcons(event) {
-    event.target.classList.remove('hidden');
-  }
-
-  hideMyIcons(event) {
-    event.target.classList.add('hidden');
+    this.invoices = this.reloadedInvoices;
+    this.purchaseInvoices = [];
+    this.saleInvoices = [];
+    this.turnover = 0;
+    this.purchases = 0;
+    this.profitOrLoss = 0;
+    this.panelOpenStateDate = false;
+    this.panelOpenStateTPP = false;
+    this.vatTotalValue = 0;
+    this.vatTypeDisplay = undefined;
+    this.fromDate = undefined;
+    this.toDate = new Date();
+    this.personType = '';
+    this.personName = '';
   }
 }

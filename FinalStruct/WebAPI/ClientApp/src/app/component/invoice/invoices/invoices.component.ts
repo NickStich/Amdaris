@@ -18,7 +18,7 @@ export class InvoicesComponent implements OnInit {
   tempInvoice: Invoice[] = [];
 
   dataSource = new MatTableDataSource<Invoice>();
-  displayedColumns = ['id', 'number', 'date', 'status', 'action'];
+  displayedColumns = ['id', 'number', 'date', 'value', 'status', 'action'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 

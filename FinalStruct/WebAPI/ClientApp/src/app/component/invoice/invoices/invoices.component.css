@@ -1,6 +1,5 @@
 mat-table {
   width: 100%;
-  
 }
 
 th{
@@ -59,8 +58,8 @@ table{
  .mat-column-date {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 20% !important;
-  width: 20% !important;
+  flex: 0 0 15% !important;
+  width: 15% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -74,8 +73,8 @@ table{
 .mat-column-value {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 20% !important;
-  width: 20% !important;
+  flex: 0 0 15% !important;
+  width: 15% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 

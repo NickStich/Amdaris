@@ -62,12 +62,10 @@ namespace Infrastructure.Repositories
                 invoiceToBeModified.Status = updatedInvoice.Status;
                 invoiceToBeModified.ThirdPartyPersonId = updatedInvoice.ThirdPartyPersonId;
                 invoiceToBeModified.Type = updatedInvoice.Type;
-
-                //_dbContext.Positions.RemoveRange(invoiceToBeModified.Positions);
-                foreach ( var position in updatedInvoice.Positions)
+                foreach (var position in updatedInvoice.Positions)
                 {
                     var existingPosition = invoiceToBeModified.Positions.FirstOrDefault(p => p.Id == position.Id);
-                    if(existingPosition != null)
+                    if (existingPosition != null)
                     {
                         existingPosition.Quantity = position.Quantity;
                         existingPosition.Product.Name = position.Product.Name;
@@ -78,8 +76,6 @@ namespace Infrastructure.Repositories
                         invoiceToBeModified.Positions.Add(position);
                     }
                 }
-
-                //invoiceToBeModified.Positions = updatedInvoice.Positions;
                 invoiceToBeModified.VatType = updatedInvoice.VatType;
 
                 double totalValue = 0;
@@ -93,15 +89,7 @@ namespace Infrastructure.Repositories
                 invoiceToBeModified.Value = totalValue;
                 invoiceToBeModified.VATValue = vatValue;
 
-                try
-                {
-                    _dbContext.SaveChanges();
-
-                }
-                catch (Exception e)
-                {
-                  
-                }
+                _dbContext.SaveChanges();
             }
         }
         public IEnumerable<Invoice> GetFilteredBy(Func<Invoice, bool> filter)
