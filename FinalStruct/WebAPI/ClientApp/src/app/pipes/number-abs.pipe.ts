@@ -11,5 +11,4 @@ export class NumberABSPipe implements PipeTransform {
     }
     return num;
   }
-
 }

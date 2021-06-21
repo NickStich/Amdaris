@@ -16,8 +16,8 @@ export class ProductEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService) {
-      this.product = new Product();
-     }
+    this.product = new Product();
+  }
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
@@ -27,11 +27,10 @@ export class ProductEditComponent implements OnInit {
   }
 
   onSubmit() {
-     this.productService.update(this.id, this.product).subscribe(result => this.gotoProductList());
+    this.productService.update(this.id, this.product).subscribe(result => this.gotoProductList());
   }
 
   gotoProductList() {
     this.router.navigate(['prdt']);
   }
-
 }

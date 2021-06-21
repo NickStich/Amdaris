@@ -33,7 +33,6 @@ namespace Infrastructure
             .HasValue<Invoice>(0)
             .HasValue<SalesInvoice>(InvoiceType.SalesInvoice)
             .HasValue<PurchasesInvoice>(InvoiceType.PurchasesInvoice);
-            
 
             modelBuilder.Entity<ThirdPartyPerson>()
             .ToTable("ThirdParties")
@@ -41,14 +40,12 @@ namespace Infrastructure
             .HasValue<ThirdPartyPerson>(ThirdPartyType.ThirdPartyPerson)
             .HasValue<Supplier>(ThirdPartyType.Supplier)
             .HasValue<Customer>(ThirdPartyType.Customer);
-
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<ThirdPartyPerson> ThirdParties { get; set; }
         public DbSet<Position> Positions { get; set; }
-        //public DbSet<PositionInvoice> PositionInvoices { get; set; }
 
     }
 }

@@ -1,64 +1,61 @@
 <button class="btn btn-info" (click)="clearFilters()">Clean all filters</button>
 <br>
 <mat-accordion>
-  
+    <mat-expansion-panel [(expanded)]="panelOpenStateTPP">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Filter by Third Party Person
+            </mat-panel-title>
+            <mat-panel-description>
+                Please, choose a Third Party Person you want to generate balance for
+            </mat-panel-description>
+        </mat-expansion-panel-header>
 
-  <mat-expansion-panel [(expanded)]="panelOpenStateTPP">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Filter by Third Party Person
-      </mat-panel-title>
-      <mat-panel-description>
-        Please, choose a Third Party Person you want to generate balance for
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+        <mat-form-field>
+            <mat-label>Third Party Person type</mat-label>
+            <mat-select [(ngModel)]="personType" [(value)]="personType" (selectionChange)="getTTPByType(personType)">
+                <mat-option *ngFor="let item of tppType" [value]="item">
+                    {{item | thirdPartyPersonType}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Third Party Person type</mat-label>
-      <mat-select [(ngModel)]="personType" [(value)]="personType" (selectionChange)="getTTPByType(personType)">
-        <mat-option *ngFor="let item of tppType" [value]="item">
-          {{item | thirdPartyPersonType}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label>Third Party Person name</mat-label>
+            <mat-select [(ngModel)]="personName" (change)="selectedTPPId($event)">
+                <mat-option *ngFor="let tpp of tppByType" [value]="tpp.id">
+                    {{tpp.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-expansion-panel>
 
-    <mat-form-field>
-      <mat-label>Third Party Person name</mat-label>
-      <mat-select [(ngModel)]="personName" (change)="selectedTPPId($event)">
-        <mat-option *ngFor="let tpp of tppByType" [value]="tpp.id">
-          {{tpp.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </mat-expansion-panel>
+    <mat-expansion-panel [(expanded)]="panelOpenStateDate">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Filter by date range
+            </mat-panel-title>
+            <mat-panel-description>
+                Please, choose a range you want to generate balance for
+            </mat-panel-description>
+        </mat-expansion-panel-header>
 
-  <mat-expansion-panel [(expanded)]="panelOpenStateDate">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Filter by date range
-      </mat-panel-title>
-      <mat-panel-description>
-        Please, choose a range you want to generate balance for
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker2" placeholder="From" name="fromDate" #fromDate>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker2" placeholder="From" name="fromDate" #fromDate>
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker3" placeholder="To" #toDate name="toDate">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker3" placeholder="To" #toDate name="toDate">
-      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-      <mat-datepicker #picker3></mat-datepicker>
-    </mat-form-field>
-
-  </mat-expansion-panel>
+    </mat-expansion-panel>
 </mat-accordion>
 
-<button (click)="generateBalance(fromDate.value, toDate.value, personName)" class="btn btn-info"
-  style="float: right;">Generate
+<button (click)="generateBalance(fromDate.value, toDate.value, personName)" class="btn btn-info" style="float: right;">Generate
   Balance</button>
 
 <br>
@@ -67,77 +64,74 @@
 <br>
 
 <mat-card class="example-card">
-  <h1 class="title">Balance</h1>
-  <br>
-  <mat-list>
-    <mat-list-item>
-      <tr class="category" >
-        <td >
-          Turnover (total value of the sales) = 
-        </td>
-        <td >
-           {{turnover | number: '.2'}} $
-        </td>
-      </tr>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <tr class="category" >
-        <td>
-          Total value of the purchased goods = 
-        </td>
-        <td class="values">
-           {{purchases | number: '.2'}} $
-        </td>
-      </tr>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <tr class="vat"  (mouseover)="changeText=true" (mouseout)="changeText=false">
-        <td >
-          <span class="explication" *ngIf="changeText">ⓘ Resulting difference VAT collected(from sales) and VAT
+    <h1 class="title">Balance</h1>
+    <br>
+    <mat-list>
+        <mat-list-item>
+            <tr class="category">
+                <td>
+                    Turnover (total value of the sales) =
+                </td>
+                <td>
+                    {{turnover | number: '.2'}} $
+                </td>
+            </tr>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <tr class="category">
+                <td>
+                    Total value of the purchased goods =
+                </td>
+                <td class="values">
+                    {{purchases | number: '.2'}} $
+                </td>
+            </tr>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <tr class="vat" (mouseover)="changeText=true" (mouseout)="changeText=false">
+                <td>
+                    <span class="explication" *ngIf="changeText">ⓘ Resulting difference VAT collected(from sales) and VAT
             deductible(from purchases).
-            If collected is bigger -> VAT To Pay otherwise is VAT To Receive.<br></span>
-          VAT: {{vatTypeDisplay | vatType}} = 
-        </td>
-        <td >
-          <span class="explication" *ngIf="changeText"><br></span>
-           {{vatTotalValue | number: '.2'}} $
-        </td>
-      </tr>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <tr>
-        <td>
-        </td>
-        <td >
-        </td>
-      </tr>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <tr class="category">
-        <td>
-          <span style="font-size: 20px; color: darkgreen;" >
+            If collected is bigger -> VAT To Pay otherwise is VAT To Receive.<br></span> VAT: {{vatTypeDisplay | vatType}} =
+                </td>
+                <td>
+                    <span class="explication" *ngIf="changeText"><br></span> {{vatTotalValue | numberABS | number: '.2'}} $
+                </td>
+            </tr>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <tr class="category">
+                <td>
+                    <span style="font-size: 20px; color: darkgreen;">
             <b>Profit</b>
-          </span>
-          /
-          <span style="font-size: 20px; color:orangered;" >
+          </span> /
+                    <span style="font-size: 20px; color:orangered;">
             <b>Loss</b>
           </span>
-        </td>
-        <td >
-          <span style="color: orangered;"  *ngIf="profitOrLoss < 0 ; else positive"><b>{{profitOrLoss | numberABS | number: '.2'}}</b> </span>
-           <ng-template #positive >
-             <span class="green" ></span>
-               <b style="color: darkgreen">{{profitOrLoss | numberABS | number: '.2'}}</b> 
-            </ng-template>
-           $
-        </td>
-      </tr>
-    </mat-list-item>
-  </mat-list>
+                </td>
+                <td>
+                    <span style="color: orangered;" *ngIf="profitOrLoss < 0 ; else positive"><b>{{profitOrLoss | numberABS | number: '.2'}}</b> </span>
+                    <ng-template #positive>
+                        <span class="green"></span>
+                        <b style="color: darkgreen">{{profitOrLoss | numberABS | number: '.2'}}</b>
+                    </ng-template>
+                    $
+                </td>
+            </tr>
+        </mat-list-item>
+    </mat-list>
 </mat-card>
 
 <br>

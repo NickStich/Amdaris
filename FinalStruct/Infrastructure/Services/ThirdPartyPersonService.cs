@@ -45,9 +45,8 @@ namespace Infrastructure.Services
 
         public IEnumerable<ThirdPartyPerson> GetThirdPartyPersons()
         {
-            return _thirdPartyPersonRepository.GetThirdPartyPersons();
-            //var tppersonsResult = tppersons.Select(i => TransferToDTO(i)).ToList();
-            //return tppersonsResult;
+            var tppersonsResult = _thirdPartyPersonRepository.GetThirdPartyPersons();
+            return tppersonsResult;
         }
 
         public void UpdateThirdPartyPerson(int thirdPartyPersonId, ThirdPartyPerson thirdPartyPerson)
@@ -70,7 +69,7 @@ namespace Infrastructure.Services
             return dto;
         }
 
-        IEnumerable<ThirdPartyPerson> IThirdPartyPersonService.GetThirdPartyPersonsByType(ThirdPartyType thirdPartyType)
+        public IEnumerable<ThirdPartyPerson> GetThirdPartyPersonsByType(ThirdPartyType thirdPartyType)
         {
             return _thirdPartyPersonRepository.GetFilteredBy(t => t.Type == thirdPartyType);
         }

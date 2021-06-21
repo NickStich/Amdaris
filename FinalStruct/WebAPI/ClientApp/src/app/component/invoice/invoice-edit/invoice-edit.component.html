@@ -19,9 +19,7 @@
                                     Invoice
                                 </td>
                                 <td class="details">
-                                    Invoice #: <input formControlName="number"><br />
-                                    Created: <input type="date" formControlName="date"><br />
-                                    Status: <br>
+                                    Invoice #: <input formControlName="number"><br /> Created: <input type="date" formControlName="date"><br /> Status: <br>
                                     <select formControlName="status">
                                         <option *ngFor="let stat of invoiceStatus" [value]="stat">{{stat | invoiceStatus}} </option>
                                     </select>
@@ -36,13 +34,11 @@
                         <table>
                             <tr>
                                 <td>
-                                    Company address <br />
-                                    information
+                                    Company address <br /> information
                                 </td>
 
                                 <td>
-                                    John Smith<br />
-                                    john@example.com
+                                    John Smith<br /> john@example.com
                                 </td>
                             </tr>
                         </table>
@@ -80,14 +76,12 @@
                                         <input formControlName="name" placeholder="prod name" required>
                                     </td>
                                     <td>
-                                        <input formControlName="price" placeholder="prod price" style="width:100px"
-                                            required>
+                                        <input formControlName="price" placeholder="prod price" style="width:100px" required>
                                     </td>
                                 </ng-container>
 
                                 <td>
-                                    <input formControlName="quantity" placeholder="prod quantity" style="width:100px"
-                                        [required]>
+                                    <input formControlName="quantity" placeholder="prod quantity" style="width:100px" [required]>
                                 </td>
                                 <td>
                                     <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)"> -
@@ -115,12 +109,3 @@
     </body>
 
 </form>
-
-<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div> -->

@@ -35,12 +35,12 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
 import { ProductService } from './service/productService/product.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { ThirdPartyPersonNamePipe } from './pipes/third-party-person/third-party-person-name.pipe';
 import { MatListModule } from '@angular/material';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { NumberABSPipe } from './pipes/number-abs.pipe';
 
 @NgModule({

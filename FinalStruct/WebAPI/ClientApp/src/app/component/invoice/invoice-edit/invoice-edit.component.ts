@@ -121,7 +121,6 @@ export class InvoiceEditComponent implements OnInit {
 
   onSubmit() {
     this.toBePostInvoice = this.invoiceForm.value;
-    console.log(this.toBePostInvoice);
     this.invoiceService.update(this.invoice.id, this.toBePostInvoice).subscribe(result => this.gotoInvoiceList());
   }
 

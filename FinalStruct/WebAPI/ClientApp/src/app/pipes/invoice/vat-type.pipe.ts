@@ -24,6 +24,4 @@ export class VatTypePipe implements PipeTransform {
         break;
     }
   }
-
-
 }

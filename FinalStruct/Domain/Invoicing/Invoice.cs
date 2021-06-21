@@ -13,7 +13,6 @@ namespace Domain.Invoicing
         public int Id { get; set; }
         public string Number { get; set; }
         public DateTime Date { get; set; }
-        //one
         public int ThirdPartyPersonId { get; set; }
         public ThirdPartyPerson ThirdPartyPerson { get; set; }
         public virtual InvoiceType Type { get; set; }
@@ -23,13 +22,10 @@ namespace Domain.Invoicing
         public virtual VAT VatType { get; set; }
         public InvoiceStatus Status { get; set; }
 
-
         public override string ToString()
         {
             return $"Number:{Number} | Date:{Date} ";
         }
-
-
     }
 
     public enum InvoiceType

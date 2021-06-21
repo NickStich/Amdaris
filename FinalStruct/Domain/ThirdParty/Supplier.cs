@@ -15,7 +15,6 @@ namespace Domain.ThirdParty
                 return ThirdPartyType.Supplier;
             }
         }
-
         public Supplier()
         {
             if (this.Type != ThirdPartyType.Supplier)

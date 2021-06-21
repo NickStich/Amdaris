@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ThirdPartyPerson } from 'src/app/model/thirdPartyPerson/third-party-person';
 import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/third-party-person.service';
 
@@ -14,7 +14,6 @@ export class ThirdPartyPersonFormComponent implements OnInit {
   types: number[] = [1, 2];
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private tppService: ThirdPartyPersonService) {
       this.tpperson = new ThirdPartyPerson();

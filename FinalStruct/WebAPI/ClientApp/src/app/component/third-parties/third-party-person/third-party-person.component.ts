@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { MatSort, Sort } from '@angular/material/sort';
 import { ThirdPartyPerson } from 'src/app/model/thirdPartyPerson/third-party-person';
-import { ThirdPersonType } from 'src/app/model/thirdPartyPerson/ThirdPersonType';
 import { ThirdPartyPersonService } from 'src/app/service/thirdPartiesService/third-party-person.service';
 
 @Component({
@@ -19,9 +18,7 @@ export class ThirdPartyPersonComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator , {static: true}) paginator: MatPaginator;
 
-  constructor(private tppService: ThirdPartyPersonService) {
-
-  }
+  constructor(private tppService: ThirdPartyPersonService) {  }
 
   ngOnInit(): void {
     this.tppService.findAll().subscribe(data => {

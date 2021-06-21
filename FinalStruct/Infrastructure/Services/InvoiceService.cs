@@ -47,15 +47,13 @@ namespace Infrastructure.Services
         public async Task<List<Invoice>> GetAllInvoices()
         {
             var invoices = await _invoiceRepository.GetAllInvoices();
-            //var invoiceResult = invoices.Select(i => TransferToDTO(i)).ToList();
             return invoices;
         }
 
         public Invoice GetInvoiceById(int invoiceId)
         {
-            //var invoice = _invoiceRepository.GetInvoiceById(invoiceId);
-            //return TransferToDTO(invoice);
-            return _invoiceRepository.GetInvoiceById(invoiceId);
+            var invoice = _invoiceRepository.GetInvoiceById(invoiceId);
+            return invoice;
         }
 
         public void UpdateInvoice(int invoiceId, Invoice invoice)

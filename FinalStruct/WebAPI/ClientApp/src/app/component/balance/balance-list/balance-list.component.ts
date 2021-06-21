@@ -69,13 +69,14 @@ export class BalanceListComponent implements OnInit {
   }
 
   filterByThirdPartyPerson(tppId) {
-    const outputInvoices: Invoice[] = [];
+    const outputInvoicesTPP: Invoice[] = [];
     if (tppId) {
       this.invoices.forEach((invoice, index) => {
-        if (invoice.thirdPartyPersonId !== tppId) {
-          this.invoices.splice(index, 1);
+        if (invoice.thirdPartyPersonId === tppId) {
+          outputInvoicesTPP.push(invoice);
         }
       });
+      this.invoices = outputInvoicesTPP;
     }
   }
 
@@ -94,6 +95,8 @@ export class BalanceListComponent implements OnInit {
         this.purchases += invoice.value;
       }
     }
+    this.turnover /= 1.19;
+    this.purchases /= 1.19;
   }
 
   takeVAT(invoiceList: Invoice[]): number {
@@ -136,5 +139,6 @@ export class BalanceListComponent implements OnInit {
     this.toDate = new Date();
     this.personType = '';
     this.personName = '';
+    this.ngOnInit();
   }
 }

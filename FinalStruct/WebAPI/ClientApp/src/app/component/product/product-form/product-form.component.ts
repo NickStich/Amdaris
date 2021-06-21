@@ -15,8 +15,8 @@ export class ProductFormComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService) {
-      this.product = new Product();
-     }
+    this.product = new Product();
+  }
 
   ngOnInit() {
   }
