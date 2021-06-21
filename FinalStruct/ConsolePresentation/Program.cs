@@ -18,7 +18,7 @@ namespace ConsolePresentation
         {
             using (var dbContext = new AccountingAppDbContext())
             {
-                //dbContext.Database.EnsureCreated();
+                dbContext.Database.EnsureCreated();
 
                 //var product1 = new Product() { Name = "IPhone 8", Price = 2500 };
                 //var product2 = new Product() { Name = "Samsung S10", Price = 1500 };
@@ -31,9 +31,9 @@ namespace ConsolePresentation
                 //dbContext.Products.Add(product4);
                 //dbContext.Products.Add(product5);
 
-                //var tpp1 = new Customer { Name = "Metro", TaxId = "RO1689221" };
+                var tpp1 = new Customer { Name = "Metro", TaxId = "RO1689221" };
                 //var tpp2 = new Supplier { Name = "Auchan", TaxId = "RO9521785" };
-                //dbContext.ThirdParties.Add(tpp1);
+                dbContext.ThirdParties.Add(tpp1);
                 //dbContext.ThirdParties.Add(tpp2);
 
                 //var inv1 = new Invoice { Number = "2105001", Date = DateTime.Now, ThirdPartyPerson = tpp1, Status = InvoiceStatus.SENT, Type = InvoiceType.SalesInvoice };
@@ -57,13 +57,13 @@ namespace ConsolePresentation
                 //dbContext.PositionInvoices.Add(posInv3);
                 //dbContext.PositionInvoices.Add(posInv4);
 
-                //dbContext.SaveChanges();
-                //Console.WriteLine("succes");
+                dbContext.SaveChanges();
+                Console.WriteLine("succes");
 
-                var repo = new InvoiceRepository(dbContext);
-                var inv = repo.GetCompleteInvoiceById(113);
-                Console.WriteLine(inv.Number);
-                inv.Positions.ToList().ForEach(p => Console.WriteLine(p.Product.Name+" "+p.Product.Price+" "+p.Id));
+                //var repo = new InvoiceRepository(dbContext);
+                //var inv = repo.GetCompleteInvoiceById(113);
+                //Console.WriteLine(inv.Number);
+                //inv.Positions.ToList().ForEach(p => Console.WriteLine(p.Product.Name+" "+p.Product.Price+" "+p.Id));
 
             }
 

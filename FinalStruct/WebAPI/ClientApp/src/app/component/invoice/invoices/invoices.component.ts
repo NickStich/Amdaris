@@ -28,7 +28,6 @@ export class InvoicesComponent implements OnInit {
     this.invoiceService.findAll().subscribe(data => {
       this.invoices = data;
       this.tempInvoice = data;
-      this.tempInvoice = data;
       this.applyPaginatorAndSort(this.invoices);
     });
   }
